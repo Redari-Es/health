@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TailWindCss自定义样式*/
+@layer components{
+	.click-scale{
+		@apply hover:transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ...
+	}
+	.center{
+		@apply items-center justify-center
+	}
+	.btn-0{
+		@apply transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 w-1/6 self-center rounded-lg 
+	}
+.bigheadtext{
+	@apply font-sans text-4xl font-semibold
+}
+
+}
