@@ -1,5 +1,5 @@
 
-# StudyGin
+# Health
 
 ## 将用于毕业设计
 
@@ -7,4 +7,5 @@
 
 ## Author
 Shon
-## emailShon@redaries.xyz
+## email:
+Shon@redaries.xyz
