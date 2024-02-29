@@ -11,6 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	level  = level0
+	level0 = "INFO"
+	level1 = "DEBUG"
+	level2 = "WARN"
+	level3 = "ERROR"
+	level4 = "FATAL"
+)
+
 func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 开始时间
@@ -43,10 +52,10 @@ func LoggerMiddleware() gin.HandlerFunc {
 		defer file.Close()
 
 		// 日志格式
-		// logMessage := fmt.Sprintf("[Gin] %v | %3d | %13v | %15s | %-7s %s",
-		logMessage := fmt.Sprintf("%v | [server_%s] | %3d | %13v | %15s | %-7s %s",
-			endTime.Format("2006/01/02 - 15:04:05"),
+		logMessage := fmt.Sprintf("[server_%s] | [%s] | %v | %3d | %13v | %15s | %-7s | %s",
 			port,
+			level,
+			endTime.Format("2006/01/02 - 15:04:05"),
 			statusCode,
 			latency,
 			clientIP,
@@ -57,7 +66,7 @@ func LoggerMiddleware() gin.HandlerFunc {
 		// 将日志信息写入文件
 		// logger := log.New(file, os.Stdout, log.LstdFlags)
 		logger := log.New(file, "", 0)
-		gin.DefaultWriter = io.Writer(os.Stdout)
+		// gin.DefaultWriter = io.MultiWriter(os.Stdout)
 		logger.Println(logMessage)
 		// 更新起始时间为当前请求结束时间
 		startTime = endTime

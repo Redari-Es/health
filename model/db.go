@@ -51,15 +51,36 @@ func DBInit() {
 	// 设置日志
 	engine.ShowSQL(true)
 	engine.Logger().SetLevel(log.LOG_DEBUG)
-	f, err := os.Create("./log/mysql.log")
 
+	// 日志存储文件
+	filePath := "./logs/mysql.log"
+	// 检查文件是否存在
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		// 文件不存在，创建文件
+		f, err := os.Create(filePath)
+		if err != nil {
+			println(err.Error())
+			return
+		}
+		defer f.Close()
+	} else if err != nil {
+		// 其他错误
+		println(err.Error())
+		return
+	} else {
+		// 文件已经存在
+		println("文件已存在 - 正在写入")
+	}
+
+	// 打开文件并设置日志记录器
+	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		println(err.Error())
 		return
 	}
-	defer f.Close()
 
 	engine.SetLogger(log.NewSimpleLogger(f))
+
 	// 名称映射
 	// engine.SetMapper()
 	//数据库连接
