@@ -7,8 +7,7 @@ import (
 )
 
 func main() {
-	//idCard := "510104199001015678" // 身份证号码示例
-	idCard := "445221200104111238" // 身份证号码示例
+	idCard := "510104199001015678" // 身份证号码示例
 
 	gender := getGender(idCard)
 	birthDate := getBirthDate(idCard)
