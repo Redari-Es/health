@@ -6,6 +6,7 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/shonh/health/router/frontend"
 	"xorm.io/xorm"
 	"xorm.io/xorm/log"
 )
@@ -90,7 +91,7 @@ func DBInit() {
 	}
 
 	// 数据库同步
-	err = engine.Sync(new(User), new(Heart))
+	err = engine.Sync(new(User), new(Heart), new(frontend.Article))
 	if err != nil {
 		fmt.Println("数据库表结构同步失败")
 	} else {

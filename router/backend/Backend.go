@@ -16,6 +16,7 @@ func Backend() http.Handler {
 	*/
 	// r.Use(PortLogger())
 	r.Use(middleware.LoggerMiddleware())
+	r.Use(middleware.ReadAllLogMiddleware("logs"))
 
 	// 路由
 	r.GET("/", func(c *gin.Context) {
@@ -27,6 +28,7 @@ func Backend() http.Handler {
 			},
 		)
 	})
+	r.GET("/logs", middleware.LogsHandler)
 
 	return r
 }
