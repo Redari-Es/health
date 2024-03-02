@@ -3,4 +3,5 @@
 /logs/*.log
 /build
 main.go_
+vendor/
 
