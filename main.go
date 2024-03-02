@@ -15,7 +15,7 @@ import (
 // Init
 func init() {
 	// 数据库初始化
-	model.DBInit()
+	model.InitDB()
 }
 
 type ServerConfig struct {

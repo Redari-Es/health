@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetAllUser(c *gin.Context) {
+func getAllUser(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"WelCome": "frontend",
 		"message": "Get all users",
@@ -23,7 +23,7 @@ func Submit(c *gin.Context) {
 	c.String(200, fmt.Sprintf("hello %s\n", name))
 }
 
-func Root(c *gin.Context) {
+func root(c *gin.Context) {
 	c.JSON(
 		http.StatusOK,
 		gin.H{

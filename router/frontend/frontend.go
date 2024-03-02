@@ -3,8 +3,6 @@ package frontend
 import (
 	"net/http"
 
-	// _ "docs"
-
 	"github.com/gin-gonic/gin"
 	"github.com/shonh/health/middleware"
 )
@@ -17,11 +15,9 @@ func Frontend() http.Handler {
 	r.Use(middleware.LoggerMiddleware())
 	r.Use(middleware.ReadLogMiddleware())
 	// 路由
-	r.GET("/user", GetAllUser)
-	// r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
+	r.GET("/", root)
+	r.GET("/user", getAllUser)
 	r.GET("/log", middleware.LogHandler)
-
-	r.GET("/", Root)
 
 	return r
 }

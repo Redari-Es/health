@@ -1,11 +1,11 @@
-package frontend
+package model
 
 import (
 	"github.com/gin-gonic/gin"
 )
 
 type Article struct {
-	ID            uint32 `xorm:"primary_key" json:"id"`
+	ID            int64  `xorm:"primary_key" json:"id"`
 	CreatedBy     string `json:"created_by"`
 	ModifiedBy    string `json:"modified_by"`
 	CreatedOn     uint32 `json:"created_on"`
@@ -23,8 +23,6 @@ func NewArticle() Article {
 	return Article{}
 }
 
-//r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
 // @Summary	获取单个文章
 // @Produce	json
 // @Param		id	path		int		true	"文章ID"
@@ -32,7 +30,7 @@ func NewArticle() Article {
 // @Failure	400	{object}	string	"请求错误"
 // @Failure	500	{object}	string	"内部错误"
 // @Router		/api/v1/articles/{id} [get]
-func (a Article) Get(c *gin.Context) {
+func (t Article) Get(c *gin.Context) {
 
 }
 
@@ -47,7 +45,7 @@ func (a Article) Get(c *gin.Context) {
 // @Failure	400			{object}	string	"请求错误"
 // @Failure	500			{object}	string	"内部错误"
 // @Router		/api/v1/articles [get]
-func (a Article) List(c *gin.Context) {
+func (t Article) List(c *gin.Context) {
 	return
 }
 
@@ -64,7 +62,7 @@ func (a Article) List(c *gin.Context) {
 // @Failure	400				{object}	string	"请求错误"
 // @Failure	500				{object}	string	"内部错误"
 // @Router		/api/v1/articles [post]
-func (a Article) Create(c *gin.Context) {
+func (t Article) Create(c *gin.Context) {
 
 }
 
@@ -80,7 +78,7 @@ func (a Article) Create(c *gin.Context) {
 // @Failure	400				{object}	string	"请求错误"
 // @Failure	500				{object}	string	"内部错误"
 // @Router		/api/v1/articles/{id} [put]
-func (a Article) Update(c *gin.Context) {
+func (t Article) Update(c *gin.Context) {
 	return
 }
 
@@ -91,6 +89,6 @@ func (a Article) Update(c *gin.Context) {
 // @Failure	400	{object}	string	"请求错误"
 // @Failure	500	{object}	string	"内部错误"
 // @Router		/api/v1/articles/{id} [delete]
-func (a Article) Delete(c *gin.Context) {
+func (t Article) Delete(c *gin.Context) {
 	return
 }
