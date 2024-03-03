@@ -50,7 +50,7 @@
 |logs|日志|
 |middleware|中间件|
 |model|数据ORM|
-|pprof|性能分析|
+|pprof|性能分析 未上传|
 |router|拆分的路由|
 |tmp|fresh热更新生成的可执行文件存放目录|
 |util|工具方法|
