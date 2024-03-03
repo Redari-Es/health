@@ -8,3 +8,4 @@ tmp/
 pprof/
 
 /util/mail.json
+/conf/mail.json

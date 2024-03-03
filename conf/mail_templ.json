@@ -3,7 +3,7 @@
 		"emailFrom": "发件人名字 <发件人邮箱号>",
 		"smtp": "smtp.qq.com",
 		"port": "587",
-		"serverauth": "使用的邮箱号",
+		"serverauth": "使用代发服务的邮箱号",
 		"accesscode": "授权码"
 	}
 }

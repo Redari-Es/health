@@ -15,7 +15,7 @@ import (
 
 // func main()
 func mail() {
-	emailConfigInit()
+	emailConfJson()
 	// 使用配置信息
 	fmt.Printf("Email From: %s\n", emailFrom)
 	fmt.Printf("SMTP Server: %s\n", smtps)
@@ -54,9 +54,10 @@ var (
 	emailto    string //收件人
 )
 
-func emailConfigInit() {
+// 配置读取 JSON
+func emailConfJson() {
 	// 假设 JSON 数据存储在名为 "config.json" 的文件中
-	configFile, err := os.Open("mail.json")
+	configFile, err := os.Open("./conf/mail.json")
 	if err != nil {
 		fmt.Println("Error opening config file:", err)
 		return
@@ -76,6 +77,42 @@ func emailConfigInit() {
 	accessCode = config.Email.AccessCode
 }
 
+// 配置读取 conf
+// go get gopkg.in/ini.v1
+
+// EmailConfig 定义了电子邮件配置的结构
+type EmailConfig struct {
+	EmailFrom  string
+	SMTPS      string
+	PORT       string
+	ServerAuth string
+	AccessCode string
+}
+
+func emailConfINI() {
+	// 打开配置文件
+	configFile, err := ini.Load("example.conf")
+	if err != nil {
+		fmt.Println("Error loading config file:", err)
+		return
+	}
+	// 获取 [email] 节的配置
+	emailSection := configFile.Section("email")
+	emailConfig := EmailConfig{
+		EmailFrom:  emailSection.Key("emailFrom").String(),
+		SMTPS:      emailSection.Key("smtps").String(),
+		PORT:       emailSection.Key("port").String(),
+		ServerAuth: emailSection.Key("serverauth").String(),
+		AccessCode: emailSection.Key("accesscode").String(),
+	}
+	// 使用配置信息
+	fmt.Printf("Email From: %s\n", emailConfig.EmailFrom)
+	fmt.Printf("SMTP Server: %s\n", emailConfig.SMTP)
+	fmt.Printf("Server Auth: %s\n", emailConfig.ServerAuth)
+	fmt.Printf("Access Code: %s\n", emailConfig.AccessCode)
+}
+
+// 方法
 func mailto(to string) {
 	//start
 	e := email.NewEmail()

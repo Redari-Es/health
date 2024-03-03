@@ -52,7 +52,7 @@
 > npm run server
 ### 后台
 使用fresh 热加载
-> fresh -c fresh.conf
+> fresh -c ./conf/fresh.conf
 
 
 
