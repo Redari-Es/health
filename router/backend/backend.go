@@ -19,15 +19,23 @@ func Backend() http.Handler {
 		f, _ := os.Create("./log/backend.log")
 		gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 	*/
+	// 中间件使用
 	// r.Use(PortLogger())
 	r.Use(middleware.LoggerMiddleware())
 	r.Use(middleware.ReadAllLogMiddleware("logs"))
 
 	// 路由
 	r.GET("/", router.GetRoot)
-	r.GET("/logs", middleware.LogsHandler)
-	r.GET("/swagger/*any", gs.WrapHandler(sf.Handler))
-	// r.GET("/swagger/*any", UIHandle)
+	{
+		admin := r.Group("/admin")
+		admin.Use(gin.BasicAuth(gin.Accounts{
+			"admin": "admin",
+		}))
+
+		admin.GET("/logs", middleware.LogsHandler)
+		admin.GET("/swagger/*any", gs.WrapHandler(sf.Handler))
+		// r.GET("/swagger/*any", UIHandle)
+	}
 
 	return r
 }

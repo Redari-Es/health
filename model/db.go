@@ -10,7 +10,9 @@ import (
 )
 
 var (
-	engine *xorm.Engine
+	db, engine *xorm.Engine
+	// db 用于数据库的操作
+	// engine 用于数据库的连接
 )
 
 const (
@@ -75,13 +77,15 @@ func InitDB() {
 		println("数据库链接失败")
 	}
 
-	// 数据库同步
+	// 数据库同步,表同步
 	err = engine.Sync(new(User), new(Heart), new(Article))
 	if err != nil {
 		fmt.Println("数据库表结构同步失败")
 	} else {
 		fmt.Println("数据库表同步成功")
 	}
+	// 数据库
+	db = engine
 
 	defer engine.Close()
 }
