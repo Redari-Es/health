@@ -1,43 +1,56 @@
+# RESUME
 
-## RESUME
-- Author: Shon
-- Email: shon@redaries.xyz
-- Project Name: {Health}
-- CopyRight:
-- Blog: www.redaries.xyz
-- Time: 03/04,2024
+## 项目信息
+
+- **项目名称**: {Health}
+- **作者**: Shon
+- **邮箱**: shonh@redaries.xyz
+- **版权信息**: MIT License
+- **博客**: [www.redaries.xyz](http://www.redaries.xyz)
+- **创建时间**: 
+
+## 项目概述
+
+- **简介** Health是一个健康管理系统
+- **目标用户**
+- **主要功能**
+
+## 技术栈
+
+- **前端**: React,Material-UI,Tailwind CSS,Animate CSS
+- **后端**: Go,Gin,XORM,Mariadb(MySQL),Redis
+- **API**: RESTful API
+- **测试**:pprof
+- **部署**: Docker,Kubernetes
+
+## 开发进度
+
+- **当前阶段**: 开发中
+- **预计发布日期**: 2024年6月
+- **里程碑**:
+  - 2024年4月: 用户注册和登录功能完成
+  - 2024年5月: XXX功能完成
+  - 2024年6月: XXX功能完成
+
+## 贡献指南
+
+- **如何贡献**: 请查看[CONTRIBUTING.md](CONTRIBUTING.md)文件了解如何参与项目。
+- **问题跟踪**: 项目问题和功能请求可以在[GitHub Issues](https://github.com/redaries/Health/issues)中提交。
+
+## 许可证
+
+Health项目使用MIT许可证。有关详细信息，请参见[LICENSE](LICENSE)文件。
+
+## 联系信息
+
+- **作者**: Shon
+- **邮箱**: shonh@redaries.xyz
+- **博客**: [www.redaries.xyz](http://www.redaries.xyz)
+
+---
 
 
-## 毕业设计
-基于Gin+Xorm的健康管理系统的设计与实现
-# Project Description
-该管理系统用于健康信息管理
 
-## Key Features
-
-1. **Task Management:** Users can create, assign, and organize tasks with detailed descriptions and due dates.
-   
-2. **Collaboration:** Team members can collaborate on tasks, share files, and leave comments for effective communication.
-   
-3. **Priority Setting:** Tasks can be prioritized based on importance and urgency to help users focus on critical objectives.
-   
-4. **Progress Tracking:** Users can track task progress, monitor deadlines, and receive notifications for upcoming tasks.
-   
-5. **Reporting:** Generate reports on task completion, team productivity, and project milestones for performance analysis.
-
-
-## Technology Stack
-### Go
-- Gin Web Framework (Web 框架)
-- XORM (数据库ORM)
-
-### Database
-- Mariadb (MySQL)
-
-### React
-- Material UI
-- Tailwind CSS
-- Animate CSS
 
 ## Project Structure
 |Folder|Description|
@@ -50,7 +63,7 @@
 |logs|日志|
 |middleware|中间件|
 |model|数据ORM|
-|pprof|性能分析 未上传|
+|pprof|性能分析|
 |router|拆分的路由|
 |tmp|fresh热更新生成的可执行文件存放目录|
 |util|工具方法|
