@@ -40,6 +40,26 @@
 - Animate CSS
 
 ## Project Structure
+|Folder|Description|
+|-|-|
+|assets|Gin静态资源|
+|conf|存放配置文件|
+|docs|swagger生成的api文档|
+|draw|UML图例|
+|frontend-health|前端分离的UI|
+|logs|日志|
+|middleware|中间件|
+|model|数据ORM|
+|pprof|性能分析|
+|router|拆分的路由|
+|tmp|fresh热更新生成的可执行文件存放目录|
+|util|工具方法|
+|vendor|go vendor 未上传 减小体积|
+|view|GinWeb 前端页面|
+
+
+
+
 
 
 
@@ -58,7 +78,7 @@
 
 ## 服务端口
 
-|服务|端口|内容|
+|服务|端口|服务内容|
 |-|-|-|
 |前台|3000|用户界面|
 |前台API|5001|用户API|
