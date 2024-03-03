@@ -6,6 +6,10 @@ import (
 	_ "github.com/shonh/health/docs" // swagger生成的docs目录位置
 	"github.com/shonh/health/router"
 
+	// swagger生成的docs目录位置
+	// swagger生成的docs目录位置
+
+	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	"github.com/shonh/health/middleware"
 	sf "github.com/swaggo/files"
@@ -28,14 +32,17 @@ func Backend() http.Handler {
 	r.GET("/", router.GetRoot)
 	{
 		admin := r.Group("/admin")
-		admin.Use(gin.BasicAuth(gin.Accounts{
-			"admin": "admin",
-		}))
+		// admin.Use(gin.BasicAuth(gin.Accounts{
+		// 	"admin": "admin",
+		//}))
 
 		admin.GET("/logs", middleware.LogsHandler)
 		admin.GET("/swagger/*any", gs.WrapHandler(sf.Handler))
 		// r.GET("/swagger/*any", UIHandle)
 	}
+	// 设置pprof路由
+	pprof.Register(r)
+	// pprof.Register(r,"dev/pprof")
 
 	return r
 }

@@ -51,8 +51,8 @@ func main() {
 		{
 			Addr:         ":5002",
 			Handler:      backend.Backend(),
-			ReadTimeout:  5 * time.Second,
-			WriteTimeout: 10 * time.Second,
+			ReadTimeout:  20 * time.Second,
+			WriteTimeout: 70 * time.Second,
 		},
 	}
 

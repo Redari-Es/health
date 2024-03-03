@@ -5,4 +5,5 @@
 main.go_
 vendor/
 tmp/
+pprof/
 
