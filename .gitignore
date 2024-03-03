@@ -7,3 +7,4 @@ vendor/
 tmp/
 pprof/
 
+/util/mail.json
