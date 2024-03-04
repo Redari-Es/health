@@ -3,7 +3,7 @@
 ## 项目信息
 
 - **项目名称**: {Health}
-- **作者**: Shon
+- **作者**: ShonH
 - **邮箱**: shonh@redaries.xyz
 - **版权信息**: MIT License
 - **博客**: [www.redaries.xyz](http://www.redaries.xyz)
@@ -97,7 +97,7 @@ Health项目使用MIT许可证。有关详细信息，请参见[LICENSE](LICENSE
 
 ## 联系信息
 
-- **作者**: Shon
+- **作者**: ShonH
 - **邮箱**: shonh@redaries.xyz
 - **博客**: [www.redaries.xyz](http://www.redaries.xyz)
 
