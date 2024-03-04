@@ -28,26 +28,10 @@
 - **当前阶段**: 开发中
 - **预计发布日期**: 2024年6月
 - **里程碑**:
-  - 2024年4月: 用户注册和登录功能完成
+  - 2024年3月:
+  - 2024年4月: XXX功能完成
   - 2024年5月: XXX功能完成
-  - 2024年6月: XXX功能完成
 
-## 贡献指南
-
-- **如何贡献**: 请查看[CONTRIBUTING.md](CONTRIBUTING.md)文件了解如何参与项目。
-- **问题跟踪**: 项目问题和功能请求可以在[GitHub Issues](https://github.com/redaries/Health/issues)中提交。
-
-## 许可证
-
-Health项目使用MIT许可证。有关详细信息，请参见[LICENSE](LICENSE)文件。
-
-## 联系信息
-
-- **作者**: Shon
-- **邮箱**: shonh@redaries.xyz
-- **博客**: [www.redaries.xyz](http://www.redaries.xyz)
-
----
 
 
 
@@ -69,14 +53,6 @@ Health项目使用MIT许可证。有关详细信息，请参见[LICENSE](LICENSE
 |util|工具方法|
 |vendor|go vendor 未上传 减小体积|
 |view|GinWeb 前端页面|
-
-
-
-
-
-
-
-
 
 
 ## 运行
@@ -108,3 +84,21 @@ swaggerFiles 替换成files
 
 ### pprof
 性能分析
+
+
+## 贡献指南
+
+- **如何贡献**: 请查看[CONTRIBUTING.md](CONTRIBUTING.md)文件了解如何参与项目。
+- **问题跟踪**: 项目问题和功能请求可以在[GitHub Issues](https://github.com/redaries/Health/issues)中提交。
+
+## 许可证
+
+Health项目使用MIT许可证。有关详细信息，请参见[LICENSE](LICENSE)文件。
+
+## 联系信息
+
+- **作者**: Shon
+- **邮箱**: shonh@redaries.xyz
+- **博客**: [www.redaries.xyz](http://www.redaries.xyz)
+
+---
