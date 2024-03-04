@@ -10,6 +10,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/go-ini/ini"
 	"github.com/jordan-wright/email"
 )
 
@@ -107,7 +108,7 @@ func emailConfINI() {
 	}
 	// 使用配置信息
 	fmt.Printf("Email From: %s\n", emailConfig.EmailFrom)
-	fmt.Printf("SMTP Server: %s\n", emailConfig.SMTP)
+	fmt.Printf("SMTP Server: %s\n", emailConfig.SMTPS)
 	fmt.Printf("Server Auth: %s\n", emailConfig.ServerAuth)
 	fmt.Printf("Access Code: %s\n", emailConfig.AccessCode)
 }
