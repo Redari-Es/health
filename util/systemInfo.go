@@ -2,8 +2,14 @@ package util
 
 import (
 	"fmt"
-	"log"
 	"time"
+
+	"github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/disk"
+	"github.com/shirou/gopsutil/host"
+	"github.com/shirou/gopsutil/load"
+	"github.com/shirou/gopsutil/mem"
+	"github.com/shirou/gopsutil/net"
 )
 
 // cpu info
@@ -67,6 +73,7 @@ func getNetInfo() {
 	}
 }
 
+/*
 func GetLocalIP() (ip string, err error) {
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {
@@ -87,8 +94,10 @@ func GetLocalIP() (ip string, err error) {
 	}
 	return
 }
+*/
 
 // Get preferred outbound ip of this machine
+/*
 func GetOutboundIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
@@ -100,3 +109,4 @@ func GetOutboundIP() string {
 	fmt.Println(localAddr.String())
 	return localAddr.IP.String()
 }
+*/

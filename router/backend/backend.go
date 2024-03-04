@@ -5,6 +5,7 @@ import (
 
 	_ "github.com/shonh/health/docs" // swagger生成的docs目录位置
 	"github.com/shonh/health/router"
+	"github.com/shonh/health/util"
 
 	// swagger生成的docs目录位置
 	// swagger生成的docs目录位置
@@ -43,6 +44,21 @@ func Backend() http.Handler {
 	// 设置pprof路由
 	pprof.Register(r)
 	// pprof.Register(r,"dev/pprof")
+
+	// JWT
+	// 保护的路由
+	// protected := r.Group("/")
+	// protected.Use(util.JWTMiddleware())
+	// {
+	// 	protected.GET("/protected", func(c *gin.Context) {
+	// 		claims := c.MustGet("claims").(*util.CustomClaims)
+	// 		c.JSON(http.StatusOK, gin.H{"message": "This is a protected route", "user_id": claims.UserID})
+	// 	})
+	//
+	// 	// 登录路由
+	// 	r.POST("/login", util.loginHandler)
+	// }
+	r.POST("/login", util.LoginHandler)
 
 	return r
 }
