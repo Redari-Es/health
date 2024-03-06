@@ -42,12 +42,12 @@
         - 2024年3月3日:启用了中间件Swaggor，用于API文档生成
         - 2024年3月4日: 增加了邮件发送功能，邮件配置读写，JWT令牌, Pprof 性能优化分析
         - 2024年2月5日: 赶论文了
-        - 2024年3月6日: 拆分了models目录，进行了数据库表设计
+        - 2024年3月6日: 拆分了models目录，进行了数据库表设计，避免依赖循环
         - 2024年4月: XXX功能完成
         - 2024年5月: XXX功能完成
 
 
-### 重构优化(Refactor)
+## 重构优化(Refactor)
 **内容**
     - **2024年2月**
         - 2024年2月10日:
@@ -61,12 +61,13 @@
             + 将engine.Sync替换成更精准的更新Sync2
             + 将new(User)内容拆分成循环，便于添加数据表时
             + 增加DropTables，由于Sync是增量更新，有时需要先删除
+            + 避免依赖循环
 
 
 
 
 
-## Project Structure
+## 项目结构(Project Structure)
 |Folder|Description|
 |-|-|
 |assets|Gin静态资源|
@@ -76,7 +77,7 @@
 |frontend-health|前端分离的UI|
 |logs|日志|
 |middleware|中间件|
-|models|数据ORM|
+|model|数据ORM|
 |pprof|性能分析|
 |router|拆分的路由|
 |tmp|fresh热更新生成的可执行文件存放目录|

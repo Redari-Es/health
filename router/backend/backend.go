@@ -1,18 +1,18 @@
 package backend
 
 import (
+	"health/middleware"
+	"health/router"
+	"health/util"
 	"net/http"
 
-	_ "github.com/shonh/health/docs" // swagger生成的docs目录位置
-	"github.com/shonh/health/router"
-	"github.com/shonh/health/util"
+	_ "health/docs" // swagger生成的docs目录位置
 
 	// swagger生成的docs目录位置
 	// swagger生成的docs目录位置
 
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-	"github.com/shonh/health/middleware"
 	sf "github.com/swaggo/files"
 	gs "github.com/swaggo/gin-swagger"
 )

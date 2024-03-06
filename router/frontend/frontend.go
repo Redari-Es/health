@@ -1,10 +1,10 @@
 package frontend
 
 import (
+	"health/middleware"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shonh/health/middleware"
 )
 
 // 前台api调用

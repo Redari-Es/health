@@ -2,20 +2,26 @@ package main
 
 import (
 	"context"
+	"health/model"
+	"health/model/dbs"
+	"health/router/backend"
+	"health/router/frontend"
 	"log"
 	"net/http"
 	"time"
 
-	"github.com/shonh/health/model"
-	"github.com/shonh/health/router/backend"
-	"github.com/shonh/health/router/frontend"
 	"golang.org/x/sync/errgroup"
 )
 
 // Init
 func init() {
 	// 数据库初始化
-	model.InitDB()
+	db := model.InitDB()
+	defer db.Close()
+	// 删除数据库表
+	//	dbs.DropTables(db)
+	// 更新数据库表
+	dbs.SyncTables(db)
 }
 
 type ServerConfig struct {

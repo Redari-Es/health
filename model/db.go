@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	db, engine *xorm.Engine
-	// db 用于数据库的操作
+	DB, engine *xorm.Engine
+	// DB 用于数据库的操作
 	// engine 用于数据库的连接
 )
 
@@ -24,7 +24,7 @@ const (
 	charset       = "utf8mb4"
 )
 
-func InitDB() {
+func InitDB() *xorm.Engine {
 	// 数据库连接设置
 	var err error
 	// database := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s", userName, passWord, ipAddress, port, dbName, charset)
@@ -48,13 +48,13 @@ func InitDB() {
 		f, err := os.Create(filePath)
 		if err != nil {
 			println(err.Error())
-			return
+			return nil
 		}
 		defer f.Close()
 	} else if err != nil {
 		// 其他错误
 		println(err.Error())
-		return
+		return nil
 	} else {
 		// 文件已经存在
 		println("文件已存在 - 正在写入")
@@ -64,11 +64,10 @@ func InitDB() {
 	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		println(err.Error())
-		return
+		return nil
 	}
 
 	engine.SetLogger(log.NewSimpleLogger(f))
-
 	// 名称映射
 	// Engine.SetMapper()
 	//数据库连接
@@ -77,15 +76,9 @@ func InitDB() {
 		println("数据库链接失败")
 	}
 
-	// 数据库同步,表同步
-	err = engine.Sync(new(User), new(Heart), new(Article))
-	if err != nil {
-		fmt.Println("数据库表结构同步失败")
-	} else {
-		fmt.Println("数据库表同步成功")
-	}
 	// 数据库
-	db = engine
+	DB = engine
 
-	defer engine.Close()
+	//	defer engine.Close()
+	return DB
 }

@@ -86,6 +86,36 @@ func AuthenticateUser(username, password string) (int64, error) {
 		return 0, errors.New("invalid username or password 2")
 	}
 }
+
+/*
+func AuthMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// 从请求头或请求参数中获取 token
+		tokenString := // 从请求中获取 token
+
+		// 解析 JWT token
+		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+			// 返回用于验证签名的密钥
+			return []byte("your-secret-key"), nil
+		})
+
+		// 验证和处理 token 错误
+		if err != nil || !token.Valid {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+			c.Abort()
+			return
+		}
+
+		// 将用户信息传递到上下文中
+		claims, _ := token.Claims.(jwt.MapClaims)
+		userID := claims["user_id"].(string)
+		c.Set("user_id", userID)
+
+		c.Next()
+	}
+}
+*/
+
 func LoginHandler(c *gin.Context) {
 	// 从请求中获取用户名和密码
 	username := c.Query("username")
