@@ -17,16 +17,16 @@ func generateUUID() string {
 	return u.String()
 }
 
-// @Summary 获取用户信息
-// @Description 根据用户ID获取用户信息
-// @Tags user
-// @Accept json
-// @Produce json
-// @Param id path int true "用户ID"
-// @Success 200 {object} User
-// @Failure 400 {object} ErrorResponse
-// @Failure 404 {object} ErrorResponse
-// @Router /users/user/{id} [get]
+//	@Summary		获取用户信息
+//	@Description	根据用户ID获取用户信息
+//	@Tags			user
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path		int		true	"用户ID"
+//	@Success		200	{object}	User	"成功"
+//	@Failure		400	{object}	string	"请求错误"
+//	@Failure		500	{object}	string	"内部错误"
+//	@Router			/users/user/{id} [get]
 func GetUserByID(c *gin.Context) {
 	id := c.Param("id")
 	var user User
@@ -42,15 +42,16 @@ func GetUserByID(c *gin.Context) {
 	c.JSON(http.StatusOK, user)
 }
 
-// @Summary 创建用户
-// @Description 创建新用户
-// @Tags user
-// @Accept json
-// @Produce json
-// @Param user body User true "用户信息"
-// @Success 201 {object} User
-// @Failure 400 {object} ErrorResponse
-// @Router /users/user [post]
+//	@Summary		创建用户
+//	@Description	创建新用户
+//	@Tags			user
+//	@Accept			json
+//	@Produce		json
+//	@Param			user	body		User	true	"用户信息"
+//	@Success		200		{object}	User	"成功"
+//	@Failure		400		{object}	string	"请求错误"
+//	@Failure		500		{object}	string	"内部错误"
+//	@Router			/users/user [post]
 func CreateUser(c *gin.Context) {
 	var newUser User
 	if err := c.ShouldBindJSON(&newUser); err != nil {
@@ -69,17 +70,17 @@ func CreateUser(c *gin.Context) {
 	}
 }
 
-// @Summary 更新用户信息
-// @Description 根据用户ID更新用户信息
-// @Tags user
-// @Accept json
-// @Produce json
-// @Param id path int true "用户ID"
-// @Param user body User true "用户信息"
-// @Success 200 {object} User
-// @Failure 400 {object} ErrorResponse
-// @Failure 404 {object} ErrorResponse
-// @Router /users/user/{id} [put]
+//	@Summary		更新用户信息
+//	@Description	根据用户ID更新用户信息
+//	@Tags			user
+//	@Accept			json
+//	@Produce		json
+//	@Param			id		path		int		true	"用户ID"
+//	@Param			user	body		User	true	"用户信息"
+//	@Success		200		{object}	User	"成功"
+//	@Failure		400		{object}	string	"请求错误"
+//	@Failure		500		{object}	string	"内部错误"
+//	@Router			/users/user/{id} [put]
 func UpdateUser(c *gin.Context) {
 	id := c.Param("id")
 	var user User
@@ -103,15 +104,16 @@ func UpdateUser(c *gin.Context) {
 	}
 }
 
-// @Summary 删除用户
-// @Description 根据用户ID删除用户
-// @Tags user
-// @Accept json
-// @Produce json
-// @Param id path int true "用户ID"
-// @Success 204 {object} EmptyResponse
-// @Failure 400 {object} ErrorResponse
-// @Router /users/user/{id} [delete]
+//	@Summary		删除用户
+//	@Description	根据用户ID删除用户
+//	@Tags			user
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path		int		true	"用户ID"
+//	@Success		200	{object}	User	"成功"
+//	@Failure		400	{object}	string	"请求错误"
+//	@Failure		500	{object}	string	"内部错误"
+//	@Router			/users/user/{id} [delete]
 func DeleteUser(c *gin.Context) {
 	id := c.Param("id")
 	affected, err := db.ID(id).Delete(&User{})

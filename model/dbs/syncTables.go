@@ -1,8 +1,8 @@
 package dbs
 
 import (
+	"fmt"
 	"health/model/body"
-	"health/model/info"
 	"health/model/other"
 	"health/model/users"
 	"log"
@@ -31,6 +31,9 @@ func DropTables(engine *xorm.Engine) error {
 // Sync 是增量更新 若要删除表重新构建确保数据已保存
 // Sync2 比 Sync更加精确
 func SyncTables(engine *xorm.Engine) error {
+	if engine == nil {
+		log.Fatalf("engine is nil")
+	}
 	models := []any{
 		// users
 		new(users.User),
@@ -38,22 +41,25 @@ func SyncTables(engine *xorm.Engine) error {
 		new(users.Account),
 		new(users.Family),
 		new(users.Member),
+		new(users.UserInfo),
+		new(users.UserDetail),
 		// body
 		new(body.ExerciseRecord),
 		new(body.BodyMeasurement),
 		new(body.PhysicalExam),
 		new(body.RespiratoryRate),
-		// info
-		new(info.HealthInfo),
+		new(body.BloodPressure),
+		new(body.BodyInfo),
+		new(body.Vision),
 		// other
 		new(other.Article),
 	}
 
-	for _, model := range models {
+	for index, model := range models {
 		err := engine.Sync2(model)
 		if err != nil {
-			log.Fatalf("数据库表结构同步失败")
-			log.Fatalf("%v", err)
+			fmt.Println("数据库表结构同步失败")
+			log.Fatalf("table:%v | Err:%v", index, err)
 		}
 	}
 

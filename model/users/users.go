@@ -2,6 +2,7 @@ package users
 
 import (
 	"health/model"
+	"health/model/body"
 	"time"
 )
 
@@ -30,7 +31,7 @@ type Account struct {
 // 家族表
 type Family struct {
 	ID      int64    `xorm:"'id' pk autoincr" json:"id"`
-	Name    string   `xorm:"'name'" json:"name"`
+	Name    string   `xorm:"'name' size(10)" json:"name"`
 	Members []Member `xorm:"-" json:"members"`
 }
 
@@ -43,11 +44,11 @@ type Member struct {
 // 用户表
 type User struct {
 	ID       int64     `xorm:"'id' pk autoincr" json:"id"`
-	UUID     string    `xorm:"'uuid'" json:"uuid"`
+	UUID     string    `xorm:"'uuid' unique notnull" json:"uuid"`
 	State    int8      `xorm:"'state'" json:"state"`
-	Username string    `xorm:"'name'" json:"name"`
+	Username string    `xorm:"'name' size(10)" json:"name"`
 	Avatar   string    `xorm:"'avatar'" json:"avatar"`
-	Salt     string    `xorm:"'salt'" json:"salt"`
+	Salt     string    `xorm:"'salt'" json:"-"`
 	Password string    `xorm:"'password'" json:"-"`
 	Email    string    `xorm:"'email' varchar(20)" json:"email"`
 	Mobile   string    `xorm:"'mobile'" json:"mobile"`
@@ -55,6 +56,39 @@ type User struct {
 	FamilyID int64     `xorm:"'family_id'" json:"family_id"`
 	Created  time.Time `xorm:"'created'" json:"created"`
 	Updated  time.Time `xorm:"'updated' updated" json:"updated"`
+	UserInfo *UserInfo `xorm:"-" json:"user_info"`
+	Account  *UserInfo `xorm:"-" json:"Account"`
+}
+
+// UserDetail 定义了用户详细信息的结构体
+type UserDetail struct {
+	ID            int64     `xorm:"'id' pk autoincr" json:"id"`
+	UserID        int64     `xorm:"'user_id' index" json:"user_id"`
+	FirstName     string    `xorm:"'first_name'" json:"first_name"`
+	LastName      string    `xorm:"'last_name'" json:"last_name"`
+	Email         string    `xorm:"'email' unique" json:"email"`
+	Phone         string    `xorm:"'phone'size(11) unique" json:"phone"`
+	Address       string    `xorm:"'address'" json:"address"`
+	Age           int       `xorm:"'age' check(age >= 0 and age <= 200)" json:"age`
+	Birthdate     string    `xorm:"'birthdate'" json:"birthdate"`
+	Gender        int       `xorm:"'gender'" json:"gender"`
+	Avatar        string    `xorm:"'avatar'" json:"avatar"`
+	IDCard        string    `xorm:"'id_card'size(18)" json:"id_card"`       // 身份证号码
+	Nationality   string    `xorm:"'nationality'" json:"nationality"`       // 国籍
+	Ethnicity     string    `xorm:"'ethnicity'" json:"ethnicity"`           // 民族
+	Occupation    string    `xorm:"'occupation'" json:"occupation"`         // 职业
+	Education     string    `xorm:"'education'" json:"education"`           // 文化程度
+	MaritalStatus string    `xorm:"'marital_status'" json:"marital_status"` // 婚否
+	Status        int       `xorm:"'status'" json:"status"`
+	CreatedAt     time.Time `xorm:"created" json:"created_at"`
+	UpdatedAt     time.Time `xorm:"updated" json:"updated_at"`
+}
+
+type UserInfo struct {
+	ID         int64
+	UserID     int            `xorm:"'user_id' index" json:"user_id"`
+	UserDetail *UserDetail    `xorm:"-" json:"user_detail"`
+	BodyInfo   *body.BodyInfo `xorm:"-" json:"body_info"`
 }
 
 // 下面是权限表 暂不使用

@@ -1,14 +1,89 @@
 definitions:
-  model.Article:
+  heart.HeartRate:
+    properties:
+      created_at:
+        type: string
+      heart_rate:
+        type: integer
+      id:
+        description: 心率相关属性
+        type: integer
+      timestamp:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  heart.HeartRateVariability:
+    properties:
+      created_at:
+        type: string
+      hrv:
+        type: number
+      id:
+        description: 心率变异性相关属性
+        type: integer
+      timestamp:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  heart.Hearts:
+    properties:
+      created_at:
+        type: string
+      heart_rate_timestamp:
+        type: string
+      heartRate:
+        items:
+          $ref: '#/definitions/heart.HeartRate'
+        type: array
+      heartRateVariability:
+        items:
+          $ref: '#/definitions/heart.HeartRateVariability'
+        type: array
+      hrv_timestamp:
+        type: string
+      id:
+        type: integer
+      resting_heart_rate_timestamp:
+        type: string
+      restingHeartRate:
+        items:
+          $ref: '#/definitions/heart.RestingHeartRate'
+        type: array
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  heart.RestingHeartRate:
+    properties:
+      created_at:
+        type: string
+      id:
+        description: 静息心率相关属性
+        type: integer
+      resting_heart_rate:
+        type: integer
+      timestamp:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  other.Article:
     properties:
       content:
         type: string
       cover_image_url:
         type: string
-      created_by:
+      created:
         type: string
-      created_on:
-        type: integer
       deleted_on:
         type: integer
       desc:
@@ -17,32 +92,53 @@ definitions:
         type: integer
       is_del:
         type: integer
-      modified_by:
-        type: string
-      modified_on:
-        type: integer
       state:
         type: integer
       title:
         type: string
+      updated:
+        type: string
     type: object
-  model.User:
+  users.AdminUser:
     properties:
-      age:
+      created:
+        type: string
+      email:
+        type: string
+      id:
         type: integer
+      password:
+        type: string
+      updated:
+        type: string
+      username:
+        type: string
+    type: object
+  users.User:
+    properties:
       avatar:
         type: string
       created:
         type: string
-      gender:
+      deleted:
+        type: integer
+      email:
+        type: string
+      family_id:
         type: integer
       id:
         type: integer
+      mobile:
+        type: string
       name:
         type: string
-      password:
+      salt:
         type: string
+      state:
+        type: integer
       updated:
+        type: string
+      uuid:
         type: string
     type: object
 info:
@@ -78,7 +174,7 @@ paths:
         "200":
           description: 成功
           schema:
-            $ref: '#/definitions/model.Article'
+            $ref: '#/definitions/other.Article'
         "400":
           description: 请求错误
           schema:
@@ -89,7 +185,7 @@ paths:
             type: string
       summary: 获取多个文章
       tags:
-      - Article
+      - article
     post:
       description: Get user by ID
       parameters:
@@ -139,7 +235,7 @@ paths:
         "200":
           description: 成功
           schema:
-            $ref: '#/definitions/model.Article'
+            $ref: '#/definitions/other.Article'
         "400":
           description: 请求错误
           schema:
@@ -150,7 +246,7 @@ paths:
             type: string
       summary: 创建文章
       tags:
-      - Article
+      - article
   /api/v1/articles/{id}:
     delete:
       description: Get user by ID
@@ -192,7 +288,7 @@ paths:
         "200":
           description: 成功
           schema:
-            $ref: '#/definitions/model.Article'
+            $ref: '#/definitions/other.Article'
         "400":
           description: 请求错误
           schema:
@@ -203,7 +299,7 @@ paths:
             type: string
       summary: 获取单个文章
       tags:
-      - Article
+      - article
     put:
       description: Get user by ID
       parameters:
@@ -244,7 +340,7 @@ paths:
         "200":
           description: 成功
           schema:
-            $ref: '#/definitions/model.Article'
+            $ref: '#/definitions/other.Article'
         "400":
           description: 请求错误
           schema:
@@ -255,174 +351,174 @@ paths:
             type: string
       summary: 更新文章
       tags:
-      - Article
-  /api/v1/heart:
-    get:
-      description: Get user by ID
-      parameters:
-      - description: 文章ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            type: string
-        "500":
-          description: 内部错误
-          schema:
-            type: string
-      summary: 列出Heart
-      tags:
-      - Heart
-    post:
-      description: Get user by ID
-      parameters:
-      - description: 文章ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            type: string
-        "500":
-          description: 内部错误
-          schema:
-            type: string
-      summary: 创建Heart
-      tags:
-      - Heart
-  /api/v1/heart/{id}:
-    delete:
-      description: Get user by ID
-      parameters:
-      - description: 文章ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            type: string
-        "500":
-          description: 内部错误
-          schema:
-            type: string
-      summary: 删除Heart
-      tags:
-      - Heart
-    get:
-      description: Get user by ID
-      parameters:
-      - description: 文章ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            type: string
-        "500":
-          description: 内部错误
-          schema:
-            type: string
-      summary: 获取Heart
-      tags:
-      - Heart
-    post:
-      description: Get user by ID
-      parameters:
-      - description: 文章ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 成功
-          schema:
-            type: string
-        "400":
-          description: 请求错误
-          schema:
-            type: string
-        "500":
-          description: 内部错误
-          schema:
-            type: string
-      summary: 更新Heart
-      tags:
-      - Heart
-  /api/v1/users:
+      - article
+  /hearts:
     post:
       consumes:
       - application/json
-      description: Create a new user
+      description: 创建一个新的 Heart 记录
       parameters:
-      - description: User to create
+      - description: 要创建的 Heart 记录
         in: body
-        name: user
+        name: heart
         required: true
         schema:
-          $ref: '#/definitions/model.User'
+          $ref: '#/definitions/heart.Hearts'
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "200":
+          description: OK
           schema:
-            $ref: '#/definitions/model.User'
+            $ref: '#/definitions/heart.Hearts'
         "400":
-          description: Invalid input
+          description: 无效输入
+          schema:
+            type: string
+        "404":
+          description: 记录未找到
           schema:
             type: string
         "500":
-          description: Internal Server Error
+          description: 服务器错误
           schema:
             type: string
-      summary: Create a new user
+      summary: 创建一个新的 Heart 记录
       tags:
-      - User
-  /api/v1/users/{id}:
+      - hearts
+  /hearts/{id}:
     delete:
-      description: Delete user by ID
+      consumes:
+      - application/json
+      description: 删除 Heart 记录
       parameters:
-      - description: User ID
+      - description: 要删除的 Heart 记录的 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            type: string
+        "400":
+          description: 无效输入
+          schema:
+            type: string
+        "404":
+          description: 记录未找到
+          schema:
+            type: string
+        "500":
+          description: 服务器错误
+          schema:
+            type: string
+      summary: 删除 Heart 记录
+      tags:
+      - hearts
+    get:
+      consumes:
+      - application/json
+      description: 通过 ID 获取 Heart 记录
+      parameters:
+      - description: Heart 记录的 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/heart.Hearts'
+        "400":
+          description: 无效输入
+          schema:
+            type: string
+        "404":
+          description: 记录未找到
+          schema:
+            type: string
+        "500":
+          description: 服务器错误
+          schema:
+            type: string
+      summary: 通过 ID 获取 Heart 记录
+      tags:
+      - hearts
+    put:
+      consumes:
+      - application/json
+      description: 更新 Heart 记录
+      parameters:
+      - description: 要更新的 Heart 记录的 ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 新的 Heart 记录数据
+        in: body
+        name: heart
+        required: true
+        schema:
+          $ref: '#/definitions/heart.Hearts'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/heart.Hearts'
+        "400":
+          description: 无效输入
+          schema:
+            type: string
+        "404":
+          description: 记录未找到
+          schema:
+            type: string
+        "500":
+          description: 服务器错误
+          schema:
+            type: string
+      summary: 更新 Heart 记录
+      tags:
+      - hearts
+  /users/admin:
+    post:
+      consumes:
+      - application/json
+      description: 创建管理员用户
+      parameters:
+      - description: 管理员用户信息
+        in: body
+        name: adminUser
+        required: true
+        schema:
+          $ref: '#/definitions/users.AdminUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.AdminUser'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: 创建管理员用户
+  /users/admin/{id}:
+    delete:
+      description: 删除管理员用户
+      parameters:
+      - description: 管理员用户ID
         in: path
         name: id
         required: true
@@ -431,24 +527,19 @@ paths:
       - application/json
       responses:
         "204":
-          description: User deleted
+          description: No Content
           schema:
             type: string
         "404":
-          description: User not found
+          description: Not Found
           schema:
-            type: string
-        "500":
-          description: Internal Server Error
-          schema:
-            type: string
-      summary: Delete user by ID
-      tags:
-      - User
+            additionalProperties: true
+            type: object
+      summary: 删除管理员用户
     get:
-      description: Get user by ID
+      description: 获取管理员用户
       parameters:
-      - description: User ID
+      - description: 管理员用户ID
         in: path
         name: id
         required: true
@@ -459,54 +550,166 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.User'
+            $ref: '#/definitions/users.AdminUser'
         "404":
-          description: User not found
+          description: Not Found
           schema:
-            type: string
-        "500":
-          description: Internal Server Error
-          schema:
-            type: string
-      summary: Get user by ID
-      tags:
-      - User
+            additionalProperties: true
+            type: object
+      summary: 获取管理员用户
     put:
       consumes:
       - application/json
-      description: Update user by ID
+      description: 更新管理员用户
       parameters:
-      - description: User ID
+      - description: 管理员用户ID
         in: path
         name: id
         required: true
         type: integer
-      - description: User to update
+      - description: 管理员用户信息
+        in: body
+        name: adminUser
+        required: true
+        schema:
+          $ref: '#/definitions/users.AdminUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.AdminUser'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+      summary: 更新管理员用户
+  /users/user:
+    post:
+      consumes:
+      - application/json
+      description: 创建新用户
+      parameters:
+      - description: 用户信息
         in: body
         name: user
         required: true
         schema:
-          $ref: '#/definitions/model.User'
+          $ref: '#/definitions/users.User'
       produces:
       - application/json
       responses:
         "200":
-          description: OK
+          description: 成功
           schema:
-            $ref: '#/definitions/model.User'
+            $ref: '#/definitions/users.User'
         "400":
-          description: Invalid input
-          schema:
-            type: string
-        "404":
-          description: User not found
+          description: 请求错误
           schema:
             type: string
         "500":
-          description: Internal Server Error
+          description: 内部错误
           schema:
             type: string
-      summary: Update user by ID
+      summary: 创建用户
+      tags:
+      - user
+  /users/user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 根据用户ID删除用户
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/users.User'
+        "400":
+          description: 请求错误
+          schema:
+            type: string
+        "500":
+          description: 内部错误
+          schema:
+            type: string
+      summary: 删除用户
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      description: 根据用户ID获取用户信息
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/users.User'
+        "400":
+          description: 请求错误
+          schema:
+            type: string
+        "500":
+          description: 内部错误
+          schema:
+            type: string
+      summary: 获取用户信息
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: 根据用户ID更新用户信息
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 用户信息
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/users.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/users.User'
+        "400":
+          description: 请求错误
+          schema:
+            type: string
+        "500":
+          description: 内部错误
+          schema:
+            type: string
+      summary: 更新用户信息
       tags:
       - user
 swagger: "2.0"
