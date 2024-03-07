@@ -6,7 +6,6 @@ main.go_
 vendor/
 tmp/
 pprof/
-draw/
 
 /util/mail.json
 /conf/mail.json
