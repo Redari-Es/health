@@ -9,22 +9,23 @@ var db = model.DB
 
 // 身体测量表
 type BodyMeasurement struct {
-	ID         int       `xorm:"'id' pk autoincr" json:"id"`
+	ID         int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID     int64     `xorm:"'user_id' index" json:"user_id"`
 	Height     float64   `xorm:"'height'" json:"height"`
 	Weight     float64   `xorm:"'weight'" json:"weight"`
 	Waist      float64   `xorm:"'waist'" json:"waist"`
 	Hip        float64   `xorm:"'hip'" json:"hip"`
 	Chest      float64   `xorm:"'chest'" json:"chest"`
+	BloodType  int       `xorm:"'blood_type'" json:"blood_type"`
 	RecordedAt time.Time `xorm:"recorded_at" json:"recorded_at"`
 }
 
 // 健身记录
 type ExerciseRecord struct {
-	ID           int       `xorm:"'id' pk autoincr" json:"id"`
+	ID           int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID       int64     `xorm:"'user_id' index" json:"user_id"`
 	ExerciseType string    `xorm:"'exercise_type'" json:"exercise_type"`
-	Duration     int       `xorm:"'duration'" json:"duration"`
+	Duration     float64   `xorm:"'duration'" json:"duration"`
 	Calories     float64   `xorm:"'calories'" json:"calories"`
 	RecordedAt   time.Time `xorm:"recorded_at" json:"recorded_at"`
 }
@@ -50,7 +51,7 @@ type PhysicalExam struct {
 
 // 呼吸
 type RespiratoryRate struct {
-	ID          int       `xorm:"'id' pk autoincr" json:"id"`
+	ID          int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID      int64     `xorm:"'user_id' index" json:"user_id"`
 	Respiratory int       `xorm:"'respiratory_rate'" json:"respiratory_rate"`
 	RecordedAt  time.Time `xorm:"'recorded_at'" json:"recorded_at"`
@@ -71,12 +72,11 @@ type BloodSugar struct {
 	ID               int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID           int64     `xorm:"'user_id' index" json:"user_id"`
 	Value            float64   `xorm:"'value' not null" json:"value"`
-	Unit             string    `xorm:"'unit' not null" json:"unit"`
 	BloodSugarStatus string    `xorm:"'status' not null" json:"status"`
 	RecordedAt       time.Time `xorm:"'recorded_at' not null" json:"recorded_at"`
 }
 
-// 实例
+// 视力
 type Vision struct {
 	ID         int64     `xorm:"pk autoincr" json:"id"`
 	UserID     int64     `xorm:"'user_id' index" json:"user_id"`

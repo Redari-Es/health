@@ -15,14 +15,14 @@ var (
 type Hearts struct {
 	ID                            int64                   `xorm:"'id' pk autoincr" json:"id"`
 	UserID                        int64                   `xorm:"'user_id' index" json:"user_id"`
-	HeartRate                     []*HeartRate            `xorm:"-"`
-	HeartRateVariability          []*HeartRateVariability `xorm:"-"`
-	RestingHeartRate              []*RestingHeartRate     `xorm:"-"`
 	HeartRateTimestamp            time.Time               `xorm:"heart_rate_timestamp" json:"heart_rate_timestamp"`
 	HeartRateVariabilityTimestamp time.Time               `xorm:"hrv_timestamp" json:"hrv_timestamp"`
 	RestingHeartRateTimestamp     time.Time               `xorm:"resting_heart_rate_timestamp" json:"resting_heart_rate_timestamp"`
 	CreatedAt                     time.Time               `xorm:"created" json:"created_at"`
 	UpdatedAt                     time.Time               `xorm:"updated" json:"updated_at"`
+	HeartRate                     []*HeartRate            `xorm:"-"`
+	HeartRateVariability          []*HeartRateVariability `xorm:"-"`
+	RestingHeartRate              []*RestingHeartRate     `xorm:"-"`
 }
 
 type HeartRate struct {

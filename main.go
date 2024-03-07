@@ -6,6 +6,7 @@ import (
 	"health/model/dbs"
 	"health/router/backend"
 	"health/router/frontend"
+	"health/util"
 	"log"
 	"net/http"
 	"time"
@@ -22,6 +23,7 @@ func init() {
 	dbs.DropTables(db)
 	// 更新数据库表
 	dbs.SyncTables(db)
+	util.SlatHash("password")
 }
 
 type ServerConfig struct {

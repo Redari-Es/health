@@ -36,13 +36,13 @@ func SyncTables(engine *xorm.Engine) error {
 	}
 	models := []any{
 		// users
-		new(users.User),
 		new(users.AdminUser),
 		new(users.Account),
-		new(users.Family),
-		new(users.Member),
+		new(users.User),
 		new(users.UserInfo),
 		new(users.UserDetail),
+		new(users.Family),
+		new(users.Member),
 		// body
 		new(body.ExerciseRecord),
 		new(body.BodyMeasurement),
@@ -70,6 +70,7 @@ func SyncTables(engine *xorm.Engine) error {
 			return err
 		}
 	*/
+	fmt.Println("数据表同步成功")
 	log.Println("Success Sync2 Database Tables")
 
 	// 在这里继续同步其他表结构...

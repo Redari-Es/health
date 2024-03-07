@@ -196,7 +196,7 @@ func mails(to string) {
 		e.Subject = "Welcome Health System"
 		e.Text = []byte(fmt.Sprintf("Awesome Web Health Email Pools:%d", i+1))
 		ch <- e
-		fmt.Println("email:%d send success", i+1)
+		fmt.Printf("email:%d send success", i+1)
 	}
 
 	close(ch)
