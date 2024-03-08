@@ -6,6 +6,11 @@ import { Contact } from "./pages/Contact";
 import { NotFound } from "./pages/NotFound";
 import Users from "./pages/user/Users";
 import Admin from "./pages/Admin";
+// logs
+import Logs from "./pages/logs";
+// Echart
+import HeartRateChart from "./pages/heart/HeartRateChart";
+import { Rates } from "./pages/heart/HeartRateChart";
 import { useRoutes } from "react-router-dom";
 // 前台路由
 const GetRecRoutes = () => {
@@ -25,11 +30,13 @@ const GetRecRoutes = () => {
 				},
 				{
 					path: "/about",
-					element: <About />,
+					// element: <Rates />,
+					element: <Logs />,
 				},
 				{
 					path: "/contact",
-					element: <Contact />,
+					// element: <Contact />,
+					element: <HeartRateChart />
 				},
 				{
 					path: "/user",

@@ -28,6 +28,7 @@ func Backend() http.Handler {
 	// r.Use(PortLogger())
 	r.Use(middleware.LoggerMiddleware())
 	r.Use(middleware.ReadAllLogMiddleware("logs"))
+	r.Use(middleware.SetupCORS()) //跨域中间件
 
 	// 路由
 	r.GET("/", router.GetRoot)

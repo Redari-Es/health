@@ -87,6 +87,34 @@ func AuthenticateUser(username, password string) (int64, error) {
 	}
 }
 
+func LoginHandler(c *gin.Context) {
+	// 从请求中获取用户名和密码
+	username := c.Query("username")
+	password := c.Query("password")
+	// 从表单中获取
+	// username := c.PostForm("username")
+	// password := c.PostForm("password")
+	// fmt.Println(username, password)
+
+	// 调用用户验证函数
+	userID, err := AuthenticateUser(username, password)
+	if err != nil {
+		// 如果验证失败，返回错误信息
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
+
+	// 如果验证成功，生成JWT
+	token, err := GenerateToken(int(userID))
+	if err != nil {
+		// 如果生成JWT失败，返回错误信息
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to generate token"})
+		return
+	}
+	// 返回JWT
+	c.JSON(http.StatusOK, gin.H{"token": token})
+}
+
 /*
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -115,32 +143,3 @@ func AuthMiddleware() gin.HandlerFunc {
 	}
 }
 */
-
-func LoginHandler(c *gin.Context) {
-	// 从请求中获取用户名和密码
-	username := c.Query("username")
-	password := c.Query("password")
-	// 从表单中获取
-	// username := c.PostForm("username")
-	// password := c.PostForm("password")
-	// fmt.Println(username, password)
-
-	// 调用用户验证函数
-	userID, err := AuthenticateUser(username, password)
-	if err != nil {
-		// 如果验证失败，返回错误信息
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
-		return
-	}
-
-	// 如果验证成功，生成JWT
-	token, err := GenerateToken(int(userID))
-	if err != nil {
-		// 如果生成JWT失败，返回错误信息
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to generate token"})
-		return
-	}
-
-	// 返回JWT
-	c.JSON(http.StatusOK, gin.H{"token": token})
-}

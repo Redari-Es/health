@@ -20,7 +20,7 @@ func init() {
 	db := model.InitDB()
 	defer db.Close()
 	// 删除数据库表
-	dbs.DropTables(db)
+	//dbs.DropTables(db)
 	// 更新数据库表
 	dbs.SyncTables(db)
 	util.SlatHash("password")
@@ -53,14 +53,14 @@ func main() {
 		{
 			Addr:         ":5001",
 			Handler:      frontend.Frontend(),
-			ReadTimeout:  5 * time.Second,
-			WriteTimeout: 10 * time.Second,
+			ReadTimeout:  200 * time.Second,
+			WriteTimeout: 200 * time.Second,
 		},
 		{
 			Addr:         ":5002",
 			Handler:      backend.Backend(),
-			ReadTimeout:  20 * time.Second,
-			WriteTimeout: 70 * time.Second,
+			ReadTimeout:  200 * time.Second,
+			WriteTimeout: 200 * time.Second,
 		},
 	}
 

@@ -32,6 +32,15 @@ func mail() {
 
 }
 
+var (
+	emailFrom  string
+	smtps      string
+	port       string
+	serverAuth string
+	accessCode string
+	emailto    string //收件人
+)
+
 // ConfigEmail 定义了 email 配置的结构
 type ConfigEmail struct {
 	EmailFrom  string `json:"emailFrom"`  //发件人
@@ -45,15 +54,6 @@ type ConfigEmail struct {
 type Config struct {
 	Email ConfigEmail `json:"email"`
 }
-
-var (
-	emailFrom  string
-	smtps      string
-	port       string
-	serverAuth string
-	accessCode string
-	emailto    string //收件人
-)
 
 // 配置读取 JSON
 func emailConfJson() {
