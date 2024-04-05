@@ -40,17 +40,22 @@ export const Register = (props) => {
 					id="password"
 					name="password"
 				/>
-				<button type="submit" className="btn-0 w-20 ">
+				<button type="submit" className="btn-0 w-20 mt-4 ">
 					Register
 				</button>
 			</form>
-			<button
-				type="button"
-				className="hover:scale-150"
-				onClick={() => props.onFormSwitch("login")}
-			>
-				Already have an account? Login here.
-			</button>
+			<div>
+				<span className='text-xl'>
+					Already have an account?
+				</span>
+				<button
+					type="button"
+					className="mt-4 ml-6 text-custom0 text-xl font-bold hover:scale-125"
+					onClick={() => props.onFormSwitch("login")}
+				>
+					Login here.
+				</button>
+			</div>
 		</div>
 	);
 };

@@ -1,15 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
+import { Box, Button, IconButton, Toolbar, Typography, stlyed, Container } from "@mui/material";
+import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { NavLink } from "react-router-dom";
-import { styled, useTheme } from "@mui/material/styles";
 import { States } from "../layouts/States";
 import { Drawers } from "./Drawers";
 import { AppBar } from "./BarStyles";
@@ -29,7 +22,7 @@ const DrawerAppBar = (props) => {
 
 	// 页面渲染
 	return (
-		<container>
+		<Container>
 			<Box className="h-[60px]" sx={{ display: "flex" }}>
 				<AppBar
 					sx={{ bgcolor: "#002fa7" }}
@@ -61,9 +54,9 @@ const DrawerAppBar = (props) => {
 							{navItems.map((item) => (
 								<Button
 									key={item}
-									component={NavLink}
+									component={Link}
+									activeclassname="acitve"
 									to={item.toLowerCase()}
-									activeClassName="active"
 									sx={{ color: "#fff" }}
 								>
 									{item}
@@ -74,7 +67,7 @@ const DrawerAppBar = (props) => {
 				</AppBar>
 				<Drawers />
 			</Box>
-		</container>
+		</Container>
 	);
 };
 

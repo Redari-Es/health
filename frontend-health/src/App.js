@@ -1,8 +1,6 @@
-import React, { useState, useContext } from "react";
-import MainLayout from "./layouts/MainLayout";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from "react";
 import GetAllRoutes from "./routes";
-import { StatesProvider } from "./layouts/States";
+import { StatesProvider, ThemesProvider, AuthProvider } from "./layouts/States";
 import "./App.css";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -26,7 +24,11 @@ const App = () => {
 		<>
 			<StatesProvider>
 				<ThemeProvider theme={theme}>
-					<GetAllRoutes />
+					<ThemesProvider>
+						<AuthProvider>
+							<GetAllRoutes />
+						</AuthProvider>
+					</ThemesProvider>
 				</ThemeProvider>
 			</StatesProvider>
 		</>

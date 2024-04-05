@@ -9,6 +9,11 @@ module.exports = {
 				custom2: "#465e65", //冷蓝
 				custom3: "#c99e8c", //脏橘
 				custom4: "#ff770f",
+				custom5: "#061D75",
+				custom6: "#f9a647",
+				custom7: "#185864",
+				custom8: "#ffd301",
+
 			},
 		},
 	},

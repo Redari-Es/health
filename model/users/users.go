@@ -57,6 +57,7 @@ type User struct {
 	ID       int64     `xorm:"'id' pk autoincr" json:"id"`
 	UUID     string    `xorm:"'uuid' varchar(36) unique notnull"  json:"uuid"`
 	UserName string    `xorm:"'user_name'" json:"user_name"`
+	UserIcon string    `xorm:"'user_icon'" json:"user_icon"`
 	State    int8      `xorm:"'state'" json:"state"`
 	Salt     string    `xorm:"'salt' unique varchar(32) notnull" json:"-"`
 	Password string    `xorm:"'password' varchar(64)" json:"-"`

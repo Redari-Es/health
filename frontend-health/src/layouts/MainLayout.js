@@ -63,7 +63,7 @@ const MainLayout = ({ children }) => {
 			>
 				<Box
 					component="main"
-					className=" w-3/4 flex-grow bg-gray-100 box-border border-2 border-solid border-custom0 rounded-lg shadow-lg hover:shadow-xl"
+					className=" w-3/4 flex-grow bg-gray-100 box-border border-2 border-solid border-custom0 rounded-lg shadow-lg hover:shadow-2xl"
 					sx={{ p: 3 }}
 				>
 					<CssBaseline />

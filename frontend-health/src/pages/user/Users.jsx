@@ -13,7 +13,7 @@ import { Login } from "./Login";
 			) : (
 				<Register onFormSwitch={toggleForm} />
 			)}
-			)
+			
 		</div>
 	);
 }
