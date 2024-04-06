@@ -6,23 +6,23 @@ import (
 	"time"
 )
 
-var db = model.DB
+var db = model.GetDB()
 
 // 管理员用户
 type AdminUser struct {
-	ID        int64     `xorm:"'id' pk autoincr" json:"id"`
+	Id        int64     `xorm:"'id' pk autoincr" json:"id"`
 	AdminName string    `xorm:"'admin_name'" json:"admin_name"`
 	State     int8      `xorm:"'state'" json:"state"`
 	Salt      string    `xorm:"'salt' unique varchar(32) notnull" json:"-"`
 	Password  string    `xorm:"'password' varchar(64)" json:"-"`
 	Email     string    `xorm:"'email'" json:"email"`
-	Phone     string    `xorm:"'phone' varchar(11) unique" json:"phone"`
+	Phone     string    `xorm:"'phone' varchar(11) " json:"phone"`
 	Created   time.Time `xorm:"'created' created" json:"created"`
 	Updated   time.Time `xorm:"'updated' updated" json:"updated"`
 }
 
 type Account struct {
-	ID       int64     `xorm:"'id' pk autoincr" json:"id"`
+	Id       int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID   int64     `xorm:"'user_id' index" json:"user_id"`
 	OpenCode string    `xorm:"'open_code'" json:"open_code"`
 	Category int8      `xorm:"'category'" json:"category"`
@@ -33,7 +33,7 @@ type Account struct {
 
 // 家族表
 type Family struct {
-	ID      int64    `xorm:"'id' pk autoincr" json:"id"`
+	Id      int64    `xorm:"'id' pk autoincr" json:"id"`
 	Name    string   `xorm:"'family_name'" json:"name"`
 	Members []Member `xorm:"-" json:"members"`
 	/*Members []struct {
@@ -54,18 +54,18 @@ type Member struct {
 
 // 用户表
 type User struct {
-	ID       int64     `xorm:"'id' pk autoincr" json:"id"`
-	UUID     string    `xorm:"'uuid' varchar(36) unique notnull"  json:"uuid"`
+	Id       int64     `xorm:"pk autoincr" json:"id"`
 	UserName string    `xorm:"'user_name'" json:"user_name"`
 	UserIcon string    `xorm:"'user_icon'" json:"user_icon"`
 	State    int8      `xorm:"'state'" json:"state"`
+	Email    string    `xorm:"'email' varchar(20)" json:"email"`
+	Phone    string    `xorm:"'phone' varchar(11) " json:"phone"`
+	FamilyID int64     `xorm:"'family_id'" json:"family_id"`
+	UUID     string    `xorm:"'uuid' varchar(36) unique notnull"  json:"uuid"`
 	Salt     string    `xorm:"'salt' unique varchar(32) notnull" json:"-"`
 	Password string    `xorm:"'password' varchar(64)" json:"-"`
-	Email    string    `xorm:"'email' unique varchar(20)" json:"email"`
-	Phone    string    `xorm:"'phone' varchar(11) unique" json:"phone"`
-	FamilyID int64     `xorm:"'family_id'" json:"family_id"`
 	Created  time.Time `xorm:"'created'" json:"created"`
-	Updated  time.Time `xorm:"'updated' updated" json:"updated"`
+	Updated  time.Time `xorm:"'updated'" json:"updated"`
 	// 外键关联表
 	UserInfo *UserInfo `xorm:"-" json:"user_info"`
 	Account  *UserInfo `xorm:"-" json:"Account"`
@@ -73,7 +73,7 @@ type User struct {
 
 // UserDetail 定义了用户详细信息的结构体
 type UserDetail struct {
-	ID            int64     `xorm:"'id' pk autoincr" json:"id"`
+	Id            int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID        int64     `xorm:"'user_id' index" json:"user_id"`
 	FirstName     string    `xorm:"'first_name'" json:"first_name"`
 	LastName      string    `xorm:"'last_name'" json:"last_name"`
@@ -94,7 +94,7 @@ type UserDetail struct {
 }
 
 type UserInfo struct {
-	ID         int64
+	Id         int64
 	UserID     int            `xorm:"'user_id' index" json:"user_id"`
 	UserDetail *UserDetail    `xorm:"-" json:"user_detail"`
 	BodyInfo   *body.BodyInfo `xorm:"-" json:"body_info"`

@@ -1,13 +1,24 @@
-import * as React from "react";
+import React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-export default function BasicPagination() {
+const BasicPagination = ({ currentPage, totalPages, onPageChange }) => {
+	const handlePageChange = (event, page) => {
+		onPageChange(page);
+	};
+
 	return (
-		<div className="flex center">
+		<div className="flex justify-center items-center">
 			<Stack spacing={2}>
-				<Pagination count={10} color="secondary" />
+				<Pagination
+					count={totalPages} // 总页数
+					color="secondary"
+					page={currentPage} // 当前页码
+					onChange={handlePageChange} // 点击分页时的回调函数
+				/>
 			</Stack>
-		</div>
+		</div >
 	);
 }
+
+export default BasicPagination;

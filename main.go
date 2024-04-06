@@ -6,7 +6,6 @@ import (
 	"health/model/dbs"
 	"health/router/backend"
 	"health/router/frontend"
-	"health/util"
 	"log"
 	"net/http"
 	"time"
@@ -18,12 +17,12 @@ import (
 func init() {
 	// 数据库初始化
 	db := model.InitDB()
-	defer db.Close()
+	// defer db.Close()
 	// 删除数据库表
-	//dbs.DropTables(db)
+	// dbs.DropTables(db)
 	// 更新数据库表
 	dbs.SyncTables(db)
-	util.SlatHash("password")
+	// util.SlatHash("password")
 }
 
 type ServerConfig struct {
@@ -47,6 +46,9 @@ func startServer(config ServerConfig, g *errgroup.Group) {
 }
 
 func main() {
+	DB := model.GetDB()
+
+	defer DB.Close()
 	g, _ := errgroup.WithContext(context.Background())
 
 	servers := []ServerConfig{

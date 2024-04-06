@@ -92,7 +92,8 @@
 ## 运行
 ### 前台
 > cd frontend-health
-> npm run server
+> npm start
+> npm run build
 ### 后台
 使用fresh 热加载
 > fresh -c ./conf/fresh.conf

@@ -12,8 +12,8 @@ func getAllUser(c *gin.Context) {
 		"WelCome": "frontend",
 		"message": "Get all users",
 	})
-
 }
+
 func Login(c *gin.Context) {
 	name := c.DefaultQuery("name", "shon")
 	c.String(200, fmt.Sprintf("hello %s\n", name))

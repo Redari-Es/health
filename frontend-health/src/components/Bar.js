@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Box, Button, IconButton, Toolbar, Typography, stlyed, Container } from "@mui/material";
+import { Box, Button, IconButton, Toolbar, Typography, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { States } from "../layouts/States";
 import { Drawers } from "./Drawers";
 import { AppBar } from "./BarStyles";
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact", "User"];
 
 const DrawerAppBar = (props) => {

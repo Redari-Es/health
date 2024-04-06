@@ -3,6 +3,7 @@ package util
 import (
 	"crypto/rand"
 	"crypto/sha256"
+	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 )
@@ -15,6 +16,16 @@ func GenerateSalt(length int) ([]byte, error) {
 		return nil, err
 	}
 	return salt, nil
+}
+
+// 将字节类型的盐值转换为字符串
+func SaltToString(salt []byte) string {
+	return base64.StdEncoding.EncodeToString(salt)
+}
+
+// 将字符串类型的盐值转换为字节类型
+func StringToSalt(s string) ([]byte, error) {
+	return base64.StdEncoding.DecodeString(s)
 }
 
 // hashPassword 对密码进行加盐和哈希加密

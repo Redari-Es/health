@@ -82,3 +82,6 @@ func InitDB() *xorm.Engine {
 	//	defer engine.Close()
 	return DB
 }
+func GetDB() *xorm.Engine {
+	return DB
+}

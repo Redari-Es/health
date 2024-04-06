@@ -17,6 +17,7 @@ import ExerciseRecord from "../assets/img/eRecord.png";
 import { DrawerHeader } from "./BarStyles";
 import { States, useAuth } from "../layouts/States";
 import { Link } from 'react-router-dom';
+import CopyRight from './CopyRight'
 
 const icons = (iconSrc) => {
 	return (
@@ -135,15 +136,7 @@ export const Drawers = () => {
 					))}
 				</List>
 				<div className=" flex flex-col items-center  text-sm h-full text-wrap justify-end text-center">
-					<p>
-						Copyright &copy; 2024
-						<br /> <a href="http://redaries.xyz/">All Rights Reserved.</a>
-					</p>
-					<p>
-						<a href="https://beian.miit.gov.cn" target="_top">
-							粤ICP备2021174112号
-						</a>
-					</p>
+					<CopyRight />
 				</div>
 			</Drawer>
 		</>

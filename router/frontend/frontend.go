@@ -2,6 +2,7 @@ package frontend
 
 import (
 	"health/middleware"
+	"health/model/users"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,6 +21,9 @@ func Frontend() http.Handler {
 	r.GET("/", root)
 	r.GET("/user", getAllUser)
 	r.GET("/log", middleware.LogHandler)
+	//User
+	r.POST("/login", users.Logins)
+	r.POST("/register", users.Registers)
 
 	return r
 }

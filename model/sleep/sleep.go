@@ -34,7 +34,7 @@ func GetSleepQualityDescription(quality SleepQuality) string {
 }
 
 type Sleep struct {
-	ID         int64        `xorm:"'id' pk autoincr" json:"id"`
+	Id         int64        `xorm:"'id' pk autoincr" json:"id"`
 	UserID     int64        `xorm:"'user_id' index" json:"user_id"`
 	StartTime  time.Time    `xorm:"start_time" json:"start_time"`
 	EndTime    time.Time    `xorm:"end_time" json:"end_time"`

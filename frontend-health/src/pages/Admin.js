@@ -1,11 +1,24 @@
-import React from 'react';
 
+import React from "react";
+import Container from "@mui/material/Container";
+import { Outlet } from "react-router-dom";
+import BasicPagination from "../components/BasicPagination";
 
-export default function Admin(){
+const Admin = () => {
+	return (
+		<>
+			<Container>
+				<h1>Admin Page</h1>
+				<div className="text-base p-1 border border-black border-solid ">
+					Welcome to the Admin page!
+				</div>
+				<BasicPagination />
+			</Container>
 
-    return(
-        <>
-        <h1>Admin</h1>
-        </>
-    );
-}
+			<Outlet />
+		</>
+	);
+};
+
+export default Admin;
+

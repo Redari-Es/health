@@ -12,15 +12,13 @@ import { Summary } from "./pages/Summary";
 import Users from "./pages/user/Users";
 import Admin from "./pages/Admin";
 // Component
-import UserProfile from "./components/UserProfile"
-// logs
-import Logs from "./pages/logs";
+// import UserProfile from "./components/UserProfile"
+import Logs from "./pages/Logs";
 // Echart
-import ChartLayout, { ChartsLayout } from "./layouts/ChartLayout"
-import { useRoutes, Route, Routes, Navigate } from "react-router-dom";
+import { ChartsLayout } from "./layouts/ChartLayout"
+import { useRoutes } from "react-router-dom";
 import { useAuth } from './layouts/States'
 import { Heart, Hrv, Rhr, Rates } from "./pages/charts/Hearts";
-import { Outlet } from "react-router-dom";
 
 
 
@@ -105,23 +103,39 @@ const GetRecRoutes = () => {
 const GetAdminRoutes = () => {
 	const routes = useRoutes([
 		{
-			path: "/",
+			path: "",
 			element: <MainLayout />,
 			children: [
 				{
-					path: "/admin",
+					path: "/",
 					element: <Admin />,
 				},
 				{
-					path: "/a",
-					element: <div>admin-shon</div>,
+					path: "home",
+					element: <Home />,
 				},
+				{
+					path: "about",
+					element: <About />,
+				},
+				{
+					path: "contact",
+					element: <Contact />,
+				},
+				{
+					path: "user",
+					element: <Users />,
+				},
+				{
+					path: 'log',
+					element: <Logs />
+				},
+				// 如果访问的路径不是上述任何一个，导航至 admin 页面的 Home 组件
+				// { path: "*", element: <Navigate to="/admin" replace /> },
 			],
 		},
-		{
-			path: "*",
-			element: <div>后台404</div>,
-		},
+		// 如果访问的路径不是 /admin 下的任何路径，则显示后台404页面
+		{ path: "*", element: <div>后台404</div> },
 	]);
 	return routes;
 };
@@ -147,11 +161,3 @@ const GetAllRoutes = () => {
 
 export default GetAllRoutes;
 
-// const SetRoutes=()=>{
-//   return((
-//
-//     <Router>
-//       <GetAllRoutes/>
-//     </Router>
-//   ))
-// }

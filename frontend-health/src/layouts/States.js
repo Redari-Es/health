@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { useParams } from 'react-router'
 
+
 // 创建一个全局上下文
 export const States = createContext();
 export const Themes = createContext();
@@ -21,7 +22,7 @@ const AuthProvider = ({ children }) => {
 
 	// 登出函数，清除用户信息，并且从本地存储中移除
 	const logout = () => {
-		setUser(null);
+		setUser('');
 		localStorage.removeItem('user');
 	};
 
