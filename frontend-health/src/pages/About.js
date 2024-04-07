@@ -1,11 +1,12 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
+import { Title } from '../components/Pages'
 
 export const About = () => {
 	return (
 		<>
 			<div className="container">
-				<h1>About Page</h1>
+				<Title text="About Page" />
 				<p>This is the about page.</p>
 				<Typography>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique

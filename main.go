@@ -7,6 +7,7 @@ import (
 	"health/router/backend"
 	"health/router/frontend"
 	"log"
+	"math/rand"
 	"net/http"
 	"time"
 
@@ -46,6 +47,7 @@ func startServer(config ServerConfig, g *errgroup.Group) {
 }
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
 	DB := model.GetDB()
 
 	defer DB.Close()

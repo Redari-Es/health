@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { Themes } from "./States";
 import { useParams } from "react-router-dom"
 import { States, useAuth } from "./States";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import Grow from '@mui/material/Grow';
 
 
 // 菜单
@@ -32,6 +35,7 @@ const timeUnits = [
 
 // 父组件 ChartLayout
 export const ChartsLayout = ({ children }) => {
+
 	const { user } = useAuth()
 	const username = user ? user.username : null
 	// 对 children 进行处理，传递 currentETheme 给每个子组件
@@ -53,105 +57,113 @@ export const ChartsLayout = ({ children }) => {
 		setShowChart(unit)
 	};
 
+
+	const renderMenu = (checked) => {
+		return heartItems.map((item, index) => (
+			<Grow
+				in={checked}
+				style={{ transformOrigin: '0 0 0' }}
+				{...(checked ? { timeout: 1000 + index * 200 } : {})} // 增加延迟时间
+			>
+				<Button
+					key={item}
+					component={Link}
+					to={`${item.toLowerCase()}`}
+					activeclassname="active"
+					onClick={() => toggleChart(item)}
+					sx={{
+						color: '#fff',
+						backgroundColor: '#061D75',
+						border: '1px solid #007bff',
+						borderRadius: '8px',
+						padding: '12px 16px',
+						cursor: 'pointer',
+						margin: '6px', // 添加一些外边距，使按钮不会紧挨着
+						'&:hover': {
+							backgroundColor: '#0056b3',
+							borderColor: '#0056b3',
+						},
+					}}
+				>
+					{item}
+				</Button>
+			</Grow>
+		))
+	}
+	const renderMode = (checked) => {
+		return (
+			<>
+				<Grow in={checked} style={{ transformOrigin: '0 0 0' }} {...(checked ? { timeout: 1000 } : {})}>
+					<Button
+						sx={{
+							color: '#fff',
+							backgroundColor: '#061D75',
+							border: '1px solid #007bff',
+							borderRadius: '8px',
+							padding: '12px 16px',
+							cursor: 'pointer',
+							margin: '6px',
+							'&:hover': {
+								backgroundColor: '#0056b3',
+								borderColor: '#0056b3',
+							},
+						}}
+						onClick={toggleETheme}
+					>
+						{themeDescription}
+					</Button>
+				</Grow>
+				{timeUnits.map((unit, index) => (
+					<Grow
+						key={index}
+						in={checked}
+						style={{ transformOrigin: '0 0 0' }}
+						{...(checked ? { timeout: 1000 + (index + 1) * 200 } : {})}
+					>
+						<Button
+							sx={{
+								backgroundColor: '#061D75',
+								color: '#fff',
+								border: '1px solid #007bff',
+								borderRadius: '8px',
+								padding: '12px 16px',
+								cursor: 'pointer',
+								margin: '6px',
+								'&:hover': {
+									backgroundColor: '#0056b3',
+									borderColor: '#0056b3',
+								},
+							}}
+							onClick={() => handleTimeClick(unit.value)}
+						>
+							{unit.label}
+						</Button>
+					</Grow>
+				))}
+			</>)
+	}
+
 	return (
 		<>
 			<main>
 				<div className='flex flex-col animate__animated animate__bounceIn'>
 					< span className='font-bold text-4xl self-center text-custom0' >{showChart}</span>
-					<Button sx={{
-						fontSize: "2rem",
-						color: '#061d75'
-
-					}}
-						className="self-start"
-						onClick={toggleMenu}>Menu</Button> {/* 菜单切换按钮 */}
+					<ControlSwitch checked={showMenu} onChange={toggleMenu} label='Menu' />
 					{
 						showMenu && (
-							<Box sx={{ display: { xs: "none", sm: "block" } }}>
-								{heartItems.map((item) => (
-									<Button
-										key={item}
-										component={Link}
-										to={`/${username}/hearts/${item.toLowerCase()}`}
-										activeclassname="active"
-										onClick={() => toggleChart(item)}
-										sx={{
-											color: '#fff',
-											backgroundColor: '#061D75',
-											border: '1px solid #007bff',
-											borderRadius: '8px',
-											padding: '12px 16px',
-											cursor: 'pointer',
-											margin: '6px', // 添加一些外边距，使按钮不会紧挨着
-											'&:hover': {
-												backgroundColor: '#0056b3',
-												borderColor: '#0056b3',
-											},
-
-										}}
-									>
-										{item}
-									</Button>
-								))
-								}
-
-							</Box>
-
-						)
-					}
-					<Button sx={{
-						fontSize: "1.5rem",
-						color: '#061d75'
-
-					}}
-						className="self-start"
-						onClick={toggleMode}>Mode</Button> {/* 菜单切换按钮 */}
-					{
-						showMode && (
-							<div className='flex'>
-								<Button
-									sx={{
-										color: '#fff',
-										backgroundColor: '#061D75',
-										border: '1px solid #007bff',
-										borderRadius: '8px',
-										padding: '12px 16px',
-										cursor: 'pointer',
-										margin: '6px', // 添加一些外边距，使按钮不会紧挨着
-										'&:hover': {
-											backgroundColor: '#0056b3',
-											borderColor: '#0056b3',
-										},
-									}}
-									onClick={toggleETheme}
-								>
-									{themeDescription}
-								</Button>
-								{timeUnits.map((unit, index) => (
-									<Button
-										key={index}
-										sx={{
-											backgroundColor: '#061D75',
-											color: '#fff',
-											border: '1px solid #007bff',
-											borderRadius: '8px',
-											padding: '12px 16px',
-											cursor: 'pointer',
-											margin: '6px', // 添加一些外边距，使按钮不会紧挨着
-											'&:hover': {
-												backgroundColor: '#0056b3',
-												borderColor: '#0056b3',
-											},
-										}}
-										onClick={() => handleTimeClick(unit.value)}
-									>
-										{unit.label}
-									</Button>
-								))}
+							<div className="flex">
+								{renderMenu(showMenu)}
 							</div>
 						)
 					}
-
+					<ControlSwitch checked={showMode} onChange={toggleMode} label='Mode' />
+					{
+						showMode && (
+							<div className="flex">
+								{renderMode(showMode)}
+							</div>
+						)
+					}
 				</div>
 				{children}
 				<Outlet />
@@ -160,13 +172,53 @@ export const ChartsLayout = ({ children }) => {
 	)
 };
 
-
-export const HeartInfo = () => {
-
+export const ControlSwitch = ({ checked, onChange, label }) => {
 	return (
-		<>
-
-		</>
+		<FormControlLabel
+			control={<Switch checked={checked} onChange={onChange} />}
+			label={<span className="text-3xl font-bold">{label}</span>}
+			sx={{
+				color: '#061d75',
+			}}
+			className="size-2 p-2 m-2"
+		/>
 	)
-
 }
+
+
+export const RenderMenu = (checked, onClick, dataItems) => {
+	const handleClick = (item) => {
+		onClick(item);
+	};
+	return dataItems.map((item, index) => (
+		<Grow
+			in={checked}
+			style={{ transformOrigin: '0 0 0' }}
+			{...(checked ? { timeout: 1000 + index * 200 } : {})} // 增加延迟时间
+		>
+			<Button
+				key={item}
+				component={Link}
+				to={`${item.toLowerCase()}`}
+				activeclassname="active"
+				onClick={() => handleClick(item)}
+				sx={{
+					color: '#fff',
+					backgroundColor: '#061D75',
+					border: '1px solid #007bff',
+					borderRadius: '8px',
+					padding: '12px 16px',
+					cursor: 'pointer',
+					margin: '6px', // 添加一些外边距，使按钮不会紧挨着
+					'&:hover': {
+						backgroundColor: '#0056b3',
+						borderColor: '#0056b3',
+					},
+				}}
+			>
+				{item}
+			</Button>
+		</Grow>
+	))
+}
+

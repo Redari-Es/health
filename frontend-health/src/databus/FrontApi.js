@@ -40,20 +40,49 @@ export const submitForm = async (api, formDataToSubmit, navigate) => {
 
 //GET
 // Vision
-export const getVision = async () => {
+// 定义一个函数，用于获取数据并设置状态
+
+export const fetchData = async (api) => {
 	try {
-		const response = await fetch('http://127.0.0.1:5001/vision');
+		const response = await fetch(`http://127.0.0.1:5001/api/${api}`);
 		if (!response.ok) {
 			throw new Error('Network response was not ok');
 		}
 		const data = await response.json();
-		// 在这里处理从 API 获取的数据
-		console.log(data);
+		// console.log("success:", data);
+		return data; // 返回从 API 获取的数据
 	} catch (error) {
-		// 在这里处理错误
 		console.error('There was a problem with the fetch operation:', error);
+		throw error; // 将错误抛出，以便在组件中捕获和处理
 	}
-}
+};
+
+//POST
+export const postData = async (api, data) => {
+	console.log("data:", data);
+
+	try {
+		const response = await fetch(`http://127.0.0.1:5001/api/${api}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json', // 声明请求体的内容类型为 JSON
+			},
+			body: JSON.stringify(data), // 将数据对象转换为 JSON 字符串
+		});
+
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+
+		const responseData = await response.json(); // 解析响应数据为 JSON 格式
+		console.log("success:", responseData);
+		return responseData; // 返回从 API 获取的数据
+	} catch (error) {
+		console.error('There was a problem with the fetch operation:', error);
+		throw error; // 将错误抛出，以便在组件中捕获和处理
+	}
+};
+
 
 export const fetchWithProxy = async (url, proxyUrl) => {
 	try {

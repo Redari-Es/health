@@ -7,73 +7,99 @@ import (
 
 var db = model.DB
 
+// 定义一个接口，包含一个设置时间的方法
+type TimeSetter interface {
+	SetTime()
+}
+
+// 设置时间的通用函数，接收一个 TimeSetter 类型的参数，并调用其 SetTime 方法
+func SetTime(t TimeSetter) {
+	t.SetTime()
+}
+
+// 获取当前时间并格式化为指定格式
+func GetTime() string {
+	return time.Now().Format("2006-01-02 15:04:05")
+}
+
+// 实现 TimeSetter 接口的 SetTime 方法，用于设置 RecordedAt 字段为当前时间
+func (v *Vision) SetTime() {
+	v.RecordedAt = GetTime()
+
+}
+
+// 实现 TimeSetter 接口的 SetTime 方法，用于设置 RecordedAt 字段为当前时间
+func (o *BloodPressure) SetTime() {
+	o.RecordedAt = GetTime()
+}
+
 // 身体测量表
 type BodyMeasurement struct {
-	Id         int64     `xorm:"'id' pk autoincr" json:"id"`
-	UserID     int64     `xorm:"'user_id' index" json:"user_id"`
-	Height     float64   `xorm:"'height'" json:"height"`
-	Weight     float64   `xorm:"'weight'" json:"weight"`
-	Waist      float64   `xorm:"'waist'" json:"waist"`
-	Hip        float64   `xorm:"'hip'" json:"hip"`
-	Chest      float64   `xorm:"'chest'" json:"chest"`
-	BloodType  int       `xorm:"'blood_type'" json:"blood_type"`
-	RecordedAt time.Time `xorm:"recorded_at" json:"recorded_at"`
+	Id         int64   `xorm:"'id' pk autoincr" json:"id"`
+	UserID     int64   `xorm:"'user_id' index" json:"user_id"`
+	Height     float64 `xorm:"'height'" json:"height"`
+	Weight     float64 `xorm:"'weight'" json:"weight"`
+	Waist      float64 `xorm:"'waist'" json:"waist"`
+	Hip        float64 `xorm:"'hip'" json:"hip"`
+	Chest      float64 `xorm:"'chest'" json:"chest"`
+	BloodType  int     `xorm:"'blood_type'" json:"blood_type"`
+	RecordedAt string  `xorm:"not null" json:"recorded_at"`
 }
 
 // 健身记录
 type ExerciseRecord struct {
-	Id           int64     `xorm:"'id' pk autoincr" json:"id"`
-	UserID       int64     `xorm:"'user_id' index" json:"user_id"`
-	ExerciseType string    `xorm:"'exercise_type'" json:"exercise_type"`
-	Duration     float64   `xorm:"'duration'" json:"duration"`
-	Calories     float64   `xorm:"'calories'" json:"calories"`
-	RecordedAt   time.Time `xorm:"recorded_at" json:"recorded_at"`
+	Id           int64   `xorm:"'id' pk autoincr" json:"id"`
+	UserID       int64   `xorm:"'user_id' index" json:"user_id"`
+	ExerciseType string  `xorm:"'exercise_type'" json:"exercise_type"`
+	Duration     float64 `xorm:"'duration'" json:"duration"`
+	Calories     float64 `xorm:"'calories'" json:"calories"`
+	RecordedAt   string  `xorm:"not null" json:"recorded_at"`
 }
 
 // PhysicalExam 定义了体检表的结构体
 type PhysicalExam struct {
-	Id            int64     `xorm:"'id' pk autoincr" json:"id"`
-	UserID        int64     `xorm:"'user_id' index" json:"user_id"`
-	Name          string    `xorm:"'name'" json:"name"`
-	Age           int       `xorm:"'age'" json:"age"`
-	Gender        string    `xorm:"'gender'" json:"gender"`
-	Height        float64   `xorm:"'height'" json:"height"`
-	Weight        float64   `xorm:"'weight'" json:"weight"`
-	BloodPressure string    `xorm:"'blood_pressure'" json:"blood_pressure"`
-	HeartRate     int       `xorm:"'heart_rate'" json:"heart_rate"`
-	Glucose       float64   `xorm:"'glucose'" json:"glucose"`
-	Cholesterol   float64   `xorm:"'cholesterol'" json:"cholesterol"`
-	Triglycerides float64   `xorm:"'triglycerides'" json:"triglycerides"`
-	EKGResult     string    `xorm:"'ekg_result'" json:"ekg_result"`
-	BMI           float64   `xorm:"'bmi'" json:"bmi"`
-	RecordedAt    time.Time `xorm:"recorded_at" json:"recorded_at"`
+	Id            int64   `xorm:"'id' pk autoincr" json:"id"`
+	UserID        int64   `xorm:"'user_id' index" json:"user_id"`
+	Name          string  `xorm:"'name'" json:"name"`
+	Age           int     `xorm:"'age'" json:"age"`
+	Gender        string  `xorm:"'gender'" json:"gender"`
+	Height        float64 `xorm:"'height'" json:"height"`
+	Weight        float64 `xorm:"'weight'" json:"weight"`
+	BloodPressure string  `xorm:"'blood_pressure'" json:"blood_pressure"`
+	HeartRate     int     `xorm:"'heart_rate'" json:"heart_rate"`
+	Glucose       float64 `xorm:"'glucose'" json:"glucose"`
+	Cholesterol   float64 `xorm:"'cholesterol'" json:"cholesterol"`
+	Triglycerides float64 `xorm:"'triglycerides'" json:"triglycerides"`
+	EKGResult     string  `xorm:"'ekg_result'" json:"ekg_result"`
+	BMI           float64 `xorm:"'bmi'" json:"bmi"`
+	RecordedAt    string  `xorm:"not null" json:"recorded_at"`
 }
 
 // 呼吸
 type RespiratoryRate struct {
-	Id          int64     `xorm:"'id' pk autoincr" json:"id"`
-	UserID      int64     `xorm:"'user_id' index" json:"user_id"`
-	Respiratory int       `xorm:"'respiratory_rate'" json:"respiratory_rate"`
-	RecordedAt  time.Time `xorm:"'recorded_at'" json:"recorded_at"`
+	Id          int64  `xorm:"'id' pk autoincr" json:"id"`
+	UserID      int64  `xorm:"'user_id' index" json:"user_id"`
+	Respiratory int    `xorm:"'respiratory_rate'" json:"respiratory_rate"`
+	RecordedAt  string `xorm:"not null" json:"recorded_at"`
 }
 
 // 血压
 type BloodPressure struct {
-	Id         int64     `xorm:"pk autoincr" json:"id"`
-	UserID     int64     `xorm:"'user_id' index" json:"user_id"`
-	Systolic   int       `xorm:"not null" json:"systolic"`
-	Diastolic  int       `xorm:"not null" json:"diastolic"`
-	Pulse      int       `xorm:"not null" json:"pulse"`
-	RecordedAt time.Time `xorm:"not null" json:"recorded_at"`
+	Id         int64  `xorm:"pk autoincr" json:"id"`
+	UserID     int64  `xorm:"'user_id' index" json:"user_id"`
+	Systolic   int    `xorm:"not null" json:"systolic"`
+	Diastolic  int    `xorm:"not null" json:"diastolic"`
+	Pulse      int    `xorm:"not null" json:"pulse"`
+	RecordedAt string `xorm:"not null" json:"recorded_at"`
 }
 
 // 血糖
 type BloodSugar struct {
-	Id               int64     `xorm:"'id' pk autoincr" json:"id"`
-	UserID           int64     `xorm:"'user_id' index" json:"user_id"`
-	Value            float64   `xorm:"'value' not null" json:"value"`
-	BloodSugarStatus string    `xorm:"'status' not null" json:"status"`
-	RecordedAt       time.Time `xorm:"'recorded_at' not null" json:"recorded_at"`
+	Id               int64   `xorm:"'id' pk autoincr" json:"id"`
+	UserID           int64   `xorm:"'user_id' index" json:"user_id"`
+	Value            float64 `xorm:"'value' not null" json:"value"`
+	BloodSugarStatus string  `xorm:"'status' not null" json:"status"`
+	RecordedAt       string  `xorm:"not null" json:"recorded_at"`
 }
 
 // 视力

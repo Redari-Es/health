@@ -98,6 +98,10 @@
 ### 后台
 使用fresh 热加载
 > fresh -c ./conf/fresh.conf
+### 统计函数
+> cloc --list-file=./conf/codeCount.txt
+> cloc --by-file .
+
 
 
 

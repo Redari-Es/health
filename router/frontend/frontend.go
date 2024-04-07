@@ -24,7 +24,11 @@ func Frontend() http.Handler {
 	r.GET("/log", middleware.LogHandler)
 	{
 		api := r.Group("/api")
+		//vision
 		api.GET("/vision", body.GetVision)
+		api.POST("/vision", body.PostVision)
+		api.PUT("/vision/:id", body.UpdateVision)
+		api.DELETE("/vision/:id", body.DeleteVision)
 
 	}
 	//User
