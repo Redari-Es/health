@@ -9,28 +9,28 @@ import (
 )
 
 // 模拟视力记录数据
-var visionRecords []Vision
+var visionData []Vision
 
 func GetVision(c *gin.Context) {
 	t := GetTime()
 
 	// 模拟视力记录数据
-	Records := []Vision{
+	datas := []Vision{
 		{Id: 1, UserID: 1, LeftEye: 5.0, RightEye: 4.9, RecordedAt: t},
 		{Id: 2, UserID: 2, LeftEye: 4.5, RightEye: 4.3, RecordedAt: t},
 		{Id: 3, UserID: 3, LeftEye: 4.0, RightEye: 3.8, RecordedAt: t},
 		// 添加更多的记录...
 	}
 
-	if len(visionRecords) == 0 {
-		visionRecords = make([]Vision, 0) // 使用 make 函数初始化一个空的切片
+	if len(visionData) == 0 {
+		visionData = make([]Vision, 0) // 使用 make 函数初始化一个空的切片
 		// 将 Records 添加到 visionRecords 中
-		visionRecords = append(visionRecords, Records...)
+		visionData = append(visionData, datas...)
 	}
 
 	// 定义一个处理器函数，用于处理获取视力记录的请求
 	// 将视力记录数据转换为 JSON 格式
-	c.JSON(http.StatusOK, visionRecords)
+	c.JSON(http.StatusOK, visionData)
 }
 
 // 将字符串转换为浮点数
@@ -51,19 +51,18 @@ func PostVision(c *gin.Context) {
 	}
 
 	// 设置记录ID和UserID和记录时间
-	vision.Id = int64(len(visionRecords) + 1)
+	vision.Id = int64(len(visionData) + 1)
 	if vision.UserID == 0 {
 		vision.UserID = int64(rand.Intn(1000) + 1)
 	}
 	SetTime(&vision)
 
 	// 添加记录到全局数组
-	visionRecords = append(visionRecords, vision)
+	visionData = append(visionData, vision)
 	// 在此处进行处理逻辑，例如保存数据到数据库等
 
 	// 返回成功响应，包含添加的新记录
-	// c.JSON(http.StatusOK, gin.H{"message": "数据成功接收", "newRecord": vision})
-	c.JSON(http.StatusOK, gin.H{"message": "数据成功接收", "visionRecordes": visionRecords})
+	c.JSON(http.StatusOK, gin.H{"message": "数据成功接收", "Data": visionData})
 }
 
 func UpdateVision(c *gin.Context) {
@@ -78,14 +77,14 @@ func UpdateVision(c *gin.Context) {
 	}
 
 	// 遍历视力记录列表，查找对应的记录并更新
-	for index, record := range visionRecords {
+	for index, record := range visionData {
 		if strconv.FormatInt(record.Id, 10) == id {
 			// 更新记录信息
-			visionRecords[index].LeftEye = requestData["leftEye"].(float64)
-			visionRecords[index].RightEye = requestData["rightEye"].(float64)
+			visionData[index].LeftEye = requestData["leftEye"].(float64)
+			visionData[index].RightEye = requestData["rightEye"].(float64)
 
 			// 返回成功响应，包含更新后的 visionRecords
-			c.JSON(http.StatusOK, gin.H{"message": "Data updated successfully", "Record": visionRecords})
+			c.JSON(http.StatusOK, gin.H{"message": "Data updated successfully", "Data": visionData})
 			return
 		}
 	}
@@ -98,10 +97,10 @@ func DeleteVision(c *gin.Context) {
 	id := c.Param("id")
 
 	// 遍历视力记录列表，查找对应的记录并删除
-	for index, record := range visionRecords {
+	for index, record := range visionData {
 		if strconv.FormatInt(record.Id, 10) == id {
 			// 从 visionRecords 中删除对应的记录
-			visionRecords = append(visionRecords[:index], visionRecords[index+1:]...)
+			visionData = append(visionData[:index], visionData[index+1:]...)
 
 			// 返回成功响应
 			c.JSON(http.StatusOK, gin.H{"message": "Record deleted successfully"})

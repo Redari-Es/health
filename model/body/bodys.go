@@ -90,16 +90,17 @@ type BloodPressure struct {
 	Systolic   int    `xorm:"not null" json:"systolic"`
 	Diastolic  int    `xorm:"not null" json:"diastolic"`
 	Pulse      int    `xorm:"not null" json:"pulse"`
+	Status     string `xorm:"'status' not null" json:"status"`
 	RecordedAt string `xorm:"not null" json:"recorded_at"`
 }
 
 // 血糖
 type BloodSugar struct {
-	Id               int64   `xorm:"'id' pk autoincr" json:"id"`
-	UserID           int64   `xorm:"'user_id' index" json:"user_id"`
-	Value            float64 `xorm:"'value' not null" json:"value"`
-	BloodSugarStatus string  `xorm:"'status' not null" json:"status"`
-	RecordedAt       string  `xorm:"not null" json:"recorded_at"`
+	Id         int64   `xorm:"'id' pk autoincr" json:"id"`
+	UserID     int64   `xorm:"'user_id' index" json:"user_id"`
+	Value      float64 `xorm:"'value' not null" json:"value"`
+	Status     string  `xorm:"'status' not null" json:"status"`
+	RecordedAt string  `xorm:"not null" json:"recorded_at"`
 }
 
 // 视力

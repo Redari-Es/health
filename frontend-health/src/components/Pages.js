@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData, postData } from "../databus/FrontApi"
+import BasicPagination from './BasicPagination'
 
 export const Title = ({ text }) => {
 	return (
@@ -8,6 +9,30 @@ export const Title = ({ text }) => {
 		</div>
 	)
 }
+export const Loading = ({ text }) => {
+	return (
+		<div className="flex justify-center items-center hover:scale-125 transition-transform animate__animated animate__fadIn ">
+			{/* 使用动画效果 */}
+			<div className="m-4 loader ease-linear rounded-full border-8 border-t-8 border-custom0 h-6 w-6 animate__animated animate__tada animate__fast animate__infinite"></div>
+			{/* 使用过渡效果 */}
+			<span className='text-2xl text-custom0 font-bold transition ease-in-out hover:shadow-2xl'>{text}</span>
+		</div>
+	);
+};
+
+
+export function PageForm({ api, textLabels, initData, data, }) {
+	const [records, setRecords] = useState(data);
+	return (
+		<div>
+			<div className="transition delay-300 animate__animated animate__fadeIn">
+				<FetchDataTable api={api} textLabels={textLabels} />
+			</div>
+			<RecordForm api={api} initialRecord={initData} records={records} setRecords={setRecords} textLabels={textLabels} />
+		</div>
+	)
+}
+
 
 
 export function ActionButtons({ isEditing, record, onEdit, onDelete, onSave, onSubmit }) {
@@ -45,32 +70,17 @@ export function ActionButtons({ isEditing, record, onEdit, onDelete, onSave, onS
 
 export function RecordRow({ record, isEditing, onDelete, onEdit, onSave, onInputChange, onSubmit }) {
 	return (
-		<tr>
-			<td className="border px-4 py-2">{record.id}</td>
-			<td className="border px-4 py-2">
-				<EditableField
-					value={record.name}
-					isEditing={isEditing}
-					onChange={(e) => onInputChange(e, 'name', record)}
-					onBlur={() => onSave(record)} // Save the record when the input field loses focus
-				/>
-			</td>
-			<td className="border px-4 py-2">
-				<EditableField
-					value={record.left_eye}
-					isEditing={isEditing}
-					onChange={(e) => onInputChange(e, 'left_eye', record)}
-					onBlur={() => onSave(record)} // Save the record when the input field loses focus
-				/>
-			</td>
-			<td className="border px-4 py-2">
-				<EditableField
-					value={record.right_eye}
-					isEditing={isEditing}
-					onChange={(e) => onInputChange(e, 'right_eye', record)}
-					onBlur={() => onSave(record)} // Save the record when the input field loses focus
-				/>
-			</td>
+		<tr className="hoverOn0">
+			{Object.keys(record).map((key) => (
+				<td key={key} className="border px-4 py-2">
+					<EditableField
+						value={record[key]}
+						isEditing={isEditing}
+						onChange={(e) => onInputChange(e, key, record)}
+						onBlur={() => onSave(record)} // Save the record when the input field loses focus
+					/>
+				</td>
+			))}
 			<td className="border px-4 py-2">
 				<ActionButtons
 					isEditing={isEditing}
@@ -148,7 +158,7 @@ export const RecordForm = ({ initialRecord, api, records, setRecords, textLabels
 			{records.length > 0 ? (
 				<table className="min-w-full table-auto border border-collapse border-slate-500 shadow-lg hover:shadow-2xl ">
 					<thead>
-						<tr>
+						<tr className="hoverOn1">
 							{/* 通过遍历 record 的属性生成表头 */}
 							{Object.keys(records[0]).map((key, index) => (
 								<th key={index} className="border px-4 py-2">{textLabels[key]}</th>
@@ -173,10 +183,7 @@ export const RecordForm = ({ initialRecord, api, records, setRecords, textLabels
 					</tbody>
 				</table>
 			) : (
-				<div className="flex items-center justify-center">
-					<p className="text-xl font-bold shadow hover:scale-125">没有记录显示。</p>
-				</div>
-
+				<Loading text="没有记录显示" />
 			)}
 		</div>
 	);
@@ -185,28 +192,60 @@ export const RecordForm = ({ initialRecord, api, records, setRecords, textLabels
 
 export function FetchDataTable({ api, textLabels }) {
 	const [data, setData] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(1);
+	const perPage = 10;
+
 
 	useEffect(() => {
 		const fetchDataAndUpdate = async () => {
 			try {
 				const fetchedData = await fetchData(api, setData);
 				setData(fetchedData);
+				setLoading(false)
+				if (data.length > 0) {
+					const totalDataCount = data.length
+					const totalPagesCount = Math.ceil(totalDataCount / perPage)
+					setTotalPages(totalPagesCount)
+				} else {
+					setTotalPages(1);
+				}
 
 			} catch (error) {
+				setError('Error fetching data.')
+				setLoading(false);
+				setTotalPages(1);
 				console.error('Error fetching data:', error);
 			}
 		};
 		fetchDataAndUpdate();
 	}, [data]); // 确保 useEffect 在 api 变化时重新运行
 
+	const renderData = () => {
 
+		if (loading) {
+			const text = "Loading logs..."
+			return <Loading text={text} />
 
-	return (
-		<div className="container mx-auto px-4 py-8">
-			{data && data.length > 0 ? (
+		} if (error) return <div>{error}</div>;
+		// 在尝试访问filteredLogs之前，检查selectedLogFile是否存在于logs对象中
+		if (!data) {
+			const text = "No logs found for the selected log file."
+			return <Loading text={text} />
+		}
+
+		// 计算当前页应该显示的日志条目的起始和结束索引
+		const startIndex = (currentPage - 1) * perPage;
+		const endIndex = startIndex + perPage;
+		const currentData = data.slice(startIndex, endIndex)
+		return (
+
+			<div className="max-h-auto p-4">
 				<table className="min-w-full table-auto border-collapse border border-slate-500 shadow-lg hover:shadow-2xl">
 					<thead>
-						<tr>
+						<tr className="hoverOn1">
 							{/* 通过遍历 Data 中第一个记录的属性生成表头，并使用中文替换原始字段 */}
 							{Object.keys(data[0]).map((key, index) => (
 								<th key={index} className="border px-4 py-2">{textLabels[key]}</th>
@@ -214,8 +253,8 @@ export function FetchDataTable({ api, textLabels }) {
 						</tr>
 					</thead>
 					<tbody className="text-center">
-						{data.map((record) => (
-							<tr key={record.id}>
+						{currentData.map((record) => (
+							<tr key={record.id} className="hoverOn0">
 								{/* 使用动态生成的td来显示每条记录的内容 */}
 								{Object.keys(record).map((key, index) => (
 									<td key={index} className="border px-4 py-2">{record[key]}</td>
@@ -224,12 +263,41 @@ export function FetchDataTable({ api, textLabels }) {
 						))}
 					</tbody>
 				</table>
-			) : (
-				<p>Loading...</p>
-			)}
-		</div>
+				<div className="m-6">
+					<BasicPagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						onPageChange={setCurrentPage}
+					/>
+				</div>
+			</div>
+		);
+	}
+
+	return (
+		<div className="transition ease-in-out">
+			{renderData()}
+
+		</div >
+	)
+}
+
+
+export function EditableField({ value, isEditing, onChange, onBlur }) {
+	return isEditing ? (
+		<input
+			type="text"
+			value={value}
+			onChange={onChange}
+			onBlur={onBlur} // Save the record when the input field loses focus
+			className="w-2/6"
+		/>
+	) : (
+		value
 	);
 }
+
+
 
 // 测试
 const CrudBt = ({ record, deleteRecord, modifyRecord, submitRecord }) => {
@@ -259,7 +327,7 @@ const CrudBt = ({ record, deleteRecord, modifyRecord, submitRecord }) => {
 
 //测试
 // CrudBt 组件接收 record、deleteRecord、modifyRecord 和 submitRecord 四个 props
-export const Crud = ({ record, deleteRecord, modifyRecord, submitRecord }) => {
+const Crud = ({ record, deleteRecord, modifyRecord, submitRecord }) => {
 	return (
 		<div>
 			<button
@@ -283,23 +351,6 @@ export const Crud = ({ record, deleteRecord, modifyRecord, submitRecord }) => {
 		</div>
 	);
 }
-
-
-export function EditableField({ value, isEditing, onChange, onBlur }) {
-	return isEditing ? (
-		<input
-			type="text"
-			value={value}
-			onChange={onChange}
-			onBlur={onBlur} // Save the record when the input field loses focus
-			className="w-2/6"
-		/>
-	) : (
-		value
-	);
-}
-
-
 
 
 

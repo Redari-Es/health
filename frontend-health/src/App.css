@@ -16,5 +16,11 @@
 .bigheadtext{
 	@apply font-sans text-4xl font-semibold
 }
+.hoverOn1{
+	@apply transition ease-linear hover:bg-custom7 hover:text-white hover:font-extrabold
+}
+.hoverOn0{
+	@apply transition ease-linear hover:bg-custom0 hover:text-white hover:font-bold
+}
 
 }

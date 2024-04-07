@@ -13,8 +13,8 @@ const visionLabels = {
 	name: '姓名',
 	left_eye: '左眼视力',
 	right_eye: '右眼视力',
-	recorded_at: '右眼视力',
-};
+	recorded_at: '记录时间',
+}
 
 
 export default function Vision() {

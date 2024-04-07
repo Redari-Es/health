@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BasicPagination from '../components/BasicPagination'
+import { Title, Loading } from '../components/Pages'
+import { MenuBtn1 } from '../components/Btn'
 
 const LogsComponent = () => {
 	const [logs, setLogs] = useState({});
@@ -60,32 +62,19 @@ const LogsComponent = () => {
 		return filtered;
 	}, {});
 
-	const logFileButtons = [
-		{ label: 'Mysql Log', fileName: 'mysql.log' },
-		{ label: 'Server 5001 Log', fileName: 'server_5001.log' },
-		{ label: 'Server 5002 Log', fileName: 'server_5002.log' }
+	const logFileMenu = [
+		{ label: 'Mysql Log', current: 'mysql.log' },
+		{ label: 'Server 5001 Log', current: 'server_5001.log' },
+		{ label: 'Server 5002 Log', current: 'server_5002.log' }
 	];
 
-	const logButtons = (
-		<div className="log-buttons flex items-center justify-center m-4">
-			{logFileButtons.map((button, index) => (
-				<button
-					key={index}
-					className={`animate__animated animate__pulse space-x mx-4 p-2 w-1/5 button-wrapper border rounded-xl bg-custom0 text-white ${selectedLogFile === button.fileName ? 'bg-custom7 scale-125' : ''}`}
-					onClick={() => setSelectedLogFile(button.fileName)}
-				>
-					{button.label}
-				</button>
-			))}
-		</div>
-	);
-
 	const renderLogs = () => {
-		if (loading) return <div>Loading logs...</div>;
+		if (loading) return <><Loading text="正在加载中" /></>;
 		if (error) return <div>{error}</div>;
 		// 在尝试访问filteredLogs之前，检查selectedLogFile是否存在于logs对象中
 		if (!logs[selectedLogFile]) {
-			return <div>No logs found for the selected log file.</div>;
+			const text = "No logs found for the selected log file."
+			return <Title text={text} />
 		}
 
 		// 计算当前页应该显示的日志条目的起始和结束索引
@@ -97,16 +86,16 @@ const LogsComponent = () => {
 			.slice(startIndex, endIndex); // 仅保留当前页的日志条目
 
 		return (
-			<table className="table-auto border-collapse border border-slate-400">
-				<thead key={selectedLogFile} className="animate__animated animate__fadeIn bg-custom0 py-2">
+			<table className="table-auto mx-auto animate__animated animate__fadeInUp border-collapse border border-slate-400">
+				<thead key={selectedLogFile} className="bg-custom0 py-2 hoverOn1 ">
 					<tr className="text-white">
 						<th className="p-4 text-xl font-bold uppercase">{selectedLogFile}</th>
 						<th className="text-xl font-bold uppercase">Log Entry</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className="">
 					{currentLogs.map((logEntry, index) => (
-						<tr key={startIndex + index} className="animate__animated animate__fadeInUp delay-100 log-row border border-gray-300 text-gray-600 p-2 transition ease-linear hover:bg-custom0 hover:text-white">
+						<tr key={startIndex + index} className="log-row border border-gray-300 text-gray-600 p-2 hoverOn0 ">
 							<td className="table-cell p-4 text-center text-lg">{startIndex + index + 1}</td>
 							<td className="table-cell p-4 text-sm hover:text-lg">{logEntry}</td>
 						</tr>
@@ -118,8 +107,8 @@ const LogsComponent = () => {
 
 	return (
 		<div className="logs-container">
-			<h2 className="text-4xl text-center font-bold mb-4">Logs</h2>
-			{logButtons}
+			<Title text='日志' />
+			<MenuBtn1 Menu={logFileMenu} current={selectedLogFile} onClick={setSelectedLogFile} />
 			{renderLogs()}
 			<div className="m-4">
 				<BasicPagination

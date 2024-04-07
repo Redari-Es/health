@@ -30,6 +30,16 @@ func Frontend() http.Handler {
 		api.PUT("/vision/:id", body.UpdateVision)
 		api.DELETE("/vision/:id", body.DeleteVision)
 
+		//bloodSugar
+		api.GET("/bloodSugar", body.GetBloodSugar)
+		api.POST("/bloodSugar", body.PostBloodSugar)
+		api.PUT("/bloodSugar/:id", body.UpdateBloodSugar)
+		api.DELETE("/bloodSugar/:id", body.DeleteBloodSugar)
+		//bloodPressure
+		api.GET("/bloodPressure", body.GetBloodPressure)
+		api.POST("/bloodPressure", body.PostBloodPressure)
+		api.PUT("/bloodPressure/:id", body.UpdateBloodPressure)
+		api.DELETE("/bloodPressure/:id", body.DeleteBloodPressure)
 	}
 	//User
 	r.POST("/login", users.Logins)
