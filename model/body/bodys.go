@@ -78,12 +78,11 @@ type BloodSugar struct {
 
 // 视力
 type Vision struct {
-	Id         int64     `xorm:"pk autoincr" json:"id"`
-	UserID     int64     `xorm:"'user_id' index" json:"user_id"`
-	LeftEye    float64   `xorm:"not null" json:"left_eye"`
-	RightEye   float64   `xorm:"not null" json:"right_eye"`
-	Unit       string    `xorm:"not null" json:"unit"`
-	RecordedAt time.Time `xorm:"not null" json:"recorded_at"`
+	Id         int64   `xorm:"pk autoincr" json:"id"`
+	UserID     int64   `xorm:"'user_id' index" json:"user_id"`
+	LeftEye    float64 `xorm:"not null" json:"left_eye"`
+	RightEye   float64 `xorm:"not null" json:"right_eye"`
+	RecordedAt string  `xorm:"not null" json:"recorded_at"`
 }
 
 // body中间表

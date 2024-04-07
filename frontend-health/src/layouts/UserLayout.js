@@ -7,6 +7,7 @@ import UserProfile from '../components/UserProfile'
 
 
 const PrivateRoutes = ({ children }) => {
+	const { username } = useParams()
 	const { user } = useAuth();
 
 
@@ -18,10 +19,11 @@ const PrivateRoutes = ({ children }) => {
 
 
 	// 检查当前路由中的用户名参数是否与登录用户的用户名匹配
-	const isCurrentUserRoute = window.location.pathname.split('/')[1] === user.username;
+	// const isCurrentUserRoute = window.location.pathname.split('/')[1] === user.username;
+	const isCurrentUserRoute = username === user.username;
 	// 如果当前路由不是用户的个人信息页面，则导航至用户个人信息页面
 	if (!isCurrentUserRoute) {
-		return <Navigate to={`/${user.username}`} />;
+		return <Navigate to={`/usr/${user.username}`} />;
 	}
 	return (
 		<>

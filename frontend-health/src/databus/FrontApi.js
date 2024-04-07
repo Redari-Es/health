@@ -38,6 +38,22 @@ export const submitForm = async (api, formDataToSubmit, navigate) => {
 	}
 };
 
+//GET
+// Vision
+export const getVision = async () => {
+	try {
+		const response = await fetch('http://127.0.0.1:5001/vision');
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+		const data = await response.json();
+		// 在这里处理从 API 获取的数据
+		console.log(data);
+	} catch (error) {
+		// 在这里处理错误
+		console.error('There was a problem with the fetch operation:', error);
+	}
+}
 
 export const fetchWithProxy = async (url, proxyUrl) => {
 	try {

@@ -59,7 +59,7 @@ type User struct {
 	UserIcon string    `xorm:"'user_icon'" json:"user_icon"`
 	State    int8      `xorm:"'state'" json:"state"`
 	Email    string    `xorm:"'email' varchar(20)" json:"email"`
-	Phone    string    `xorm:"'phone' varchar(11) " json:"phone"`
+	Phone    string    `xorm:"'phone' unique varchar(11) " json:"phone"`
 	FamilyID int64     `xorm:"'family_id'" json:"family_id"`
 	UUID     string    `xorm:"'uuid' varchar(36) unique notnull"  json:"uuid"`
 	Salt     string    `xorm:"'salt' unique varchar(32) notnull" json:"-"`

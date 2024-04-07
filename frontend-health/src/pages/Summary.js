@@ -9,6 +9,14 @@ import { Link } from "react-router-dom";
 import UserProfile from '../components/UserProfile'
 import userIcon from '../assets/img/user1.png'
 import { useParams } from 'react-router'
+import { Title } from "../components/Pages"
+import Vision from './Vision'
+import Body from './Body'
+import Family from './Family'
+import Breath from './Breath'
+import Blood from './Blood'
+import ERcord from './ERcord'
+import Sleep from './Sleep'
 
 
 const cardItem = {
@@ -26,19 +34,24 @@ const componentMap = {
 }
 // 根据索引值获取对应的组件
 export const Summary = () => {
-
 	return (
-		<div className="animate__animated animate__fadeInDownBig">
-			<UserProfile />
-			<div className='flex'>
-				<span className=' text-center items-center p-2 shadow-2xl shadow-gray-500 justify-center text-3xl font-bold text-custom6 w-screen mb-6 border border-solid rounded bg-custom7 transition ease-in-out duration-150 hover:-translate-y-1 hover:scale-110 hover:bg-custom0'>心率视图</span>
+		<>
+			<div className="animate__animated animate__fadeInDownBig mb-6">
+				<UserProfile />
+				<Title text="心率视图" />
+				<div className='grid grid-cols-2 gap-8'>
+					{Object.keys(cardItem).map((key) => (
+						<MultiActionAreaCard key={key} props={key} />
+					))}
+				</div>
 			</div>
-			<div className='grid grid-cols-2 gap-8'>
-				{Object.keys(cardItem).map((key) => (
-					<MultiActionAreaCard key={key} props={key} />
-				))}
-			</div>
-		</div>
+			<Body />
+			<ERcord />
+			<Breath />
+			<Sleep />
+			<Vision />
+			<Blood />
+		</>
 	)
 }
 

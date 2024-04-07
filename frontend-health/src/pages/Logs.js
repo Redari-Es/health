@@ -24,18 +24,18 @@ const LogsComponent = () => {
 				if (data.logs[selectedLogFile]) {
 					// 计算选定日志文件的总页数并更新状态
 					const logsForSelectedFile = data.logs[selectedLogFile]; // 获取当前选择的日志文件
-					console.log(logsForSelectedFile)
+					// console.log(logsForSelectedFile)
 
 					const totalLogsCount = logsForSelectedFile
 						.split('\n')
 						.filter(logEntry => logEntry.trim() !== '')
 						.length;
 
-					console.log("Total logs count:", totalLogsCount);
+					// console.log("Total logs count:", totalLogsCount);
 					const totalPagesCount = Math.ceil(totalLogsCount / logsPerPage);
 					setTotalPages(totalPagesCount)
 
-					console.log("Total pages count:", totalPagesCount); // 打印总页数，确保计算正确
+					// console.log("Total pages count:", totalPagesCount); // 打印总页数，确保计算正确
 				} else {
 					// 如果选定的日志文件不存在，则将总页数设置为 1
 					setTotalPages(1);
@@ -71,7 +71,7 @@ const LogsComponent = () => {
 			{logFileButtons.map((button, index) => (
 				<button
 					key={index}
-					className={`space-x mx-4 p-2 w-1/5 button-wrapper border rounded-xl bg-custom0 text-white ${selectedLogFile === button.fileName ? 'bg-custom7 scale-125' : ''}`}
+					className={`animate__animated animate__pulse space-x mx-4 p-2 w-1/5 button-wrapper border rounded-xl bg-custom0 text-white ${selectedLogFile === button.fileName ? 'bg-custom7 scale-125' : ''}`}
 					onClick={() => setSelectedLogFile(button.fileName)}
 				>
 					{button.label}
@@ -98,7 +98,7 @@ const LogsComponent = () => {
 
 		return (
 			<table className="table-auto border-collapse border border-slate-400">
-				<thead key={selectedLogFile} className="bg-custom0 py-2">
+				<thead key={selectedLogFile} className="animate__animated animate__fadeIn bg-custom0 py-2">
 					<tr className="text-white">
 						<th className="p-4 text-xl font-bold uppercase">{selectedLogFile}</th>
 						<th className="text-xl font-bold uppercase">Log Entry</th>
@@ -106,7 +106,7 @@ const LogsComponent = () => {
 				</thead>
 				<tbody>
 					{currentLogs.map((logEntry, index) => (
-						<tr key={startIndex + index} className="log-row border border-gray-300 text-gray-600 p-2 hover:bg-custom0 hover:text-white">
+						<tr key={startIndex + index} className="animate__animated animate__fadeInUp delay-100 log-row border border-gray-300 text-gray-600 p-2 transition ease-linear hover:bg-custom0 hover:text-white">
 							<td className="table-cell p-4 text-center text-lg">{startIndex + index + 1}</td>
 							<td className="table-cell p-4 text-sm hover:text-lg">{logEntry}</td>
 						</tr>

@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react';
 import { useAuth } from '../../layouts/States'
 import { useNavigate } from 'react-router'
 import {submitForm} from '../../databus/FrontApi.js'
+import { Outlet } from "react-router-dom";
+
 
 const login={
 	name:'login',
@@ -36,7 +38,6 @@ const register={
 			) : (
 				<User onFormSwitch={toggleForm} text={register} formFields={registerFields} />
 			)}
-			
 		</div>
 	);
 }

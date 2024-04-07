@@ -1,16 +1,27 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, IconButton, Toolbar, Typography, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import { States } from "../layouts/States";
+import { States, useAuth } from "../layouts/States";
 import { Drawers } from "./Drawers";
 import { AppBar } from "./BarStyles";
 
 // const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact", "User"];
 
 const DrawerAppBar = (props) => {
+	const [users, setUsers] = useState("User")
+	const { user } = useAuth();
+	// 检查用户信息是否存在，然后再访问用户名
+	useEffect(() => {
+		if (user) {
+			setUsers(`${user.username}`);
+		} else {
+			setUsers("User");
+		}
+	}, [user]);
+	const navItems = ["Home", "About", "Contact", users];
+
 	// Appbar效果
 	// 1
 	const { window } = props;

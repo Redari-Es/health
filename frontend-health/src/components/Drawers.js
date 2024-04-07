@@ -26,22 +26,26 @@ const icons = (iconSrc) => {
 }
 
 const drawerWidth = 240;
-const healthItems = ["Summary", "Group", "Hearts", "Body", "Breath", "Sleep"]
-const healthItems2 = ["Vision", "ExerciseRecord", "Blood"]
+const userItems = ["Summary", "Family", "Hearts", "Body", "Breath", "Sleep"]
+const userItems2 = ["Vision", "ERcord", "Blood"]
+const adminItems = ["Log", "Users", "Count"]
+const adminItems2 = ["Log", "Users", "Count"]
 
 const itemMap = {
 	"Summary": "摘要",
-	"Group": "家人",
+	"Family": "家人",
 	"Hearts": "心脏",
 	"Body": "身体",
 	"Breath": "呼吸",
 	"Sleep": "睡眠",
 	"Vision": '视力',
-	"ExerciseRecord": "健身记录",
-	"Blood": "血糖血压"
+	"ERcord": "健身记录",
+	"Blood": "血糖血压",
+	"Log": "日志",
+	"Users": "日志"
 }
 
-const healthIcons = { FavoriteIcon, MonitorHeartIcon, FavoriteBorderIcon }
+const userIcons = { FavoriteIcon, MonitorHeartIcon, FavoriteBorderIcon }
 
 const coloredIcon = (Icon, color) => {
 	return () => <Icon sx={{ color }} />;
@@ -49,14 +53,14 @@ const coloredIcon = (Icon, color) => {
 // 创建一个映射表，将字符串映射到对应的图标组件
 const iconMap = {
 	Summary: coloredIcon(FavoriteBorderIcon, 'lightblue'),
-	Group: coloredIcon(GroupIcon, 'purple'),
+	Family: coloredIcon(GroupIcon, 'purple'),
 	Hearts: coloredIcon(MonitorHeartIcon, '#ff69b4'),
 	Body: coloredIcon(EmojiPeopleIcon, '#00bcd4'),
 	Sleep: coloredIcon(BedIcon, '#4caf50'),
 	// Breath: BreathIcon,
 	Vision: () => icons(Vision),
 	Breath: () => icons(Breath),
-	ExerciseRecord: () => icons(ExerciseRecord),
+	ERcord: () => icons(ExerciseRecord),
 	Blood: () => icons(Blood),
 };
 
@@ -105,7 +109,7 @@ export const Drawers = () => {
 				</div>
 				<Divider sx={{ bgcolor: "white" }} />
 				<List>
-					{healthItems.map((text, index) => (
+					{userItems.map((text, index) => (
 						<ListItem key={text} disablePadding>
 							<ListItemButton
 								component={Link}
@@ -121,7 +125,7 @@ export const Drawers = () => {
 				</List>
 				<Divider sx={{ bgcolor: "white" }} />
 				<List>
-					{healthItems2.map((text, index) => (
+					{userItems2.map((text, index) => (
 						<ListItem key={text} disablePadding>
 							<ListItemButton
 								component={Link}

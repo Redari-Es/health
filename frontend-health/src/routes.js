@@ -11,6 +11,13 @@ import { NotFound } from "./pages/NotFound";
 import { Summary } from "./pages/Summary";
 import Users from "./pages/user/Users";
 import Admin from "./pages/Admin";
+import Body from "./pages/Body";
+import Family from "./pages/Family";
+import Breath from "./pages/Breath";
+import ERcord from "./pages/ERcord";
+import Blood from "./pages/Blood";
+import Vision from "./pages/Vision";
+import Sleep from "./pages/Sleep";
 // Component
 // import UserProfile from "./components/UserProfile"
 import Logs from "./pages/Logs";
@@ -65,6 +72,10 @@ const GetRecRoutes = () => {
 							element: <Summary />,
 						},
 						{
+							path: "family",
+							element: <Family />,
+						},
+						{
 							path: "hearts",
 							element: <ChartsLayout />,
 							children: [
@@ -86,6 +97,31 @@ const GetRecRoutes = () => {
 								},
 							]
 						},
+						{
+							path: "body",
+							element: <Body />,
+						},
+						{
+							path: "breath",
+							element: <Breath />,
+						},
+						{
+							path: "sleep",
+							element: <Sleep />,
+						},
+						{
+							path: "vision",
+							element: <Vision />,
+						},
+						{
+							path: "ercord",
+							element: <ERcord />,
+						},
+						{
+							path: "blood",
+							element: <Blood />,
+						},
+
 					]
 				},
 			],
