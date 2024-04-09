@@ -15,6 +15,7 @@ const BasicPagination = ({ currentPage, totalPages, onPageChange }) => {
 					color="secondary"
 					page={currentPage} // 当前页码
 					onChange={handlePageChange} // 点击分页时的回调函数
+					className="text-xl"
 				/>
 			</Stack>
 		</div >

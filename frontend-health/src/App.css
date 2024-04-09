@@ -16,11 +16,39 @@
 .bigheadtext{
 	@apply font-sans text-4xl font-semibold
 }
+/* hover*/
+.hoverOn0{
+	@apply transition ease-linear hover:bg-custom0 hover:text-white hover:font-bold
+}
 .hoverOn1{
 	@apply transition ease-linear hover:bg-custom7 hover:text-white hover:font-extrabold
 }
-.hoverOn0{
-	@apply transition ease-linear hover:bg-custom0 hover:text-white hover:font-bold
+.hoverOn2{
+	@apply hover:bg-sky-900 hover:bg-custom5 hover:scale-110
+}
+.actionBtn{
+	@apply  hover:brightness-75 text-white font-bold py-1 px-2 rounded m-1 hover:scale-110
+}
+.screen{
+	@apply mx-auto min-h-screen max-w-[800px] my-auto  flex items-center justify-center h-screen
+}
+.sections{
+	@apply flex flex-col p-10 m-2 min-h-screen mx-auto
+}
+.flexrow{
+	@apply 	flex flex-row items-center justify-center text-center
+}
+.flexcol{
+	@apply 	flex flex-col items-center justify-center text-center
+}
+.bigtitle{
+	@apply mt-4 uppercase font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+}
+.title0{
+	@apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500
+}
+.title2{
+	@apply  text-3xl text-center font-semibold mb-4
 }
 
 }

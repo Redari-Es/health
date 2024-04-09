@@ -15,9 +15,9 @@ var (
 type Hearts struct {
 	Id                            int64                   `xorm:"'id' pk autoincr" json:"id"`
 	UserID                        int64                   `xorm:"'user_id' index" json:"user_id"`
-	HeartRateTimestamp            time.Time               `xorm:"heart_rate_timestamp" json:"heart_rate_timestamp"`
-	HeartRateVariabilityTimestamp time.Time               `xorm:"hrv_timestamp" json:"hrv_timestamp"`
-	RestingHeartRateTimestamp     time.Time               `xorm:"resting_heart_rate_timestamp" json:"resting_heart_rate_timestamp"`
+	HeartRateTimestamp            string                  `xorm:"heart_rate_timestamp" json:"heart_rate_timestamp"`
+	HeartRateVariabilityTimestamp string                  `xorm:"hrv_timestamp" json:"hrv_timestamp"`
+	RestingHeartRateTimestamp     string                  `xorm:"resting_heart_rate_timestamp" json:"resting_heart_rate_timestamp"`
 	CreatedAt                     time.Time               `xorm:"created" json:"created_at"`
 	UpdatedAt                     time.Time               `xorm:"updated" json:"updated_at"`
 	HeartRate                     []*HeartRate            `xorm:"-"`
@@ -30,7 +30,7 @@ type HeartRate struct {
 	Id        int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID    int64     `xorm:"'user_id' index" json:"user_id"`
 	HeartRate int       `xorm:"heart_rate" json:"heart_rate"`
-	Timestamp time.Time `xorm:"timestamp" json:"timestamp"`
+	Timestamp string    `xorm:"timestamp" json:"timestamp"`
 	CreatedAt time.Time `xorm:"created" json:"created_at"`
 	UpdatedAt time.Time `xorm:"updated" json:"updated_at"`
 }
@@ -40,7 +40,7 @@ type HeartRateVariability struct {
 	Id        int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID    int64     `xorm:"'user_id' index" json:"user_id"`
 	HRV       float64   `xorm:"hrv" json:"hrv"`
-	Timestamp time.Time `xorm:"timestamp" json:"timestamp"`
+	Timestamp string    `xorm:"timestamp" json:"timestamp"`
 	CreatedAt time.Time `xorm:"created" json:"created_at"`
 	UpdatedAt time.Time `xorm:"updated" json:"updated_at"`
 }
@@ -50,7 +50,7 @@ type RestingHeartRate struct {
 	Id               int64     `xorm:"'id' pk autoincr" json:"id"`
 	UserID           int64     `xorm:"'user_id' index" json:"user_id"`
 	RestingHeartRate int       `xorm:"resting_heart_rate" json:"resting_heart_rate"`
-	Timestamp        time.Time `xorm:"timestamp" json:"timestamp"`
+	Timestamp        string    `xorm:"timestamp" json:"timestamp"`
 	CreatedAt        time.Time `xorm:"created" json:"created_at"`
 	UpdatedAt        time.Time `xorm:"updated" json:"updated_at"`
 }

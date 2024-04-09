@@ -12,11 +12,15 @@ import (
 // 模拟视力记录数据
 var bloodSugarData []BloodSugar
 
-// BloodSugar
+const (
+	NormalStatus    = "正常"
+	LowSugarStatus  = "低糖"
+	HighSugarStatus = "高糖"
+)
 
 // 生成模拟的血糖数据
 func sugarStatus(value float64) string {
-	statusMap := []string{"低糖", "正常", "高糖"}
+	statusMap := []string{NormalStatus, LowSugarStatus, HighSugarStatus}
 	key := 0
 	switch {
 	case value < 3.9:
@@ -71,6 +75,50 @@ func GenerateBloodSugarData(userID int64, numRecords int) []BloodSugar {
 }
 
 // API
+// @Summary	 获取用户数据
+// @Description 获取用户数据
+// @Tags			bloodSugar
+// @Accept			json
+// @Produce		json
+// @Param			id	path		int		true	"用户ID"
+// @Success		200	{object}	Vision	"成功"
+// @Failure		400	{object}	string	"请求错误"
+// @Failure		500	{object}	string	"内部错误"
+// @Router			/api/bloodSugar [get]
+
+// @Summary	 接收用户数据
+// @Description 接收用户数据
+// @Tags			bloodSugar
+// @Accept			json
+// @Produce		json
+// @Param			id	path		int		true	"用户ID"
+// @Success		200	{object}	Vision	"成功"
+// @Failure		400	{object}	string	"请求错误"
+// @Failure		500	{object}	string	"内部错误"
+// @Router			/api/bloodSugar [post]
+
+// @Summary	 更新用户数据
+// @Description 更新用户数据
+// @Tags			bloodSugar
+// @Accept			json
+// @Produce		json
+// @Param			id	path		int		true	"用户ID"
+// @Success		200	{object}	Vision	"成功"
+// @Failure		400	{object}	string	"请求错误"
+// @Failure		500	{object}	string	"内部错误"
+// @Router			/api/bloodSugar [update]
+
+// @Summary	 删除用户数据
+// @Description 删除用户数据
+// @Tags			bloodSugar
+// @Accept			json
+// @Produce		json
+// @Param			id	path		int		true	"用户ID"
+// @Success		200	{object}	Vision	"成功"
+// @Failure		400	{object}	string	"请求错误"
+// @Failure		500	{object}	string	"内部错误"
+// @Router			/api/bloodSugar [delete]
+
 func GetBloodSugar(c *gin.Context) {
 	id := rand.Int63n(1000) + 1
 	if len(bloodSugarData) == 0 {
@@ -115,7 +163,7 @@ func UpdateBloodSugar(c *gin.Context) {
 		return
 	}
 
-	// 遍历视力记录列表，查找对应的记录并更新
+	// 遍历记录列表，查找对应的记录并更新
 	for index, record := range bloodSugarData {
 		if strconv.FormatInt(record.Id, 10) == id {
 			// 更新记录信息
@@ -132,10 +180,10 @@ func UpdateBloodSugar(c *gin.Context) {
 	c.JSON(http.StatusNotFound, gin.H{"error": "Record not found"})
 }
 func DeleteBloodSugar(c *gin.Context) {
-	// 从请求中获取要删除的视力记录的 ID
+	// 从请求中获取要删除的记录的 ID
 	id := c.Param("id")
 
-	// 遍历视力记录列表，查找对应的记录并删除
+	// 遍历记录列表，查找对应的记录并删除
 	for index, record := range bloodSugarData {
 		if strconv.FormatInt(record.Id, 10) == id {
 			// 从 visionRecords 中删除对应的记录

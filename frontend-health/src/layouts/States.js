@@ -56,8 +56,8 @@ export const StatesProvider = ({ children }) => {
 export const ThemesProvider = ({ children }) => {
 	// 定义状态来切换主题
 	const themes = {
-		light: '亮色模式',
-		dark: '深色模式'
+		light: '来到黑夜',
+		dark: '迎来白天'
 	}
 	const [currentETheme, setCurrentETheme] = useState('dark'); // 默认为深色主题
 

@@ -44,6 +44,7 @@ func SyncTables(engine *xorm.Engine) error {
 		new(users.Family),
 		new(users.Member),
 		// body
+		new(body.Sleep),
 		new(body.ExerciseRecord),
 		new(body.BodyMeasurement),
 		new(body.PhysicalExam),

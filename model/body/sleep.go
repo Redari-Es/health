@@ -1,13 +1,4 @@
-package sleep
-
-import (
-	"health/model"
-	"time"
-)
-
-var (
-	db = model.DB
-)
+package body
 
 type SleepQuality int
 
@@ -36,9 +27,10 @@ func GetSleepQualityDescription(quality SleepQuality) string {
 type Sleep struct {
 	Id         int64        `xorm:"'id' pk autoincr" json:"id"`
 	UserID     int64        `xorm:"'user_id' index" json:"user_id"`
-	StartTime  time.Time    `xorm:"start_time" json:"start_time"`
-	EndTime    time.Time    `xorm:"end_time" json:"end_time"`
-	Duration   float64      `xorm:"duration" json:"duration"`
-	Quality    SleepQuality `xorm:"quality" json:"quality"`
-	RecordedAt time.Time    `xorm:"recorded_at" json:"recorded_at"`
+	StartTime  string       `xorm:"start_time" json:"start_time"`
+	EndTime    string       `xorm:"end_time" json:"end_time"`
+	Duration   int          `xorm:"duration" json:"duration"`
+	Quality    SleepQuality `xorm:"quality" json:"-"`
+	QualityDes string       `xorm:"quality_des" json:"quality_des"`
+	RecordedAt string       `xorm:"recorded_at" json:"recorded_at"`
 }

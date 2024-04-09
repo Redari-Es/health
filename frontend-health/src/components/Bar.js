@@ -20,7 +20,7 @@ const DrawerAppBar = (props) => {
 			setUsers("User");
 		}
 	}, [user]);
-	const navItems = ["Home", "About", "Contact", users];
+	const navItems = ["Home", "About", "Contact"];
 
 	// Appbar效果
 	// 1
@@ -67,18 +67,30 @@ const DrawerAppBar = (props) => {
 									key={item}
 									component={Link}
 									activeclassname="acitve"
-									to={item.toLowerCase()}
+									to={`/${item.toLowerCase()}`}
 									sx={{ color: "#fff" }}
+									className="hoverOn2"
 								>
 									{item}
 								</Button>
 							))}
+							{user && (
+								<Button
+									component={Link}
+									to={`/dashboard/${users}`}
+									sx={{ color: "#fff", ml: 2 }}
+									className="hoverOn2"
+								>
+									Dashboard
+								</Button>
+							)}
+
 						</Box>
 					</Toolbar>
 				</AppBar>
 				<Drawers />
 			</Box>
-		</Container>
+		</Container >
 	);
 };
 

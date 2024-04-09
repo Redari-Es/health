@@ -21,7 +21,7 @@ export const submitForm = async (api, formDataToSubmit, navigate) => {
 			// 提交成功处理逻辑
 			console.log('Form submitted successfully!');
 
-			navigate(`/${username}`);
+			navigate(`/dashboard/${username}`);
 			// console.log("navigate",
 			// 	`/${username}`
 			// )

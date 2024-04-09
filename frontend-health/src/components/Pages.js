@@ -5,7 +5,7 @@ import BasicPagination from './BasicPagination'
 export const Title = ({ text }) => {
 	return (
 		<div className='flex'>
-			<span className=' text-center items-center p-2 shadow-2xl shadow-gray-500 justify-center text-3xl font-bold text-custom6 w-screen mb-6 border border-solid rounded bg-custom0 transition ease-in-out duration-150 hover:-translate-y-1 hover:scale-110 hover:bg-custom7'>{text}</span>
+			<span className=' text-center items-center py-4 shadow-2xl shadow-gray-500 justify-center text-3xl font-bold text-custom6 w-screen mb-6 border border-solid rounded-3xl bg-custom0 transition ease-in-out duration-150 hover:-translate-y-1 hover:scale-110 hover:bg-custom7'>{text}</span>
 		</div>
 	)
 }
@@ -20,6 +20,16 @@ export const Loading = ({ text }) => {
 	);
 };
 
+export const ShowErro = ({ text }) => {
+	return (
+		<div className="flex justify-center items-center hover:scale-125 transition-transform animate__animated animate__fadIn ">
+			{/* 使用动画效果 */}
+			<div className="m-4 loader ease-linear rounded-full border-8 border-t-8 border-custom9 h-6 w-6 animate__animated animate__tada animate__fast animate__infinite"></div>
+			{/* 使用过渡效果 */}
+			<span className='text-2xl text-custom9 font-bold transition ease-in-out hover:shadow-2xl'>{text}</span>
+		</div>
+	)
+}
 
 export function PageForm({ api, textLabels, initData, data, }) {
 	const [records, setRecords] = useState(data);
@@ -35,10 +45,10 @@ export function PageForm({ api, textLabels, initData, data, }) {
 
 
 
-export function ActionButtons({ isEditing, record, onEdit, onDelete, onSave, onSubmit }) {
+export function ActionButtons({ isEditing, record, onEdit, onDelete, onSave, onSubmit, onUpdate }) {
 	return isEditing ? (
 		<button
-			className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded m-1"
+			className="bg-green-500 actionBtn"
 			onClick={() => onSave(record)}
 		>
 			保存
@@ -46,28 +56,56 @@ export function ActionButtons({ isEditing, record, onEdit, onDelete, onSave, onS
 	) : (
 		<>
 			<button
-				className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded m-1"
+				className="bg-blue-500 actionBtn"
 				onClick={() => onEdit(record.id)}
 			>
 				编辑
 			</button>
 			<button
-				className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded m-1"
+				className="bg-red-500 actionBtn"
 				onClick={() => onDelete(record.id)}
 			>
 				删除
 			</button>
 			<button
-				className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded m-1"
+				className="bg-green-500 actionBtn "
 				onClick={() => onSubmit(record.id)}
 			>
 				提交
 			</button>
+			{/*
+							<button
+								className="bg-yellow-500 actionBtn "
+								onClick={() => onUpdate(record.id)}
+							>
+								更新
+							</button>
+				
+							*/}
 
 		</>
 	);
 }
 
+//输入框
+export function EditableField({ value, isEditing, onChange, onBlur }) {
+	return isEditing ? (
+		<div className="flex items-center justify-center h-20"> {/* 使用 div 作为 flex 容器，并设置高度 */}
+			{/* <textarea*/}
+			<input
+				value={value}
+				onChange={onChange}
+				onBlur={onBlur}
+				onClick={onChange}
+				className="w-3/4 h-3/4 mx-1/6 px-3 text-ellipsis overflow-auto transition ease-linear rounded-2xl content-center text-white align-center justify-center text-center font-bold shadow-2xl shadow-custom2 scale-110 border-custom7 bg-custom5 hover:brightness-200 hover:scale-125 focus:brightness-200 focus:scale-125 resize"
+				rows={1} // 设置 rows 为 1 来开始时单行显示
+				placeholder="Edit..." // 添加占位符以便在非编辑状态下显示
+			/>
+		</div>
+	) : (
+		<div className="text-center">{value}</div>
+	);
+}
 export function RecordRow({ record, isEditing, onDelete, onEdit, onSave, onInputChange, onSubmit }) {
 	return (
 		<tr className="hoverOn0">
@@ -81,7 +119,7 @@ export function RecordRow({ record, isEditing, onDelete, onEdit, onSave, onInput
 					/>
 				</td>
 			))}
-			<td className="border px-4 py-2">
+			<td className="border space-x px-4 py-3 mx-auto">
 				<ActionButtons
 					isEditing={isEditing}
 					record={record}
@@ -148,7 +186,7 @@ export const RecordForm = ({ initialRecord, api, records, setRecords, textLabels
 		}
 	};
 	return (
-		<div className="container mx-auto px-4 py-8">
+		<div className="max-h-auto p-4">
 			<button
 				className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded"
 				onClick={addRecord}
@@ -161,7 +199,7 @@ export const RecordForm = ({ initialRecord, api, records, setRecords, textLabels
 						<tr className="hoverOn1">
 							{/* 通过遍历 record 的属性生成表头 */}
 							{Object.keys(records[0]).map((key, index) => (
-								<th key={index} className="border px-4 py-2">{textLabels[key]}</th>
+								<th key={index} className="w-auto text-center border px-4 py-2">{textLabels[key]}</th>
 							))}
 							{/* 添加额外的操作列 */}
 							<th className="border px-4 py-2">操作</th>
@@ -221,7 +259,7 @@ export function FetchDataTable({ api, textLabels }) {
 			}
 		};
 		fetchDataAndUpdate();
-	}, [data]); // 确保 useEffect 在 api 变化时重新运行
+	}, [data, api, error]); // 确保 useEffect 在 api 变化时重新运行
 
 	const renderData = () => {
 
@@ -229,7 +267,7 @@ export function FetchDataTable({ api, textLabels }) {
 			const text = "Loading logs..."
 			return <Loading text={text} />
 
-		} if (error) return <div>{error}</div>;
+		} if (error) return <div><ShowErro text={error} /></div>;
 		// 在尝试访问filteredLogs之前，检查selectedLogFile是否存在于logs对象中
 		if (!data) {
 			const text = "No logs found for the selected log file."
@@ -282,20 +320,6 @@ export function FetchDataTable({ api, textLabels }) {
 	)
 }
 
-
-export function EditableField({ value, isEditing, onChange, onBlur }) {
-	return isEditing ? (
-		<input
-			type="text"
-			value={value}
-			onChange={onChange}
-			onBlur={onBlur} // Save the record when the input field loses focus
-			className="w-2/6"
-		/>
-	) : (
-		value
-	);
-}
 
 
 

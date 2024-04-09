@@ -15,7 +15,7 @@ import Body from './Body'
 import Family from './Family'
 import Breath from './Breath'
 import Blood from './Blood'
-import ERcord from './ERcord'
+import ERecord from './ERecord'
 import Sleep from './Sleep'
 
 
@@ -36,17 +36,17 @@ const componentMap = {
 export const Summary = () => {
 	return (
 		<>
-			<div className="animate__animated animate__fadeInDownBig mb-6">
+			<div className="animate__animated animate__fadeInDownBig ml-2 mb-6">
 				<UserProfile />
 				<Title text="心率视图" />
-				<div className='grid grid-cols-2 gap-8'>
+				<div className='grid grid-cols-2 gap-8 ml-3 items-center justify-center'>
 					{Object.keys(cardItem).map((key) => (
 						<MultiActionAreaCard key={key} props={key} />
 					))}
 				</div>
 			</div>
 			<Body />
-			<ERcord />
+			<ERecord />
 			<Breath />
 			<Sleep />
 			<Vision />

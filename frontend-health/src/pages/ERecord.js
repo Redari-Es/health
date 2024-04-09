@@ -2,34 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { PageForm, Title } from "../components/Pages"
 import { MenuBtn2 } from "../components/Btn"
 
-// 呼吸记录
+// 健身记录
 const data = [
-	{ id: 1, name: '张三', height: 120, weight: 120, waist: 40, hip: 50, chest: 40, blood_type: "A" },
-	{ id: 2, name: '张三', height: 190, weight: 110, waist: 50, hip: 90, chest: 80, blood_type: "B" },
-	{ id: 3, name: '张三', height: 170, weight: 170, waist: 49, hip: 70, chest: 60, blood_type: "O" },
+	{ id: 1, name: '张三', sport: 1, duration: 1, },
+	{ id: 2, name: '李四', sport: 2, duration: 1, },
+	{ id: 3, name: '王五', sport: 3, duration: 2, },
 	// More records can be added here...
 ]
 const initData =
-	{ id: 0, name: '', height: 170, weight: 170, waist: 49, hip: 70, chest: 60, blood_type: "O" }
+	{ id: 0, name: '', sport: 1, duration: 1 }
 const textLabels = {
 	id: 'ID',
 	user_id: "用户ID",
 	name: '姓名',
-	height: '身高cm',
-	weight: '体重kg',
-	waist: '腰围',
-	hip: '臀围',
-	chest: '胸围',
-	blood: '血型',
-	blood_type: '血型',
+	sport: '运动种类',
+	duration: '运动时间',
+	exercise_type: '运动类型',
+	calories: '消耗卡路里量 卡',
 	recorded_at: '记录时间',
 }
 
+
+
 const form = [
-	{ current: 'BodyInfo', api: 'bodyInfo', title: '身体数据', label: "查看身体", textLabels: "bodyInfoLabels" },
+	{ current: 'ERecord', api: 'eRecord', title: '健身记录', label: "查看健身记录" },
 ];
 
-export default function Breath() {
+export default function ERecord() {
 	const [currentForm, setCurrentForm] = useState(0); // 初始表单索引
 
 	const toggleForm = (formIndex) => {

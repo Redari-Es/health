@@ -23,27 +23,36 @@ func GetTime() string {
 }
 
 // 实现 TimeSetter 接口的 SetTime 方法，用于设置 RecordedAt 字段为当前时间
-func (v *Vision) SetTime() {
-	v.RecordedAt = GetTime()
-
+func (o *Vision) SetTime() {
+	o.RecordedAt = GetTime()
 }
-
-// 实现 TimeSetter 接口的 SetTime 方法，用于设置 RecordedAt 字段为当前时间
 func (o *BloodPressure) SetTime() {
+	o.RecordedAt = GetTime()
+}
+func (o *BloodSugar) SetTime() {
+	o.RecordedAt = GetTime()
+}
+func (o *RespiratoryRate) SetTime() {
+	o.RecordedAt = GetTime()
+}
+func (o *ExerciseRecord) SetTime() {
+	o.RecordedAt = GetTime()
+}
+func (o *Sleep) SetTime() {
 	o.RecordedAt = GetTime()
 }
 
 // 身体测量表
 type BodyMeasurement struct {
-	Id         int64   `xorm:"'id' pk autoincr" json:"id"`
-	UserID     int64   `xorm:"'user_id' index" json:"user_id"`
-	Height     float64 `xorm:"'height'" json:"height"`
-	Weight     float64 `xorm:"'weight'" json:"weight"`
-	Waist      float64 `xorm:"'waist'" json:"waist"`
-	Hip        float64 `xorm:"'hip'" json:"hip"`
-	Chest      float64 `xorm:"'chest'" json:"chest"`
-	BloodType  int     `xorm:"'blood_type'" json:"blood_type"`
-	RecordedAt string  `xorm:"not null" json:"recorded_at"`
+	Id         int64  `xorm:"'id' pk autoincr" json:"id"`
+	UserID     int64  `xorm:"'user_id' index" json:"user_id"`
+	Height     int    `xorm:"'height'" json:"height"`
+	Weight     int    `xorm:"'weight'" json:"weight"`
+	Waist      int    `xorm:"'waist'" json:"waist"`
+	Hip        int    `xorm:"'hip'" json:"hip"`
+	Chest      int    `xorm:"'chest'" json:"chest"`
+	BloodType  string `xorm:"'blood_type'" json:"blood_type"`
+	RecordedAt string `xorm:"not null" json:"recorded_at"`
 }
 
 // 健身记录
@@ -51,7 +60,8 @@ type ExerciseRecord struct {
 	Id           int64   `xorm:"'id' pk autoincr" json:"id"`
 	UserID       int64   `xorm:"'user_id' index" json:"user_id"`
 	ExerciseType string  `xorm:"'exercise_type'" json:"exercise_type"`
-	Duration     float64 `xorm:"'duration'" json:"duration"`
+	Sport        int     `json:"sport"`
+	Duration     int     `xorm:"'duration'" json:"duration"`
 	Calories     float64 `xorm:"'calories'" json:"calories"`
 	RecordedAt   string  `xorm:"not null" json:"recorded_at"`
 }

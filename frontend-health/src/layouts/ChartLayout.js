@@ -20,10 +20,6 @@ const itemmap = {
 	"Rhr": "静息心率",
 	"Rates": "心率图",
 }
-const themes = {
-	light: '亮色模式',
-	dark: '深色模式'
-}
 const timeUnits = [
 	{ label: "时", value: "hour" },
 	{ label: "天", value: "day" },

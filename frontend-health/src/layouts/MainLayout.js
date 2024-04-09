@@ -58,12 +58,12 @@ const MainLayout = ({ children }) => {
 			</header>
 			{/* 主页 */}
 			<Main
-				className=" flex flex-col items-center justify-center mt-8 mb-20 scroll-smooth focus:scroll-auto "
+				className=" flex flex-col items-center justify-center mt-6 mb-20 scroll-smooth focus:scroll-auto "
 				open={open}
 			>
 				<Box
 					component="main"
-					className=" w-3/4 flex-grow bg-gray-100 box-border border-2 border-solid border-custom0 rounded-lg shadow-lg hover:shadow-2xl"
+					className="w-3/4 flex-grow bg-gray-100 box-border border-2 border-solid border-custom0 rounded-lg shadow-lg hover:shadow-2xl"
 					sx={{ p: 3 }}
 				>
 					<CssBaseline />

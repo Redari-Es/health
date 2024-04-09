@@ -27,7 +27,7 @@ const icons = (iconSrc) => {
 
 const drawerWidth = 240;
 const userItems = ["Summary", "Family", "Hearts", "Body", "Breath", "Sleep"]
-const userItems2 = ["Vision", "ERcord", "Blood"]
+const userItems2 = ["Vision", "ERecord", "Blood"]
 const adminItems = ["Log", "Users", "Count"]
 const adminItems2 = ["Log", "Users", "Count"]
 
@@ -39,10 +39,10 @@ const itemMap = {
 	"Breath": "呼吸",
 	"Sleep": "睡眠",
 	"Vision": '视力',
-	"ERcord": "健身记录",
+	"ERecord": "健身记录",
 	"Blood": "血糖血压",
 	"Log": "日志",
-	"Users": "日志"
+	"Users": "用户管理"
 }
 
 const userIcons = { FavoriteIcon, MonitorHeartIcon, FavoriteBorderIcon }
@@ -60,7 +60,7 @@ const iconMap = {
 	// Breath: BreathIcon,
 	Vision: () => icons(Vision),
 	Breath: () => icons(Breath),
-	ERcord: () => icons(ExerciseRecord),
+	ERecord: () => icons(ExerciseRecord),
 	Blood: () => icons(Blood),
 };
 
@@ -95,8 +95,8 @@ export const Drawers = () => {
 				anchor="left"
 				open={open}
 			>
-				<div className="flex flex-shrink">
-					<span className="flex grow items-center justify-center font-bold text-custom6 ">Health</span>
+				<div className="flex flex-shrink-0">
+					<span className="flex grow ml-4 items-center justify-center text-2xl font-bold text-custom6 hover:scale-125 ">Health</span>
 					<DrawerHeader>
 						<IconButton className="drawer" onClick={toggleOpen}>
 							{theme.direction === "ltr" ? (
@@ -110,36 +110,51 @@ export const Drawers = () => {
 				<Divider sx={{ bgcolor: "white" }} />
 				<List>
 					{userItems.map((text, index) => (
-						<ListItem key={text} disablePadding>
-							<ListItemButton
-								component={Link}
-								to={`/${username}/${text.toLowerCase()}`}
-								activeclassname="active"
-								sx={{ color: "#fff" }}
-							>
-								{renderIcons(text)}
-								<ListItemText primary={itemMap[text]} />
-							</ListItemButton>
-						</ListItem>
+						<div
+							className="transition ease-linear my-3 items-center justify-center self-center hoverOn2"
+						>
+							<ListItem key={text} disablePadding >
+								<ListItemButton
+									component={Link}
+									to={`/dashboard/${username}/${text.toLowerCase()}`}
+									activeclassname="active"
+									sx={{ color: "#fff" }}
+								>
+									<div className="flex px-4 items-center justify-center space-x">
+										{renderIcons(text)}
+										<ListItemText className="text-center" primary={itemMap[text]} />
+									</div>
+								</ListItemButton>
+							</ListItem>
+						</div>
 					))}
 				</List>
 				<Divider sx={{ bgcolor: "white" }} />
 				<List>
 					{userItems2.map((text, index) => (
-						<ListItem key={text} disablePadding>
-							<ListItemButton
-								component={Link}
-								to={`/${username}/${text.toLowerCase()}`}
-								activeclassname="active"
-								sx={{ color: "#fff" }}
-							>
-								{renderIcons(text)}
-								<ListItemText primary={itemMap[text]} />
-							</ListItemButton>
-						</ListItem>
+						<div
+							className="transition ease-linear my-3 items-center justify-center self-center hoverOn2"
+						>
+							<ListItem key={text} disablePadding>
+								<ListItemButton
+									component={Link}
+									to={`/dashboard/${username}/${text.toLowerCase()}`}
+									activeclassname="active"
+									className sx={{ color: "#fff" }}
+								>
+									<div className="flex px-2 items-center justify-center space-x">
+										{renderIcons(text)}
+										<ListItemText className="text-center" primary={itemMap[text]} />
+									</div>
+								</ListItemButton>
+							</ListItem>
+						</div>
 					))}
 				</List>
-				<div className=" flex flex-col items-center  text-sm h-full text-wrap justify-end text-center">
+				<div className="absolute bottom-0 flex items-center text-2xl w-auto font-bold h-auto text-wrap justify-end text-center 
+		hover:bg-sky-800 hover:brightness-150 hover:scale:125
+	 m-2"
+				>
 					<CopyRight />
 				</div>
 			</Drawer>

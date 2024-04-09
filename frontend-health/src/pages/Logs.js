@@ -1,7 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import BasicPagination from '../components/BasicPagination'
 import { Title, Loading } from '../components/Pages'
-import { MenuBtn1 } from '../components/Btn'
+import { MenuBtn } from '../components/Btn'
+
+
+const GoToPage = ({ current, setCurrentPage, itemsPerPage, totalItems }) => {
+	const [targetItem, setTargetItem] = useState(''); // 用于存储用户输入的目标条目数字
+
+	// 处理输入框变化的函数
+	const handleInputChange = (event) => {
+		setTargetItem(event.target.value);
+	};
+
+	// 处理跳转到指定条目的函数
+	const goToItem = () => {
+		const itemNumber = parseInt(targetItem, 10); // 将用户输入的字符串转换为整数
+		if (itemNumber >= 1 && itemNumber <= totalItems) {
+			const targetPage = Math.ceil(itemNumber / itemsPerPage); // 计算目标条目所在的页数
+			setCurrentPage(targetPage); // 设置当前页数为目标页数
+		} else {
+			alert('请输入有效的条目数字！'); // 输入无效条目数字时弹出警告
+		}
+	};
+
+	return (
+		<div className="flex items-center justify-center mb-4">
+			{/* 输入框 */}
+			<input
+				type="number"
+				value={targetItem}
+				onChange={handleInputChange}
+				placeholder="输入条目数字"
+				className="border border-custom0 rounded p-2 mr-2 hover:scale-110 focus:font-bold focus:scale-110"
+			/>
+			{/* 按钮 */}
+			<button onClick={goToItem} className="bg-blue-600 hover:bg-custom5 transition ease-linear duration-300 active:-translate-y-3 text-white ml-2 font-bold py-2 px-4 rounded">
+				跳转到指定条目
+			</button>
+		</div>
+	);
+};
+
 
 const LogsComponent = () => {
 	const [logs, setLogs] = useState({});
@@ -10,6 +49,7 @@ const LogsComponent = () => {
 	const [error, setError] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
+	const [totalLogsCount, setLogsCount] = useState(0);
 	const logsPerPage = 10;
 
 	useEffect(() => {
@@ -32,6 +72,7 @@ const LogsComponent = () => {
 						.split('\n')
 						.filter(logEntry => logEntry.trim() !== '')
 						.length;
+					setLogsCount(totalLogsCount)
 
 					// console.log("Total logs count:", totalLogsCount);
 					const totalPagesCount = Math.ceil(totalLogsCount / logsPerPage);
@@ -108,7 +149,13 @@ const LogsComponent = () => {
 	return (
 		<div className="logs-container">
 			<Title text='日志' />
-			<MenuBtn1 Menu={logFileMenu} current={selectedLogFile} onClick={setSelectedLogFile} />
+			<div className="flex items-center justify-center m-4 p-2">
+				<p className="text-3xl self-center">
+					<span className="mr-3">当前日志共有</span><span className="rounded-2xl hover:bg-custom0 hover:text-white hover:shadow-2xl hover:-translate-y-2 transition ease-in-out animate__animated animate__fadeIn hover:scale-125 algn-center font-bold px-4 text-5xl">{totalLogsCount}</span><span className="ml-3">条</span>
+				</p>
+			</div>
+			<MenuBtn Menu={logFileMenu} current={selectedLogFile} onClick={setSelectedLogFile} />
+			<GoToPage current={currentPage} setCurrentPage={setCurrentPage} itemsPerPage={logsPerPage} totalItems={totalLogsCount} />
 			{renderLogs()}
 			<div className="m-4">
 				<BasicPagination
@@ -121,4 +168,7 @@ const LogsComponent = () => {
 	);
 }
 
+
 export default LogsComponent;
+
+
