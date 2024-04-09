@@ -20,7 +20,7 @@ func init() {
 	db := model.InitDB()
 	// defer db.Close()
 	// 删除数据库表
-	dbs.DropTables(db)
+	// dbs.DropTables(db)
 	// 更新数据库表
 	dbs.SyncTables(db)
 	// util.SlatHash("password")
