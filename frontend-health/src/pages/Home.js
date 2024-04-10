@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import { Banner } from './Banner'
 import { BottomNavigation, ScrollSections } from '../components/Section'
 
-const sectionIds = ['welcome', 'banner', 'admin'];
+const sectionIds = ['#welcome', '#banner', 'admin'];
 const idTextMap = {
-	welcome: '欢迎',
-	banner: '标语',
+	'#welcome': '欢迎',
+	'#banner': '标语',
 	admin: '后台',
 
 };
@@ -56,7 +56,7 @@ const Welcome = ({ title, description, button, onToggleLanguage, language }) => 
 	const toggleLanguageText = language === 'english' ? '切换到中文' : 'Switch to English';
 
 	return (
-		<section id="welcome" className="screen">
+		<section id="#welcome" className="screen">
 			<div className="p-4 flex flex-col gap-10 items-center justify-center text-center">
 				<div className="flex flex-col gap-4">
 					<h1 className="bigtitle title0">{title}</h1>
