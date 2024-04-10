@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Outlet } from "react-router-dom";
 import { Link } from 'react-router-dom'
 
-const sectionIds = ['welcome', 'banner', 'section1', 'section2', 'section3'];
+const sectionIds = ['#welcome', '#banner', '#section1', '#section2', '#section3'];
 
 export const ScrollSections = ({ children, sectionIds }) => {
 	const lastScrollPosition = useRef(0);
@@ -85,7 +85,7 @@ export const BottomNavigation = ({ sectionIds, idTextMap }) => {
 						key={index}
 						//# 当前
 						//href={`#${id}`}
-						href={`#${id}`}
+						href={`${id}`}
 						className="flex items-center justify-center p-2 rounded-md border border-gray-300 text-sm hover:bg-custom5 text-white transition duration-300 ease-in-out cursor-pointer"
 						onClick={() => handleClick(id)}
 						style={{ textDecoration: 'none' }}
