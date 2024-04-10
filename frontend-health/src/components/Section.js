@@ -64,6 +64,7 @@ export const ScrollSections = ({ children, sectionIds }) => {
 
 
 
+//底部
 export const BottomNavigation = ({ sectionIds, idTextMap }) => {
 	const handleClick = (id) => {
 		const element = document.getElementById(id);
@@ -82,6 +83,8 @@ export const BottomNavigation = ({ sectionIds, idTextMap }) => {
 				{sectionIds.map((id, index) => (
 					<a
 						key={index}
+						//# 当前
+						//href={`#${id}`}
 						href={`#${id}`}
 						className="flex items-center justify-center p-2 rounded-md border border-gray-300 text-sm hover:bg-custom5 text-white transition duration-300 ease-in-out cursor-pointer"
 						onClick={() => handleClick(id)}

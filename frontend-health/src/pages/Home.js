@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 import { Banner } from './Banner'
 import { BottomNavigation, ScrollSections } from '../components/Section'
 
-const sectionIds = ['welcome', 'banner'];
+const sectionIds = ['welcome', 'banner', 'admin'];
 const idTextMap = {
 	welcome: '欢迎',
 	banner: '标语',
+	admin: '后台',
+
 };
 
 // data.js
