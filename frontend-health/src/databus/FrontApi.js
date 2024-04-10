@@ -1,12 +1,11 @@
 // 在这里执行提交逻辑，比如发送请求给服务器
 // Login
-export const submitForm = async (api, formDataToSubmit, navigate) => {
+export const submitForm = async (api, formDataToSubmit, navigate, login) => {
 
 	try {
 		// 从 formDataToSubmit 对象中获取表单数据
 		const { formFields } = formDataToSubmit;
-		const username = formFields.user_name
-		// console.log("username", username)
+		const user_name = formFields.user_name
 		// 发送 POST 请求给服务器
 		const response = await fetch(`http://127.0.0.1:5001/${api}`, {
 			method: 'POST',
@@ -20,10 +19,20 @@ export const submitForm = async (api, formDataToSubmit, navigate) => {
 		if (response.ok) {
 			// 提交成功处理逻辑
 			console.log('Form submitted successfully!');
-
-			navigate(`/dashboard/${username}`);
-			// console.log("navigate",
-			// 	`/${username}`
+			const data = await response.json();    // 假设服务器返回的用户对象中包含id和username    
+			const userData = {
+				id: data.id,
+				uuid: data.uuid,
+				user_name: data.user_name,
+				// state:1,
+			}
+			login(userData)
+			console.log("login userData:", userData);
+			// localStorage.setItem('users', JSON.stringify({ uuid, user_name }))
+			navigate(`/dashboard/${user_name}`);
+			//后端200才执行
+			console.log("navigate:", `${user_name}`, 'uuid:', data.uuid)
+			//还需要处理注册
 			// )
 
 		} else {

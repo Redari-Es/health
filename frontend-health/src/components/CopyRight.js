@@ -31,7 +31,7 @@ export default function CopyRight() {
 	return (
 		<React.Fragment>
 			<Button variant="none" onClick={handleClickOpen}>
-				<span className="text-white font-auto">Copyright &copy; 2024</span>
+				<span className="bottom-0 text-white font-auto">Copyright &copy; 2024</span>
 			</Button>
 			<BootstrapDialog
 				onClose={handleClose}

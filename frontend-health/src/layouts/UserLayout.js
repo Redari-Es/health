@@ -8,24 +8,22 @@ import UserProfile from '../components/UserProfile'
 
 const PrivateRoutes = ({ children }) => {
 	const { username } = useParams()
-	const { user } = useAuth();
+	const { users } = useAuth();
 
 
 	// 检查用户信息是否存在，然后再访问用户名
 	// 如果用户未登录，则导航至登录页面
-	if (!user) {
+	if (!users) {
 		return <Navigate to="/dashboard/user" />;
 	}
 
 
 	// 检查当前路由中的用户名参数是否与登录用户的用户名匹配
 	// const isCurrentUserRoute = window.location.pathname.split('/')[1] === user.username;
-	// 检查当前路由中的用户名参数是否与登录用户的用户名匹配
-	const isCurrentUserRoute = username === user.username;
-
-	// 如果当前路由不是用户的个人信息页面，或者当前用户不是已登录用户，则导航至登录用户的个人信息页面
-	if (!isCurrentUserRoute || username !== user.username) {
-		return <Navigate to={`/dashboard/${user.username}`} />;
+	const isCurrentUserRoute = username === users.user_name;
+	// 如果当前路由不是用户的个人信息页面，则导航至用户个人信息页面
+	if (!isCurrentUserRoute) {
+		return <Navigate to={`/dashboard/usr/${users.user_name}`} replace />;
 	}
 	return (
 		<>
@@ -41,7 +39,7 @@ export const UserLayout = ({ children }) => {
 	const { logout } = useAuth()
 	// useEffect(() => {
 	// 	// 模拟退出登录后的操作，例如清除用户信息并重定向到登录页面
-	// 	logout();
+	logout();
 	// 	<Navigate to="/usr" />;
 	// }, []);
 	return (

@@ -1,33 +1,81 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from 'react-router'
-
 
 // 创建一个全局上下文
 export const States = createContext();
 export const Themes = createContext();
 export const AuthContext = createContext();
-// 创建一个 AuthProvider 组件来提供登录状态
+
+// 创建一个 AuthContext 来提供登录状态
+
+
+// 假设您有一个函数来验证JWT令牌
+
 const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState(() => {
-		// 从本地存储中获取用户信息，如果存在的话
-		const storedUser = localStorage.getItem('user');
-		return storedUser ? JSON.parse(storedUser) : null;
-	});
+	// 初始状态为一个空数组，用于存储用户信息
+	const [users, setUsers] = useState([]);
+
+	// 在组件挂载时从本地存储中获取用户信息
+	useEffect(() => {
+		const storedUsers = localStorage.getItem('users');
+		if (storedUsers) {
+			try {
+				// 尝试解析本地存储中的用户信息
+				const parsedUsers = JSON.parse(storedUsers);
+				// 检查解析后的对象是否为数组
+				if (Array.isArray(parsedUsers)) {
+					// 过滤掉那些没有'uuid'字段的对象
+					const filteredUsers = parsedUsers.filter(user => user && user.hasOwnProperty('uuid'));
+					// 设置用户状态
+					setUsers(filteredUsers);
+				} else {
+					// 如果解析后的结果不是数组，设置用户状态为空数组
+					setUsers([]);
+				}
+			} catch (error) {
+				// 如果解析过程中出现错误（例如，存储的数据不是有效的JSON），也设置用户状态为空数组
+				console.error('Error parsing stored users:', error);
+				setUsers([]);
+			}
+		}
+	}, []);
+	// 假设您有一个函数来获取当前用户
+	const getCurrentUser = () => {
+		const storedUsers = localStorage.getItem('users');
+		const usersArray = storedUsers ? JSON.parse(storedUsers) : [];
+		const currentUserId = localStorage.getItem('current_user_id');
+		return usersArray.find(user => user.id === currentUserId);
+	};
+
 
 	// 登录函数，将用户信息存储在全局状态中，并且持久化到本地存储中
 	const login = (userData) => {
-		setUser(userData);
-		localStorage.setItem('user', JSON.stringify(userData));
+		// 检查用户是否已经存在
+		const existingUser = users.find(user => user.uuid === userData.uuid);
+		if (existingUser) {
+			// 如果用户已存在，更新用户信息
+			setUsers(users.map(user => user.uuid === userData.uuid ? userData : user));
+		} else {
+			// 如果用户不存在，添加新用户信息
+			setUsers([...users, userData]);
+		}
+		// 持久化到本地存储
+		localStorage.setItem('users', JSON.stringify(users));
+		console.log(users);
+
 	};
 
-	// 登出函数，清除用户信息，并且从本地存储中移除
-	const logout = () => {
-		setUser('');
-		localStorage.removeItem('user');
+	// 登出函数，根据用户名清除对应用户信息，并且更新本地存储中的用户信息
+	const logout = (user_name) => {
+		// 过滤掉要删除的用户信息
+		const updatedUsers = users.filter(user => user.user_name !== user_name);
+		setUsers(updatedUsers);
+		// 持久化到本地存储
+		localStorage.setItem('users', JSON.stringify(updatedUsers));
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, login, logout }}>
+		<AuthContext.Provider value={{ users, login, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);

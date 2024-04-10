@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"health/model"
 	"health/util"
+	"math/rand"
 	"net/http"
 	"time"
 
@@ -32,12 +33,17 @@ func Logins(c *gin.Context) {
 	// }
 	// session.Commit()
 
+	form.Id = rand.Int63n(1000) + 1
+	form.UUID = generateUUID()
 	// 输出接收到的表单数据
 	c.JSON(200, gin.H{
+		"id":        form.Id,
+		"uuid":      form.UUID,
 		"user_name": form.UserName,
 		"email":     form.Email,
 		"password":  form.Password,
 	})
+	form.Id = rand.Int63n(1000) + 1
 	println(form.UserName)
 	println(form.Email)
 	println(form.Password)

@@ -26,7 +26,7 @@ const register={
 		'Login Here']
 }
 
- export default function Users() {
+ export default function Users({children}) {
 	const [currentForm, setCurrentForm] = useState("login");
 	const toggleForm = (formName) => {
 		setCurrentForm(formName);
@@ -97,7 +97,6 @@ export const User = (props) => {
 	// const [formFields,setFormFields]=useState(props.formFields)
 	const text=props.text
 	const api=text.name
-	// console.log("api",api)
 	
   // 使用 useEffect 确保在 props.formFields 发生变化时更新 formFields 和 formData
   const [formFields, setFormFields] = useState(props.formFields);
@@ -127,19 +126,14 @@ export const User = (props) => {
     formFields: { ...formData } // 深拷贝 formData，确保不会直接修改原始状态
   };
 		// 在这里执行提交逻辑，比如发送请求给服务器
-		 submitForm(api, formDataToSubmit, navigate);
+		 submitForm(api, formDataToSubmit, navigate,login);
   // 提交成功后的处理，比如跳转页面、显示成功消息等
   console.log("Form submitted successfully!", formDataToSubmit);
   // navigate('/success'); // 例如使用 react-router-dom 进行页面跳转
 
   // 清空表单数据（可选）
-		const { email, password, user_name } = formData;
-		const userData = {
-			username: user_name,
-			email: email,
-			// state:1,
-		}
-		login(userData);
+		
+		// login(userData);
 		// navigate(`/${name}`);
   // setFormData({ ...formFields })
 	// 	console.log("formFields",formFields)
