@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 import headerImg from "../assets/img/header-img.svg"; // Assuming you have imported headerImg
+// import { useNavigation } from "react-router-dom";
 
 export const Banner = () => {
+	// const navigation = useNavigation()
 	const [loopNum, setLoopNum] = useState(0);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [text, setText] = useState("");
@@ -81,6 +83,7 @@ export const Banner = () => {
 										className="bg-custom0 text-white py-2 px-4 rounded-md mt-8 inline-flex items-center hover:bg-blue-600 transition duration-300"
 										type="submit"
 										onClick={() => console.log("connect")}
+									// onClick={() => navigation('contact')}
 									>
 										Let’s Connect
 									</button>
