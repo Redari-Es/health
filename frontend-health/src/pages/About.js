@@ -4,12 +4,12 @@ import { Title } from '../components/Pages'
 import { ScrollSections, BottomNavigation, navItems, idToUrlMap, NavigationButtons } from '../components/Section'
 
 
-const sectionIds = ['about1', 'about2', 'about3', 'about4'];
+const sectionIds = ['about1', '#about2', 'about3', '#about4'];
 const idTextMap = {
-	about1: '我们的愿景',
-	about2: '系统特点',
-	about3: '如何使用',
-	about4: '联系我们',
+	'#about1': '我们的愿景',
+	'#about2': '系统特点',
+	'#about3': '如何使用',
+	'#about4': '联系我们',
 };
 
 
@@ -35,7 +35,7 @@ export default function About() {
 
 const AboutVision = () => {
 	return (
-		<section id="about1" className="flex items-center justify-center h-screen">
+		<section id="#about1" className="flex items-center justify-center h-screen">
 			<div className="max-w-6xl mx-auto px-4 py-16 text-center">
 				<h1 className="text-5xl font-bold mb-8 text-custom0 hover:scale-110">我们的愿景</h1>
 				<p className="text-xl text-gray-700 leading-relaxed max-w-2xl mb-12">
@@ -70,7 +70,7 @@ const AboutFeatures = () => {
 	];
 
 	return (
-		<section id="about2" className="flex items-center justify-center h-screen">
+		<section id="#about2" className="flex items-center justify-center h-screen">
 			<div className="container text-center mx-auto">
 				<h2 className="text-center text-5xl font-bold pb-6 mb-10 hover:scale-110">系统特点</h2>
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -130,7 +130,7 @@ const HowToUse = () => {
 	];
 
 	return (
-		<section id="about3" className="flex items-center justify-center h-screen">
+		<section id="#about3" className="flex items-center justify-center h-screen">
 			<div className="max-w-6xl mx-auto px-4 py-8 text-center">
 				<h2 className=" uppercaes text-5xl font-bold mb-8 pb-5 hover:scale-110">如何使用我们的系统</h2>
 				<div className="mx-auto grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -183,7 +183,7 @@ const ContactUs = () => {
 	));
 
 	return (
-		<section id="about4" className="min-h-screen flex items-center justify-center">
+		<section id="#about4" className="min-h-screen flex items-center justify-center">
 			<div className="max-w-6xl mx-auto">
 				<h2 className=" uppercaes text-5xl font-bold text-center hover:scale-110 pb-5 mb-10">联系我们</h2>
 				<div className="grid gap-8 md:grid-cols-3">

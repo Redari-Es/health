@@ -54,7 +54,7 @@ export const Banner = () => {
 	};
 
 	return (
-		<section className="banner flex items-center justify-center" id="banner" style={{ height: "100vh" }}>
+		<section className="#banner flex items-center justify-center" id="banner" style={{ height: "100vh" }}>
 			<div className="container mx-auto px-4">
 				<div className="flex flex-wrap items-center">
 					<div className="w-full md:w-1/2 xl:w-7/12 md:order-2">
