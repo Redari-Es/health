@@ -1,0 +1,17 @@
+{
+	"welcome": {
+		"title": "Welcome to Health Management System",
+		"description": "Start your journey towards a healthier lifestyle with our comprehensive Health Management System. Track your progress, set goals, and achieve optimal well-being.",
+		"button": "Get Started"
+	},
+	"banner": {
+		"greeting": "Hi! I'm ShonH ",
+		"roles": [
+			"Web Developer",
+			"Web Designer",
+			"UI/UX Designer"
+		],
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
+		"connect": "Let’s Connect"
+	}
+}

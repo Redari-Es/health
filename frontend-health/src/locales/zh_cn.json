@@ -1,0 +1,18 @@
+{
+	"welcome": {
+		"title": "欢迎使用健康管理系统",
+		"description": "从现在开始，让我们一起开始健康管理系统之旅，迈向更健康的生活方式。跟踪您的进展，设定目标，并实现最佳的健康状况。",
+		"button": "开始",
+		"toggleLanguage": "Switch to English"
+	},
+	"banner": {
+		"greeting": "你好！我是ShonH",
+		"roles": [
+			"Web开发者",
+			"Web设计师",
+			"UI/UX设计师"
+		],
+		"description": "Lorem Ipsum 是印刷和排版行业的虚拟文本。Lorem Ipsum 自 1500 年代以来一直是该行业的标准虚拟文本...",
+		"connect": "联系我"
+	}
+}

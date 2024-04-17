@@ -1,6 +1,6 @@
 import React from "react";
 import GetAllRoutes from "./routes";
-import { StatesProvider, ThemesProvider, AuthProvider } from "./layouts/States";
+import { StatesProvider, ThemesProvider, AuthProvider, LanguageProvider } from "./layouts/States";
 import "./App.css";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -24,11 +24,13 @@ const App = () => {
 		<>
 			<StatesProvider>
 				<ThemeProvider theme={theme}>
-					<ThemesProvider>
-						<AuthProvider>
-							<GetAllRoutes />
-						</AuthProvider>
-					</ThemesProvider>
+					<LanguageProvider>
+						<ThemesProvider>
+							<AuthProvider>
+								<GetAllRoutes />
+							</AuthProvider>
+						</ThemesProvider>
+					</LanguageProvider>
 				</ThemeProvider>
 			</StatesProvider>
 		</>

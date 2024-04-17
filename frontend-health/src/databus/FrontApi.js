@@ -20,8 +20,17 @@ export const submitForm = async (api, formDataToSubmit, navigate) => {
 		if (response.ok) {
 			// 提交成功处理逻辑
 			console.log('Form submitted successfully!');
-
-			navigate(`/dashboard/${username}`);
+			// 从响应中获取数据
+			if (api === 'login') {
+				const data = await response.json();
+				console.log('Received data:', data);
+				navigate(`/dashboard/${username}`);
+			}
+			if (api === 'register') {
+				const data = await response.json();
+				console.log('Received data:', data);
+				navigate(`/dashboard/user`);
+			}
 			// console.log("navigate",
 			// 	`/${username}`
 			// )
