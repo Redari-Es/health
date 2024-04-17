@@ -2,27 +2,27 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Title } from '../components/Pages'
 import { ScrollSections, BottomNavigation, navItems, idToUrlMap, NavigationButtons } from '../components/Section'
+import { useTranslation } from "react-i18next"
 
 
-const sectionIds = ['about1', '#about2', 'about3', '#about4'];
-const idTextMap = {
-	'#about1': '我们的愿景',
-	'#about2': '系统特点',
-	'#about3': '如何使用',
-	'#about4': '联系我们',
-};
-
+const sectionIds = ['#about1', '#about2', '#about3', '#about4'];
 
 export default function About() {
+	const { t } = useTranslation()
+	const vision = t('about.vision')
+	const features = t('about.features')
+	const howToUse = t('about.howToUse')
+	const contactUs = t('about.contactUs')
+
 	return (
 		<>
 			<ScrollSections sectionIds={sectionIds}>
 				<div className="min-h-screen bg-gradient-to-b from-custom6 to-purple-500">
-					<AboutVision />
-					<AboutFeatures />
-					<HowToUse />
-					<ContactUs />
-					<BottomNavigation sectionIds={sectionIds} idTextMap={idTextMap} />
+					<AboutVision title={vision.title} content={vision.content} btn={vision.btn} />
+					<AboutFeatures title={features.title} content={features.content} />
+					<HowToUse title={howToUse.title} steps={howToUse.steps} />
+					<ContactUs title={contactUs.title} more={contactUs.more} contactInfo={contactUs.info} />
+					<BottomNavigation sectionIds={sectionIds} />
 					<NavigationButtons
 						items={navItems}
 						mappingFunction={(name) => idToUrlMap[name]}
@@ -33,17 +33,17 @@ export default function About() {
 	);
 }
 
-const AboutVision = () => {
+const AboutVision = ({ title, content, btn }) => {
 	return (
 		<section id="#about1" className="flex items-center justify-center h-screen">
 			<div className="max-w-6xl mx-auto px-4 py-16 text-center">
-				<h1 className="text-5xl font-bold mb-8 text-custom0 hover:scale-110">我们的愿景</h1>
+				<h1 className="text-5xl font-bold mb-8 text-custom0 hover:scale-110">{title}</h1>
 				<p className="text-xl text-gray-700 leading-relaxed max-w-2xl mb-12">
-					我们的愿景是通过科技赋能，让每个人都能轻松管理自己的健康。我们相信，通过提供易于使用的工具和资源，人们可以更加主动地参与到自己健康的管理中来。
+					{content}
 				</p>
 				<div className="flex gap-4 justify-center">
-					<a href="#about4" className="inline-block px-4 py-3 mt-4 rounded-md bg-custom0 text-white font-medium text-lg hover:scale-[1.05] transition duration-300 ease-in-out animate-pulse">
-						加入我们
+					<a href="contact" className="inline-block px-4 py-3 mt-4 rounded-md bg-custom0 text-white font-medium text-lg hover:scale-[1.05] transition duration-300 ease-in-out animate-pulse">
+						{btn}
 					</a>
 				</div>
 			</div>
@@ -52,29 +52,14 @@ const AboutVision = () => {
 };
 
 
-const AboutFeatures = () => {
-	const features = [
-		{
-			title: '个性化健康评估',
-			description: '通过问卷调查和数据分析，为用户提供个性化的健康评估。',
-		},
-		{
-			title: '定制化健康计划',
-			description: '根据评估结果，系统会生成一份定制化的健康计划。',
-		},
-		{
-			title: '专业健康指导',
-			description: '我们的专家团队将为您提供专业的健康指导和建议。',
-		},
-		// ...可以继续添加更多特性项
-	];
+const AboutFeatures = ({ title, content }) => {
 
 	return (
 		<section id="#about2" className="flex items-center justify-center h-screen">
 			<div className="container text-center mx-auto">
-				<h2 className="text-center text-5xl font-bold pb-6 mb-10 hover:scale-110">系统特点</h2>
+				<h2 className="text-center text-5xl font-bold pb-6 mb-10 hover:scale-110">{title}</h2>
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{features.map((feature, index) => (
+					{content.map((feature, index) => (
 						<div key={index} className="feature-item rounded-lg shadow-md p-6 transform transition hover:scale-110 duration-300 ease-in-out">
 							<h3 className="text-xl font-medium mb-2">{feature.title}</h3>
 							<p className="text-gray-600">{feature.description}</p>
@@ -100,39 +85,12 @@ const StepCard = ({ stepNumber, title, description }) => {
 };
 
 // HowToUse.js
-const HowToUse = () => {
-	const steps = [
-		{
-			stepNumber: 1,
-			title: '注册账户',
-			description: '创建您的个人账户，开始管理您的健康之旅。',
-		},
-		{
-			stepNumber: 2,
-			title: '完成健康评估',
-			description: '通过我们的简短问卷，让我们了解您的健康状况。',
-		},
-		{
-			stepNumber: 3,
-			title: '查看健康计划',
-			description: '根据您的评估结果，我们将为您定制个性化的健康计划。',
-		},
-		{
-			stepNumber: 4,
-			title: '开始跟踪进度',
-			description: '使用我们的跟踪工具记录您的健康数据，见证您的进步。',
-		},
-		{
-			stepNumber: 5,
-			title: '参与社区交流',
-			description: '加入我们的健康社区，分享经验，互相学习和支持。',
-		},
-	];
+const HowToUse = ({ title, steps }) => {
 
 	return (
 		<section id="#about3" className="flex items-center justify-center h-screen">
 			<div className="max-w-6xl mx-auto px-4 py-8 text-center">
-				<h2 className=" uppercaes text-5xl font-bold mb-8 pb-5 hover:scale-110">如何使用我们的系统</h2>
+				<h2 className=" uppercaes text-5xl font-bold mb-8 pb-5 hover:scale-110">{title}</h2>
 				<div className="mx-auto grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{steps.map((step, index) => (
 						<StepCard key={index} {...step} />
@@ -143,27 +101,7 @@ const HowToUse = () => {
 	);
 };
 
-const ContactUs = () => {
-	// 定义联系信息数组
-	const contactInfo = [
-		{
-			title: '电子邮件',
-			detail: 'support@health管理系统.com',
-			link: 'mailto:support@health管理系统.com',
-		},
-		{
-			title: '客服热线',
-			detail: '123-456-7890',
-			link: 'tel:123-456-7890',
-		},
-		{
-			title: '访问我们的网站',
-			detail: 'www.健康管理系统.com',
-			link: 'http://www.健康管理系统.com',
-		},
-		// ...可以添加更多的联系信息
-	];
-
+const ContactUs = ({ title, more, contactInfo }) => {
 
 	// 遍历联系信息数组并生成联系卡片
 	const contactCards = contactInfo.map((item, index) => (
@@ -175,7 +113,7 @@ const ContactUs = () => {
 				</a>
 				<div className="mt-2">
 					<a href={item.link} className="text-green-700 font-bold hover:text-blue-900 focus:outline-none">
-						<span className="cursor-pointer">了解更多</span>
+						<span className="cursor-pointer">{more}</span>
 					</a>
 				</div>
 			</div>
@@ -185,7 +123,7 @@ const ContactUs = () => {
 	return (
 		<section id="#about4" className="min-h-screen flex items-center justify-center">
 			<div className="max-w-6xl mx-auto">
-				<h2 className=" uppercaes text-5xl font-bold text-center hover:scale-110 pb-5 mb-10">联系我们</h2>
+				<h2 className=" uppercaes text-5xl font-bold text-center hover:scale-110 pb-5 mb-10">{title}</h2>
 				<div className="grid gap-8 md:grid-cols-3">
 					{contactCards}
 				</div>

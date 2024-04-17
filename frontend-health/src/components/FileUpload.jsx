@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { DocumentArrowUpIcon, DocumentCheckIcon } from "@heroicons/react/24/solid";
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { useTranslation } from 'react-i18next'
+
 
 export const FileUpload = () => {
   const [file, setFile] = useState(null);
@@ -144,14 +146,18 @@ export const FileMultiUpload = (onClose) => {
 
 
 export const FileUploadDialog = ({ open, onClose }) => {
+		const { t } = useTranslation();
+
+	
 
   return (
     <Dialog open={open} onClose={onClose}>
 		<div className="flex flex-col">
-      <DialogTitle>文件上传</DialogTitle>
+      <DialogTitle>{t("upload.title")}</DialogTitle>
       <DialogContent>
 		<FileMultiUpload onClose={onClose}/>
       </DialogContent>
+		<button className="text-xl pb-2 hover:underline hover:font-bold" onClick={onClose}>{t("upload.close")}</button>
 		</div>
     </Dialog>
   );

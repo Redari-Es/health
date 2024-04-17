@@ -1,0 +1,44 @@
+{
+	"admin": {
+		"sideBar": {
+			"Dashboard": "终端",
+			"OverView": "概览",
+			"Analytics": "分析",
+			"Log": "日志",
+			"Feedback": "反馈",
+			"Home": "主页"
+		}
+	},
+	"navbar": {
+		"#welcome": "欢迎",
+		"#banner": "标语",
+		"admin": "后台",
+		"Home": "主页",
+		"About": "关于我们",
+		"Contact": "联系我们",
+		"Dashboard": "终端"
+	},
+	"navSide": {
+		"Summary": "摘要",
+		"Family": "家人",
+		"Hearts": "心脏",
+		"Body": "身体",
+		"Breath": "呼吸",
+		"Sleep": "睡眠",
+		"Vision": "视力",
+		"ERecord": "健身记录",
+		"Blood": "血糖血压",
+		"Log": "日志",
+		"Users": "用户管理"
+	},
+	"section": {
+		"admin": "后台",
+		"Dashboard": "终端",
+		"#welcome": "欢迎",
+		"#banner": "标语",
+		"#about1": "我们的愿景",
+		"#about2": "系统特点",
+		"#about3": "如何使用",
+		"#about4": "联系我们"
+	}
+}

@@ -4,17 +4,11 @@ import BasicPagination from "../components/BasicPagination";
 import { Title } from "../components/Pages"
 import { Link } from 'react-router-dom';
 import { Banner } from './Banner'
-import { BottomNavigation, ScrollSections } from '../components/Section'
+import { NavigationButtons, BottomNavigation, ScrollSections } from '../components/Section'
 import { useTranslation } from 'react-i18next';
 import { LangBtn } from '../components/Language'
 
-const sectionIds = ['#welcome', '#banner', 'admin'];
-const idTextMap = {
-	'#welcome': '欢迎',
-	'#banner': '标语',
-	'admin': '后台',
-
-};
+const sectionIds = ['#welcome', '#banner', 'admin', 'Dashboard'];
 
 
 const Home = () => {
@@ -27,8 +21,8 @@ const Home = () => {
 				{/* 传递 language 属性给 Welcome 组件 */}
 				<Welcome title={t('welcome.title')} description={t('welcome.description')} button={t('welcome.button')} />
 				<Banner greeting={t('banner.greeting')} description={t('banner.description')} connectBtn={t('banner.connect')} />
+				<BottomNavigation sectionIds={sectionIds} />
 			</div>
-			<BottomNavigation sectionIds={sectionIds} idTextMap={idTextMap} />
 		</ScrollSections >
 	);
 };

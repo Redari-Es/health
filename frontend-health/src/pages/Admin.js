@@ -5,7 +5,9 @@ import { Outlet } from "react-router-dom";
 import BasicPagination from "../components/BasicPagination";
 import { Title } from "../components/Pages"
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 import CssBaseline from "@mui/material/CssBaseline";
+import { LangBtn } from '../components/Language'
 
 
 
@@ -68,9 +70,11 @@ const sidebarItems = [
 	{ name: 'Home', link: '/' },
 	// 添加更多侧边栏条目
 ];
+const adminItems = ["Dashboard", "OverView", "Analytics", "Log", "Feedback", "Home"]
 
 
 const Sidebar = ({ isSidebarOpen, sidebarWidth, toggleSidebar, activePage, setActivePage }) => {
+	const { t } = useTranslation()
 	return (
 		<div
 			style={{ width: `${sidebarWidth}px`, position: 'fixed', top: 0, left: 0, bottom: 0 }}
@@ -85,13 +89,14 @@ const Sidebar = ({ isSidebarOpen, sidebarWidth, toggleSidebar, activePage, setAc
 					{sidebarItems.map((item) => (
 						<li
 							key={item.name}
-							className={`px-4 py-2 hover:bg-gray-700 ${activePage === item.name ? 'bg-gray-700' : ''}`}
+							className={`px-4 py-2 text-center hover:bg-gray-700 ${activePage === item.name ? 'bg-gray-700' : ''}`}
 							onClick={() => setActivePage(item.name)}
 						>
-							<Link to={item.link}>{item.name}</Link>
+							<Link to={item.link}>{t(`admin.sideBar.${item.name}`)}</Link>
 						</li>
 					))}
 				</ul>
+				<LangBtn />
 			</div>
 		</div>
 	);

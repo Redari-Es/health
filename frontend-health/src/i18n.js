@@ -1,8 +1,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import en_us from './locales/en_us.json'
-import zh_cn from './locales/zh_cn.json'
+import en_us from './locales/en/en_us.json'
+import zh_cn from './locales/zh/zh_cn.json'
+import nav_en from './locales/en/nav.json'
+import nav_zh from './locales/zh/nav.json'
 
 i18n
 	// 检测用户当前使用的语言
@@ -25,11 +27,14 @@ i18n
 		},
 		resources: {
 			en: {
-				// banner: en_us.banner
-				translation: en_us
+				translation: Object.assign({}, en_us, nav_en)
 			},
 			zh: {
-				translation: zh_cn
+				// translation: {
+				// 	...zh_cn,
+				// 	nav: nav_zh
+				// }
+				translation: Object.assign({}, zh_cn, nav_zh)
 			}
 		}
 	});

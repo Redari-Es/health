@@ -5,7 +5,7 @@ export const LangBtn=()=>{
 
 	return (
 											<button
-										className="btn-1"
+										className="btn-lang w-full mx-auto"
 										type="submit"
 										onClick={toggleLanguage}
 									>

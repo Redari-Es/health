@@ -188,7 +188,7 @@ export const HeartsLayout = ({ children }) => {
 							}}
 							onClick={openFile}
 						>
-							<span>{t("upload.file")}</span>
+							<span>{t("upload.title")}</span>
 						</Button>
 						<FileUploadDialog open={file} onClose={closeFile} />
 					</div>
@@ -263,7 +263,7 @@ export const RenderMenu = (checked, onClick, dataItems) => {
 const RenderContent = ({ content, active }) => {
 	return (
 		<div className="py-8">
-			<h2 className="text-2xl font-bold mb-4 text-center">{content.title}</h2>
+			<h2 className="text-4xl font-bold mb-4 text-center">{content.title}</h2>
 			{content.def && (
 				<Card title={content.def.title}>
 					<p className="text-xl text-center">{content.def.detail}</p>

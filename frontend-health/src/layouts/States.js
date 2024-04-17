@@ -104,7 +104,7 @@ export const LanguageProvider = ({ children }) => {
 	const { t } = useTranslation();
 	const [language, setLanguage] = useState(() => {
 		// 从本地存储中读取语言设置，如果没有则默认为英文
-		return localStorage.getItem('language') || 'zh';
+		return localStorage.getItem('language') || 'en';
 	});
 
 	useEffect(() => {

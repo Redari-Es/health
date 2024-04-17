@@ -16,6 +16,9 @@
 	.btn-1{
 		@apply bg-custom0 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300
 	}
+	.btn-lang{
+		@apply bg-transparent text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300
+	}
 .bigheadtext{
 	@apply font-sans text-4xl font-semibold
 }
