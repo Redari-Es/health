@@ -1,0 +1,292 @@
+{
+	"upload": {
+		"title": "Upload File",
+		"close": "close",
+		"file": "Upload File"
+	},
+	"mode": {
+		"title": "Mode",
+		"light": "Dark",
+		"dark": "Light"
+	},
+	"welcome": {
+		"title": "Welcome to Health Management System",
+		"description": "Start your journey towards a healthier lifestyle with our comprehensive Health Management System. Track your progress, set goals, and achieve optimal well-being.",
+		"button": "Get Started"
+	},
+	"banner": {
+		"greeting": "Hi! I'm ShonH ",
+		"roles": [
+			"Web Developer",
+			"Web Designer",
+			"UI/UX Designer"
+		],
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
+		"connect": "Let’s Connect"
+	},
+	"hearts": {
+		"menu": {
+			"title": "Menu",
+			"open": "Click Menu To Show Content",
+			"heart": "Heart Rate",
+			"hrv": "Heart Rate Variability",
+			"rhr": "Resting Heart Rate",
+			"rates": "Heart Rate Status"
+		},
+		"timeUnits": [
+			{
+				"label": "Hour",
+				"value": "hour"
+			},
+			{
+				"label": "Day",
+				"value": "day"
+			},
+			{
+				"label": "Week",
+				"value": "week"
+			},
+			{
+				"label": "Month",
+				"value": "month"
+			},
+			{
+				"label": "Year",
+				"value": "year"
+			}
+		],
+		"heart": {
+			"title": "Heart Rate Information",
+			"def": {
+				"title": "Definition of Heart Rate",
+				"detail": "The heart rate refers to the number of times the heart beats per minute."
+			},
+			"factors": {
+				"title": "Influencing Factors",
+				"detail": [
+					"Physical activity",
+					"Emotional state",
+					"Medications",
+					"Health conditions"
+				]
+			},
+			"status": {
+				"title": "Heart Rate Status",
+				"content": {
+					"high": {
+						"title": "Tachycardia",
+						"detail": "For adults, a heart rate exceeding 100 beats per minute while at rest (generally not exceeding 160 beats per minute).",
+						"other": "A heart rate over 160 beats per minute can be commonly seen after excitement, agitation, smoking, drinking alcohol, drinking strong tea or coffee, infections, fever, shock, anemia, hypoxia, hyperthyroidism, heart failure, and other pathological states, or after using medications such as atropine, adrenaline, or ephedrine."
+					},
+					"low": {
+						"title": "Bradycardia",
+						"detail": "For adults, a heart rate below 60 beats per minute while at rest (usually above 45 beats per minute).",
+						"other": "A heart rate below 40 beats per minute may be seen in conditions such as sick sinus syndrome, atrioventricular block. If the pulse is irregular and weak, and the pulse rate is less than the heart rate, atrial fibrillation should be considered."
+					}
+				}
+			},
+			"formula": {
+				"title": "Estimation Formula",
+				"content": {
+					"MHR_estimation": {
+						"title": "Maximum Heart Rate Estimation",
+						"detail": "A commonly used estimation formula is 220 minus the individual's age, but this is only a rough estimate and the actual situation varies from person to person."
+					}
+				}
+			},
+			"advice": {
+				"title": "Advice",
+				"detail": [
+					"Moderate aerobic exercise helps improve cardiorespiratory function and regulate heart rate.",
+					"A balanced diet, limiting salt and sugar intake helps maintain heart health.",
+					"Avoiding excessive stress and anxiety helps keep the heart rate stable.",
+					"Regularly checking heart rate and other cardiovascular indicators helps in early detection and management of potential issues."
+				]
+			}
+		},
+		"rhr": {
+			"title": "Resting Heart Rate Information",
+			"def": {
+				"title": "Definition of Resting Heart Rate",
+				"detail": "Resting heart rate refers to the number of heartbeats per minute in a resting state."
+			},
+			"factors": {
+				"title": "Influencing Factors",
+				"detail": [
+					"Age",
+					"Gender",
+					"Health Status",
+					"Level of Fitness",
+					"Genetics",
+					"Lifestyle Habits"
+				]
+			},
+			"status": {
+				"title": "Resting Heart Rate Status",
+				"content": {
+					"high": {
+						"title": "High Resting Heart Rate",
+						"detail": "A resting heart rate above 80 beats per minute in adults may be considered high.",
+						"other": "High resting heart rate may be associated with stress, anxiety, caffeine intake, obesity, heart disease, and other factors."
+					},
+					"low": {
+						"title": "Low Resting Heart Rate",
+						"detail": "A resting heart rate below 60 beats per minute in adults is generally considered normal or low.",
+						"other": "A very low resting heart rate, such as below 40 beats per minute, may be due to a high level of fitness in athletes, side effects of certain medications, or may indicate a heart condition."
+					}
+				}
+			},
+			"formula": {
+				"title": "Estimation Formula",
+				"content": {
+					"MHR_estimation": {
+						"title": "Maximum Heart Rate Estimation",
+						"detail": "The maximum heart rate can be estimated by subtracting an individual's age from 220, but estimating resting heart rate usually does not require a complex formula."
+					}
+				}
+			},
+			"advice": {
+				"title": "Recommendations",
+				"detail": [
+					"Regularly monitor your resting heart rate to assess heart health.",
+					"Engage in regular physical activity, such as jogging, swimming, or cycling, which can help lower the resting heart rate.",
+					"Maintain good sleep habits, as insufficient sleep may increase the resting heart rate.",
+					"Reduce caffeine and alcohol intake, as they can temporarily raise the heart rate.",
+					"Consult a doctor promptly if the resting heart rate is abnormal."
+				]
+			}
+		},
+		"hrv": {
+			"title": "Heart Rate Variability Information",
+			"def": {
+				"title": "Definition of Heart Rate Variability",
+				"detail": "Heart rate variability (HRV) refers to the variation in time between each heartbeat. It is a measure of the variation in the time domain of two successive heartbeats and is an important indicator of the body's autonomic nervous system activity."
+			},
+			"factors": {
+				"title": "Influencing Factors",
+				"detail": [
+					"Physical Activity",
+					"Emotional State",
+					"Sleep Quality",
+					"Stress Levels",
+					"Age",
+					"Gender",
+					"Medication Use"
+				]
+			},
+			"status": {
+				"title": "HRV Status",
+				"content": {
+					"high": {
+						"title": "High HRV",
+						"detail": "High HRV indicates a well-functioning and adaptable autonomic nervous system, which is generally associated with better cardiovascular health.",
+						"other": "High HRV can be influenced by factors such as regular exercise, good sleep, and low stress levels."
+					},
+					"low": {
+						"title": "Low HRV",
+						"detail": "Low HRV may indicate a less adaptable autonomic nervous system and can be associated with increased risk of cardiovascular diseases.",
+						"other": "Factors contributing to low HRV include chronic stress, poor sleep, and certain medical conditions or medications that affect heart function."
+					}
+				}
+			},
+			"formula": {
+				"title": "Measurement Techniques",
+				"content": {
+					"time_domain": {
+						"title": "Time Domain Analysis",
+						"detail": "This involves measuring the time intervals between successive heartbeats, such as the RR intervals, to assess HRV."
+					},
+					"frequency_domain": {
+						"title": "Frequency Domain Analysis",
+						"detail": "This method involves analyzing the power distribution across different frequency bands of the HRV spectrum."
+					}
+				}
+			},
+			"advice": {
+				"title": "Recommendations",
+				"detail": [
+					"Maintain a regular exercise routine to improve HRV.",
+					"Practice stress management techniques such as meditation and deep breathing exercises.",
+					"Ensure adequate sleep to support autonomic nervous system recovery.",
+					"Monitor HRV regularly for early detection of changes that may indicate health risks.",
+					"Consult with a healthcare provider for personalized advice regarding HRV and heart health."
+				]
+			}
+		}
+	},
+	"about": {
+		"vision": {
+			"title": "Our Vision",
+			"content": "Our vision is to empower everyone to easily manage their health through technology. We believe that by providing user-friendly tools and resources, people can actively engage in managing their health.",
+			"btn": "Join Us"
+		},
+		"features": {
+			"title": "System Features",
+			"content": [
+				{
+					"title": "Personalized Health Assessment",
+					"description": "Provide users with personalized health assessments through surveys and data analysis."
+				},
+				{
+					"title": "Customized Health Plan",
+					"description": "Generate a customized health plan based on assessment results."
+				},
+				{
+					"title": "Professional Health Guidance",
+					"description": "Our expert team will provide professional health guidance and advice."
+				}
+			]
+		},
+		"howToUse": {
+			"title": "How to Use Our System",
+			"steps": [
+				{
+					"stepNumber": 1,
+					"title": "Register an Account",
+					"description": "Create your personal account to start managing your health journey."
+				},
+				{
+					"stepNumber": 2,
+					"title": "Complete Health Assessment",
+					"description": "Fill out our short questionnaire to help us understand your health status."
+				},
+				{
+					"stepNumber": 3,
+					"title": "View Health Plan",
+					"description": "Based on your assessment results, we'll customize a personalized health plan for you."
+				},
+				{
+					"stepNumber": 4,
+					"title": "Start Tracking Progress",
+					"description": "Use our tracking tools to record your health data and witness your progress."
+				},
+				{
+					"stepNumber": 5,
+					"title": "Engage in Community Discussions",
+					"description": "Join our health community to share experiences, learn from each other, and provide support."
+				}
+			]
+		},
+		"contactUs": {
+			"title": "Contact Us",
+			"info": [
+				{
+					"title": "Email",
+					"detail": "support@healthsystem.com",
+					"link": "mailto:support@healthsystem.com"
+				},
+				{
+					"title": "Customer Service Hotline",
+					"detail": "123-456-7890",
+					"link": "tel:123-456-7890"
+				},
+				{
+					"title": "Visit Our Website",
+					"detail": "www.healthsystem.com",
+					"link": "http://www.healthsystem.com"
+				}
+			],
+			"more": "Learn More"
+		}
+	}
+}

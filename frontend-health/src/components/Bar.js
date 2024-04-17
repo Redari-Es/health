@@ -6,10 +6,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { States, useAuth } from "../layouts/States";
 import { Drawers } from "./Drawers";
 import { AppBar } from "./BarStyles";
+import { useTranslation } from "react-i18next";
 
 // const drawerWidth = 240;
 
 const DrawerAppBar = (props) => {
+	const { t } = useTranslation()
 	const [users, setUsers] = useState("User")
 	const { user } = useAuth();
 	// 检查用户信息是否存在，然后再访问用户名
@@ -71,7 +73,7 @@ const DrawerAppBar = (props) => {
 									sx={{ color: "#fff" }}
 									className="hoverOn2"
 								>
-									{item}
+									{t(`navbar.${item}`)}
 								</Button>
 							))}
 							{user && (
@@ -81,7 +83,7 @@ const DrawerAppBar = (props) => {
 									sx={{ color: "#fff", ml: 2 }}
 									className="hoverOn2"
 								>
-									Dashboard
+									{t("navbar.Dashboard")}
 								</Button>
 							)}
 

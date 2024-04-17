@@ -13,6 +13,12 @@
 	.btn-0{
 		@apply transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 w-1/6 self-center rounded-lg 
 	}
+	.btn-1{
+		@apply bg-custom0 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300
+	}
+	.btn-lang{
+		@apply bg-transparent text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300
+	}
 .bigheadtext{
 	@apply font-sans text-4xl font-semibold
 }

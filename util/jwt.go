@@ -17,6 +17,7 @@ const (
 type CustomClaims struct {
 	jwt.StandardClaims
 	UserID int64 `json:"user_id"`
+	UUID   int64 `json:"uuid"`
 }
 
 // 创建一个函数来生成JWT。

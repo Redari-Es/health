@@ -1,9 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Outlet } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-const sectionIds = ['#welcome', '#banner', '#section1', '#section2', '#section3'];
+const sectionIds = ['#welcome', '#banner'];
 
 export const ScrollSections = ({ children, sectionIds }) => {
 	const lastScrollPosition = useRef(0);
@@ -66,6 +67,7 @@ export const ScrollSections = ({ children, sectionIds }) => {
 
 //底部
 export const BottomNavigation = ({ sectionIds, idTextMap }) => {
+	const { t } = useTranslation()
 	const handleClick = (id) => {
 		const element = document.getElementById(id);
 		if (element) {
@@ -90,7 +92,7 @@ export const BottomNavigation = ({ sectionIds, idTextMap }) => {
 						onClick={() => handleClick(id)}
 						style={{ textDecoration: 'none' }}
 					>
-						{idTextMap[id]}
+						{t(`section.${id}`)}
 					</a>
 				))}
 			</div>
@@ -98,15 +100,16 @@ export const BottomNavigation = ({ sectionIds, idTextMap }) => {
 	);
 }
 
-export const navItems = ['Home', 'Dashboard', 'About', 'Contact'];
+export const navItems = ['Home', 'About', 'Contact', 'Dashboard'];
 
 export const idToUrlMap = {
 	'Home': '/home',
-	'Dashboard': '/dashboard',
 	'About': '/about',
 	'Contact': '/contact',
+	'Dashboard': '/dashboard',
 };
 export const NavigationButtons = ({ items, mappingFunction, textSytle }) => {
+	const { t } = useTranslation()
 	const handleClick = (id) => {
 		const url = mappingFunction(id); // Get the URL based on the ID
 		if (url) {
@@ -123,7 +126,7 @@ export const NavigationButtons = ({ items, mappingFunction, textSytle }) => {
 						onClick={() => handleClick(item)}
 						className={`flex items-center justify-center p-2 rounded-md border border-gray-300 text-sm hover:bg-custom5 text-white transition duration-300 ease-in-out cursor-pointer ${textSytle} `}
 					>
-						{item}
+						{t(`navbar.${item}`)}
 					</button>
 				))}
 			</div>

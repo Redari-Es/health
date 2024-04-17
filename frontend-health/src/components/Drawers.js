@@ -17,7 +17,8 @@ import ExerciseRecord from "../assets/img/eRecord.png";
 import { DrawerHeader } from "./BarStyles";
 import { States, useAuth } from "../layouts/States";
 import { Link } from 'react-router-dom';
-import CopyRight from './CopyRight'
+import { useTranslation } from 'react-i18next'
+import { LangBtn } from './Language'
 
 const icons = (iconSrc) => {
 	return (
@@ -30,20 +31,6 @@ const userItems = ["Summary", "Family", "Hearts", "Body", "Breath", "Sleep"]
 const userItems2 = ["Vision", "ERecord", "Blood"]
 const adminItems = ["Log", "Users", "Count"]
 const adminItems2 = ["Log", "Users", "Count"]
-
-const itemMap = {
-	"Summary": "摘要",
-	"Family": "家人",
-	"Hearts": "心脏",
-	"Body": "身体",
-	"Breath": "呼吸",
-	"Sleep": "睡眠",
-	"Vision": '视力',
-	"ERecord": "健身记录",
-	"Blood": "血糖血压",
-	"Log": "日志",
-	"Users": "用户管理"
-}
 
 const userIcons = { FavoriteIcon, MonitorHeartIcon, FavoriteBorderIcon }
 
@@ -76,6 +63,7 @@ export const Drawers = () => {
 	const username = user ? user.username : null
 
 	const theme = useTheme();
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -122,7 +110,7 @@ export const Drawers = () => {
 								>
 									<div className="flex px-4 items-center justify-center space-x">
 										{renderIcons(text)}
-										<ListItemText className="text-center" primary={itemMap[text]} />
+										<ListItemText className="text-center" primary={t(`navSide.${text}`)} />
 									</div>
 								</ListItemButton>
 							</ListItem>
@@ -142,21 +130,16 @@ export const Drawers = () => {
 									activeclassname="active"
 									className sx={{ color: "#fff" }}
 								>
-									<div className="flex px-2 items-center justify-center space-x">
+									<div className="flex px-4 items-center justify-center space-x">
 										{renderIcons(text)}
-										<ListItemText className="text-center" primary={itemMap[text]} />
+										<ListItemText className="text-center" primary={t(`navSide.${text}`)} />
 									</div>
 								</ListItemButton>
 							</ListItem>
 						</div>
 					))}
 				</List>
-				<div className="absolute bottom-0 flex items-center text-2xl w-auto font-bold h-auto text-wrap justify-end text-center 
-		hover:bg-sky-800 hover:brightness-150 hover:scale:125
-	 m-2"
-				>
-					<CopyRight />
-				</div>
+				<LangBtn />
 			</Drawer>
 		</>
 	);

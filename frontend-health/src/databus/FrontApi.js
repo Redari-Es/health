@@ -33,6 +33,19 @@ export const submitForm = async (api, formDataToSubmit, navigate, login) => {
 			//后端200才执行
 			console.log("navigate:", `${user_name}`, 'uuid:', data.uuid)
 			//还需要处理注册
+			// 从响应中获取数据
+			if (api === 'login') {
+				const data = await response.json();
+				console.log('Received data:', data);
+				navigate(`/dashboard/${user_name}`);
+			}
+			if (api === 'register') {
+				const data = await response.json();
+				console.log('Received data:', data);
+				navigate(`/dashboard/user`);
+			}
+			// console.log("navigate",
+			// 	`/${username}`
 			// )
 
 		} else {

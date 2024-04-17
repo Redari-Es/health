@@ -1,0 +1,43 @@
+{
+	"admin": {
+		"sideBar": {
+			"Dashboard": "Dashboard",
+			"OverView": "OverView",
+			"Analytics": "Analytics",
+			"Log": "Log",
+			"Feedback": "Feedback",
+			"Home": "Home"
+		}
+	},
+	"navbar": {
+		"#welcome": "welcome",
+		"#banner": "banner",
+		"admin": "admin",
+		"Home": "Home",
+		"About": "About",
+		"Contact": "Contact",
+		"Dashboard": "Dashboard"
+	},
+	"navSide": {
+		"Summary": "Summary",
+		"Family": "Family",
+		"Hearts": "Hearts",
+		"Body": "Body",
+		"Breath": "Breath",
+		"Sleep": "Sleep",
+		"Vision": "Vision",
+		"ERecord": "ERecord",
+		"Blood": "Blood",
+		"Users": "Users"
+	},
+	"section": {
+		"admin": "Admin",
+		"Dashboard": "Dashboard",
+		"#welcome": "Welcome",
+		"#banner": "Banner",
+		"#about1": "Our View",
+		"#about2": "System Feature",
+		"#about3": "How To Use",
+		"#about4": "Contact Us"
+	}
+}
