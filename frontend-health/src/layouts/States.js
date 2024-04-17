@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import i18n from 'i18next';
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 
 
@@ -55,11 +56,19 @@ export const StatesProvider = ({ children }) => {
 };
 
 export const ThemesProvider = ({ children }) => {
+	const { t } = useTranslation(); // Use useTranslation to get t
 	// 定义状态来切换主题
+
+	const themes = {
+		light: t("mode.light"),
+		dark: t("mode.dark")
+	}
+	/*
 	const themes = {
 		light: '来到黑夜',
 		dark: '迎来白天'
 	}
+		*/
 	const [currentETheme, setCurrentETheme] = useState('dark'); // 默认为深色主题
 
 	const themeDescription = themes[currentETheme]; // 获取当前主题的描述
@@ -84,10 +93,15 @@ export const ThemesProvider = ({ children }) => {
 const LanguageContext = createContext();
 
 // 提供一个自定义 hook 以方便在组件中使用语言上下文
-export const useLanguage = () => useContext(LanguageContext);
-
+// 提供一个自定义 hook 以方便在组件中使用语言上下文
+export const useLanguage = () => {
+	const { t } = useTranslation(); // Use useTranslation to get t
+	const languageContext = useContext(LanguageContext); // Get language context from LanguageContext
+	return { ...languageContext, t }; // Return language context along with t
+};
 // LanguageProvider 组件，用于提供语言上下文给整个应用
 export const LanguageProvider = ({ children }) => {
+	const { t } = useTranslation();
 	const [language, setLanguage] = useState(() => {
 		// 从本地存储中读取语言设置，如果没有则默认为英文
 		return localStorage.getItem('language') || 'zh';

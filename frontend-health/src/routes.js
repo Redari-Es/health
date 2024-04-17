@@ -23,7 +23,7 @@ import Sleep from "./pages/Sleep";
 // import UserProfile from "./components/UserProfile"
 import Logs from "./pages/Logs";
 // Echart
-import { ChartsLayout } from "./layouts/ChartLayout"
+import { HeartsLayout } from "./layouts/HeartsLayout"
 import { useRoutes } from "react-router-dom";
 import { useAuth } from './layouts/States'
 import { Heart, Hrv, Rhr, Rates } from "./pages/charts/Hearts";
@@ -92,7 +92,7 @@ const GetRecRoutes = () => {
 								},
 								{
 									path: "hearts",
-									element: <ChartsLayout />,
+									element: <HeartsLayout />,
 									children: [
 										{
 											path: "heart",

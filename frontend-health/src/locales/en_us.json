@@ -1,4 +1,21 @@
 {
+	"admin": {
+		"sideBar": {}
+	},
+	"nav": {
+		"home": "Home",
+		"about": "About",
+		"contact": "Contact",
+		"dashboard": "Dashboard"
+	},
+	"upload": {
+		"file": "Upload File"
+	},
+	"mode": {
+		"title": "Mode",
+		"light": "Dark",
+		"dark": "Light"
+	},
 	"welcome": {
 		"title": "Welcome to Health Management System",
 		"description": "Start your journey towards a healthier lifestyle with our comprehensive Health Management System. Track your progress, set goals, and achieve optimal well-being.",
@@ -13,5 +30,86 @@
 		],
 		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
 		"connect": "Let’s Connect"
+	},
+	"hearts": {
+		"menu": {
+			"title": "Menu",
+			"open": "Click Menu To Show Content",
+			"heart": "Heart Rate",
+			"hrv": "Heart Rate Variability",
+			"rhr": "Resting Heart Rate",
+			"rates": "Heart Rate Status"
+		},
+		"timeUnits": [
+			{
+				"label": "Hour",
+				"value": "hour"
+			},
+			{
+				"label": "Day",
+				"value": "day"
+			},
+			{
+				"label": "Week",
+				"value": "week"
+			},
+			{
+				"label": "Month",
+				"value": "month"
+			},
+			{
+				"label": "Year",
+				"value": "year"
+			}
+		],
+		"heart": {
+			"title": "Heart Rate Information",
+			"def": {
+				"title": "Definition of Heart Rate",
+				"detail": "The heart rate refers to the number of times the heart beats per minute."
+			},
+			"factors": {
+				"title": "Influencing Factors",
+				"detail": [
+					"Physical activity",
+					"Emotional state",
+					"Medications",
+					"Health conditions"
+				]
+			},
+			"status": {
+				"title": "Heart Rate Status",
+				"content": {
+					"high": {
+						"title": "Tachycardia",
+						"detail": "For adults, a heart rate exceeding 100 beats per minute while at rest (generally not exceeding 160 beats per minute).",
+						"other": "A heart rate over 160 beats per minute can be commonly seen after excitement, agitation, smoking, drinking alcohol, drinking strong tea or coffee, infections, fever, shock, anemia, hypoxia, hyperthyroidism, heart failure, and other pathological states, or after using medications such as atropine, adrenaline, or ephedrine."
+					},
+					"low": {
+						"title": "Bradycardia",
+						"detail": "For adults, a heart rate below 60 beats per minute while at rest (usually above 45 beats per minute).",
+						"other": "A heart rate below 40 beats per minute may be seen in conditions such as sick sinus syndrome, atrioventricular block. If the pulse is irregular and weak, and the pulse rate is less than the heart rate, atrial fibrillation should be considered."
+					}
+				}
+			},
+			"formula": {
+				"title": "Estimation Formula",
+				"content": {
+					"MHR_estimation": {
+						"title": "Maximum Heart Rate Estimation",
+						"detail": "A commonly used estimation formula is 220 minus the individual's age, but this is only a rough estimate and the actual situation varies from person to person."
+					}
+				}
+			},
+			"advice": {
+				"title": "Advice",
+				"detail": [
+					"Moderate aerobic exercise helps improve cardiorespiratory function and regulate heart rate.",
+					"A balanced diet, limiting salt and sugar intake helps maintain heart health.",
+					"Avoiding excessive stress and anxiety helps keep the heart rate stable.",
+					"Regularly checking heart rate and other cardiovascular indicators helps in early detection and management of potential issues."
+				]
+			}
+		}
 	}
 }
