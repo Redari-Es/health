@@ -31,7 +31,7 @@ export const HeartsLayout = ({ children }) => {
 	const [activeMenu, setActiveMenu] = useState(null);
 	const [activeMode, setActiveMode] = useState(timeUnit);
 	const [showMode, setShowMode] = useState(false); // 控制菜单显示的状态
-	const [showChart, setShowChart] = useState(t("hearts.menu.open"));
+	const [showChart, setShowChart] = useState("")
 	const [file, setFile] = useState(false)
 	const content = t(`hearts.${activeMenu}`)
 	const openFile = () => {
@@ -154,6 +154,7 @@ export const HeartsLayout = ({ children }) => {
 		<>
 			<main>
 				<div className='flex flex-col gap-4 animate__animated animate__bounceIn'>
+					<span className='font-bold mb-4 text-4xl self-center text-custom0' >{t("hearts.menu.open")}</span>
 					<ControlSwitch checked={showMenu} onChange={toggleMenu} label={t("hearts.menu.title")} />
 					{
 						showMenu && (

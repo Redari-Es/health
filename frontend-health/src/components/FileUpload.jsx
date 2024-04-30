@@ -109,13 +109,13 @@ export const FileMultiUpload = (onClose) => {
         <input
           id="file-upload"
           type="file"
-					// accept=".json"
+					accept=".json"
           onChange={handleFileChange}
           className="sr-only"
           // multiple
         />
       </div>
-      <span className="text-white z-10">支持格式：jpg, jpeg, png, gif, doc, docx, xls, xlsx, pdf, txt</span>
+      <span className="text-white z-10">支持格式：json</span>
 		{files.length === 0 && <p className="text-custom6 font-bold">当前未选择文件</p>}
       {files.length > 0 && (
         <div className="flex flex-col bg-gray-100 p-4 rounded-md shadow-md z-10">

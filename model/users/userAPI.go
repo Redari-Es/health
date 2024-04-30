@@ -33,10 +33,15 @@ func Logins(c *gin.Context) {
 	// session.Commit()
 
 	// 输出接收到的表单数据
+	err := form.Validate()
+	if err != nil {
+		c.JSON(300, gin.H{
+			"err": err,
+		})
+		return
+	}
 	c.JSON(200, gin.H{
-		"user_name": form.UserName,
-		"email":     form.Email,
-		"password":  form.Password,
+		"User": form,
 	})
 	println(form.UserName)
 	println(form.Email)

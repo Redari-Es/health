@@ -48,6 +48,8 @@ type BodyMeasurement struct {
 	UserID     int64  `xorm:"'user_id' index" json:"user_id"`
 	Height     int    `xorm:"'height'" json:"height"`
 	Weight     int    `xorm:"'weight'" json:"weight"`
+	BMI        string `xorm:"'bmi'" json:"bmi"`
+	BMIStatus  string `xorm:"'bmi_status' not null" json:"bmi_status"`
 	Waist      int    `xorm:"'waist'" json:"waist"`
 	Hip        int    `xorm:"'hip'" json:"hip"`
 	Chest      int    `xorm:"'chest'" json:"chest"`

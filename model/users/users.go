@@ -4,6 +4,9 @@ import (
 	"health/model"
 	"health/model/body"
 	"time"
+
+	validation "github.com/go-ozzo/ozzo-validation/v4"
+	"github.com/go-ozzo/ozzo-validation/v4/is"
 )
 
 var db = model.GetDB()
@@ -55,17 +58,17 @@ type Member struct {
 // 用户表
 type User struct {
 	Id       int64     `xorm:"pk autoincr" json:"id"`
+	UUID     string    `xorm:"'uuid' varchar(36) unique notnull" json:"uuid"`
 	UserName string    `xorm:"'user_name'" json:"user_name"`
 	UserIcon string    `xorm:"'user_icon'" json:"user_icon"`
 	State    int8      `xorm:"'state'" json:"state"`
 	Email    string    `xorm:"'email' varchar(20)" json:"email"`
 	Phone    string    `xorm:"'phone' unique varchar(11) " json:"phone"`
 	FamilyID int64     `xorm:"'family_id'" json:"family_id"`
-	UUID     string    `xorm:"'uuid' varchar(36) unique notnull"  json:"uuid"`
 	Salt     string    `xorm:"'salt' unique varchar(32) notnull" json:"-"`
 	Password string    `xorm:"'password' varchar(64)" json:"-"`
-	Created  time.Time `xorm:"'created'" json:"created"`
-	Updated  time.Time `xorm:"'updated'" json:"updated"`
+	Created  time.Time `xorm:"'created'" json:"_"`
+	Updated  time.Time `xorm:"'updated'" json:"_"`
 	// 外键关联表
 	UserInfo *UserInfo `xorm:"-" json:"user_info"`
 	Account  *UserInfo `xorm:"-" json:"Account"`
@@ -129,3 +132,16 @@ type Role struct {
 	Updated  time.Time `xorm:"'updated' updated" json:"updated"`
 }
 */
+
+// 数据验证
+func (u User) Validate() error {
+	return validation.ValidateStruct(&u,
+		// validation.Field(&u.Id, validation.Required),
+		// validation.Field(&u.UUID, validation.Required, validation.Length(36), is.UUID),
+		validation.Field(&u.UserName, validation.Required, validation.Length(2, 10)),
+		validation.Field(&u.Email, validation.Required, validation.Required, is.Email),
+		// validation.Field(&u.Password, validation.Required, validation.Length(8, 9)),
+		// validation.Field(&u.Phone, validation.Required, validation.Length(11)),
+		// validation.Field(&u.Salt, validation.Required),
+	)
+}

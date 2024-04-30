@@ -14,8 +14,8 @@
 		"#banner": "标语",
 		"admin": "后台",
 		"Home": "主页",
-		"About": "关于我们",
-		"Contact": "联系我们",
+		"About": "关于",
+		"Contact": "联系",
 		"Dashboard": "终端"
 	},
 	"navSide": {
@@ -40,5 +40,24 @@
 		"#about2": "系统特点",
 		"#about3": "如何使用",
 		"#about4": "联系我们"
+	},
+	"user": {
+		"userInfo": {
+			"title": "用户详细信息",
+			"status": "属性",
+			"value": "值",
+			"name": "姓名",
+			"email": "邮箱",
+			"gender": "性别",
+			"age": "年龄",
+			"address": "地址",
+			"birthdate": "生日",
+			"id_card": "身份证",
+			"nationality": "国籍",
+			"ethnicity": "民族",
+			"occupation": "职业",
+			"education": "教育程度",
+			"marital_status": "婚否"
+		}
 	}
 }

@@ -39,5 +39,24 @@
 		"#about2": "System Feature",
 		"#about3": "How To Use",
 		"#about4": "Contact Us"
+	},
+	"user": {
+		"userInfo": {
+			"title": "User Detail Info",
+			"status": "Status",
+			"value": "Value",
+			"name": "Name",
+			"email": "Email",
+			"gender": "Gender",
+			"age": "Age",
+			"address": "Address",
+			"birthdate": "Birthdate",
+			"id_card": "IDCard",
+			"nationality": "Nationality",
+			"ethnicity": "Ethnicity",
+			"occupation": "Occupation",
+			"education": "Education",
+			"marital_status": "Marital_Status"
+		}
 	}
 }

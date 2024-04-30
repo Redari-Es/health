@@ -1,6 +1,8 @@
 package body
 
 import (
+	"fmt"
+	"math"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -34,6 +36,33 @@ var bloodTypes = [...]string{
 	P:   "P",
 }
 
+// determineBMIStatus 函数根据BMI值返回相应的健康状况
+func bmiStatus(bmi string) string {
+	// 将字符串转换为float64类型
+	bmiValue, _ := strconv.ParseFloat(bmi, 64)
+	switch {
+	case bmiValue < 18.5:
+		return "Underweight (体重不足)"
+	case bmiValue >= 18.5 && bmiValue < 25:
+		return "Normal (正常)"
+	case bmiValue >= 25 && bmiValue < 30:
+		return "Overweight (超重)"
+	case bmiValue >= 30:
+		return "Obesity (肥胖)"
+	default:
+		return "Unknown (未知)"
+	}
+}
+func calcBMI(height, weight int) (bmi string, status string) {
+	// 将身高转换为米
+	heightInMeters := float64(height) / 100
+	// 计算BMI
+	bmi = fmt.Sprintf("%.2f", float64(weight)/math.Pow(heightInMeters, 2))
+	status = bmiStatus(bmi)
+	return bmi, status
+
+}
+
 // 当前用户ID的数据模拟
 func GenerateBodyInfoData(userID int64, numRecords int) []BodyMeasurement {
 	// 使用当前时间作为基准时间
@@ -41,9 +70,11 @@ func GenerateBodyInfoData(userID int64, numRecords int) []BodyMeasurement {
 
 	// 生成指定数量的血糖记录
 	for i := 1; i <= numRecords; i++ {
-		// 随机生成值
+		// 生成随机的身高（110-220厘米）和体重（30-200千克）
 		height := rand.Intn(111) + 110
-		weight := rand.Intn(200) + 30
+		weight := rand.Intn(120) + 30
+		// 根据BMI值确定健康状况
+		bmi, bmiStatus := calcBMI(height, weight)
 		hip := rand.Intn(30) + 50
 		chest := rand.Intn(30) + 50
 		waist := rand.Intn(30) + 50
@@ -61,6 +92,8 @@ func GenerateBodyInfoData(userID int64, numRecords int) []BodyMeasurement {
 			UserID:     userID,
 			Height:     height,
 			Weight:     weight,
+			BMI:        bmi,
+			BMIStatus:  bmiStatus,
 			Waist:      waist,
 			Hip:        hip,
 			Chest:      chest,
@@ -146,6 +179,7 @@ func PostBodyInfo(c *gin.Context) {
 	if len(data.BloodType) > 2 {
 		data.BloodType = "A"
 	}
+	data.BMI, data.BMIStatus = calcBMI(data.Height, data.Weight)
 
 	// 添加记录到全局数组
 	bodyInfoData = append(bodyInfoData, data)

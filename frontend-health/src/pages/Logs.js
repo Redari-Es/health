@@ -83,8 +83,6 @@ const LogsComponent = () => {
 					// 如果选定的日志文件不存在，则将总页数设置为 1
 					setTotalPages(1);
 				}
-
-
 			} catch (error) {
 				setError('There was a problem fetching the logs.');
 				setLoading(false);
