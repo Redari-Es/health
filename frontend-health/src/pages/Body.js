@@ -17,6 +17,8 @@ const textLabels = {
 	name: '姓名',
 	height: '身高cm',
 	weight: '体重kg',
+	bmi: "BMI值",
+	bmi_status: "质量状态",
 	waist: '腰围',
 	hip: '臀围',
 	chest: '胸围',

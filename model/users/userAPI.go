@@ -36,12 +36,15 @@ func Logins(c *gin.Context) {
 	form.Id = rand.Int63n(1000) + 1
 	form.UUID = generateUUID()
 	// 输出接收到的表单数据
+	err := form.Validate()
+	if err != nil {
+		c.JSON(300, gin.H{
+			"err": err,
+		})
+		return
+	}
 	c.JSON(200, gin.H{
-		"id":        form.Id,
-		"uuid":      form.UUID,
-		"user_name": form.UserName,
-		"email":     form.Email,
-		"password":  form.Password,
+		"User": form,
 	})
 	form.Id = rand.Int63n(1000) + 1
 	println(form.UserName)

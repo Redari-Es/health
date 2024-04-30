@@ -3,7 +3,27 @@ import { Outlet } from "react-router-dom";
 import { useParams } from "react-router"
 import { useAuth } from './States'
 import { useRoutes, Route, Routes, Navigate } from "react-router-dom";
-import UserProfile from '../components/UserProfile'
+import UserProfile, { UserDetail } from '../components/UserProfile'
+
+// 模拟数据
+export const mockUser = {
+	userInfo: {
+		name: 'ShonH',
+		email: 'shonh@redaries.xyz',
+		gender: '男',
+		age: '28',
+		address: '某省某市某区某街道',
+		birthdate: '2001-04-11',
+		id_card: '11010119940520xxxx',
+		nationality: '中国',
+		ethnicity: '汉族',
+		occupation: '软件工程师',
+		education: '本科',
+		marital_status: '已婚',
+		// 如果有其他属性，只需添加到此对象中即可
+	}
+};
+
 
 
 const PrivateRoutes = ({ children }) => {
@@ -45,9 +65,10 @@ export const UserLayout = ({ children }) => {
 	return (
 		<>
 			<UserProfile />
-			<div className='flex flex-col items-center justify-center'>
+			<div className='flex items-center justify-center mb-8'>
 				<span className="border rounded-2xl bg-custom0 p-2 font-bold text-2xl text-custom6 hover:scale-125 hover:cursor-pointer shadow-xl" onClick={logout}>Log Out</span>
 			</div>
+			<UserDetail user={mockUser} />
 		</>
 	)
 };
