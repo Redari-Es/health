@@ -1,5 +1,8 @@
 # RESUME
 
+[前端在线展示](https://health-rust.vercel.app/)
+
+
 ## 项目信息
 
 - **项目名称**: {Health}
@@ -103,6 +106,9 @@
 cloc --list-file='./conf/file_list.txt'
 > cloc --by-file .
 
+### 编译
+> go build -o healthapp main.go
+> upx healthapp
 
 
 
@@ -125,7 +131,6 @@ swaggerFiles 替换成files
 
 ### pprof
 性能分析
-
 
 ## 贡献指南
 
